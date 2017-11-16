@@ -1,0 +1,18 @@
+machine:
+  environment:
+    GOPATH: /home/ubuntu/.go_workspace
+    IMPORT_PATH: github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+
+dependencies:
+  pre:
+    - make clean
+    - make install_tools
+
+test:
+  pre:
+    - golint -set_exit_status $(go list ./... | grep --invert-match --regexp 'vendor')
+  override:
+    - make test
+    - ./scripts/coverage.sh
+  post:
+    - make clean
