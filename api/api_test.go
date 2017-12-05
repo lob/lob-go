@@ -116,6 +116,44 @@ func TestDo(t *testing.T) {
 	}
 }
 
+func TestGet(t *testing.T) {
+	mux := http.NewServeMux()
+	srv := httptest.NewServer(mux)
+	client := NewJSONClient(&Options{srv.URL, "api_key", 10, ""})
+	defer srv.Close()
+
+	mux.HandleFunc("/pass", func(w http.ResponseWriter, req *http.Request) {
+		w.WriteHeader(http.StatusOK)
+	})
+
+	mux.HandleFunc("/fail", func(w http.ResponseWriter, req *http.Request) {
+		w.WriteHeader(http.StatusInternalServerError)
+	})
+
+	tests := []struct {
+		label     string
+		url       string
+		shouldErr bool
+	}{
+		{"ValidRequest", "/pass", false},
+		{"BadResponse", "/fail", true},
+	}
+
+	for _, test := range tests {
+		_, err := client.Get(context.Background(), test.url)
+
+		if test.shouldErr {
+			if err == nil {
+				t.Errorf("%s: expected error", test.label)
+			}
+		} else {
+			if err != nil {
+				t.Errorf("%s: unexpected error %#v: %s", test.label, err, err)
+			}
+		}
+	}
+}
+
 func TestCheckError(t *testing.T) {
 	msg := `{"error":{"message":"fail","status_code":500}}`
 

@@ -24,6 +24,7 @@ type Client interface {
 	NewRequest(context.Context, string, string, interface{}) (*http.Request, error)
 	NewMultiformRequest(context.Context, string, string, *bytes.Buffer) (*http.Request, error)
 	Do(*http.Request) (*http.Response, error)
+	Get(context.Context, string) (*http.Response, error)
 }
 
 // JSONClient implements the Client interface and provides convenience methods for constructing
@@ -132,6 +133,20 @@ func (c *JSONClient) Do(req *http.Request) (*http.Response, error) {
 	}
 
 	return resp, err
+}
+
+// Get provides a convenience wrapper for issuing http GET requests.
+func (c *JSONClient) Get(ctx context.Context, url string) (*http.Response, error) {
+	req, err := c.NewRequest(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := c.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
 }
 
 // NewJSONClient creates a new JSONCLient object with the given options.
