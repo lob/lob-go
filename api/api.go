@@ -37,9 +37,20 @@ type JSONClient struct {
 
 // Options contains necessary configuration for a Client.
 type Options struct {
-	BaseURL    string
-	APIKey     string
-	MaxQPS     int
+	// BaseURL specifies the base target URL for a Client.
+	// Paths used in creating requests will interpreted as relative to this URL.
+	BaseURL string
+
+	// APIKey is the Lob API key that will be used to authenticate each request.
+	APIKey string
+
+	// MaxQPS is the maximum number of queries that a Client will attempt
+	// per second. This is client-side rate limiting, server-side rate
+	// limiting may enforce different limits.
+	MaxQPS int
+
+	// APIVersion is the version of the Lob API to be used. If no value is
+	// provided, it defaults to the most recent version of the API.
 	APIVersion string
 }
 
