@@ -8,8 +8,10 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"mime/multipart"
 	"net/http"
 	"net/url"
+	"reflect"
 	"time"
 )
 
@@ -119,6 +121,20 @@ func (c *JSONClient) NewMultiformRequest(ctx context.Context, relPath string, co
 	}
 
 	return req, nil
+}
+
+// WriteFormFile inspects a given field to determine if it is a []byte, and then writes it
+// to the specified mulitpart.Writer.
+func WriteFormFile(field interface{}, fieldName string, w *multipart.Writer) error {
+	if reflect.TypeOf(field) == reflect.TypeOf([]byte{}) {
+		part, err := w.CreateFormFile(fieldName, fieldName+"_file")
+		if err != nil {
+			return err
+		}
+		_, err = part.Write(field.([]byte))
+		return err
+	}
+	return nil
 }
 
 // Do executes the given http.Request and returns an http.Response or error.

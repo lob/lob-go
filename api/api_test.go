@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"io/ioutil"
+	"mime/multipart"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -71,6 +72,26 @@ func TestNewMultiformRequest(t *testing.T) {
 		_, err := c.NewMultiformRequest(context.Background(), test.relPath, "some fake content type", test.body)
 		if err == nil && test.shouldErr {
 			t.Errorf("%s failed: error was expected but not received", test.label)
+		}
+	}
+}
+
+func TestWriteFormFile(t *testing.T) {
+	buffer := &bytes.Buffer{}
+	w := multipart.NewWriter(buffer)
+
+	var tests = []struct {
+		label string
+		field interface{}
+	}{
+		{"FileField", []byte("some file")},
+		{"OtherField", "not a file"},
+	}
+
+	for _, test := range tests {
+		err := WriteFormFile(test.field, "foo", w)
+		if err != nil {
+			t.Errorf("%s failed: unexpected error: %s", test.label, err)
 		}
 	}
 }
