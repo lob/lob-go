@@ -116,7 +116,7 @@ func TestDo(t *testing.T) {
 	}
 }
 
-func TestGet(t *testing.T) {
+func TestGetAndDelete(t *testing.T) {
 	mux := http.NewServeMux()
 	srv := httptest.NewServer(mux)
 	client := NewJSONClient(&Options{srv.URL, "api_key", 10, ""})
@@ -141,6 +141,59 @@ func TestGet(t *testing.T) {
 
 	for _, test := range tests {
 		_, err := client.Get(context.Background(), test.url)
+
+		if test.shouldErr {
+			if err == nil {
+				t.Errorf("%s: expected error", test.label)
+			}
+		} else {
+			if err != nil {
+				t.Errorf("%s: unexpected error %#v: %s", test.label, err, err)
+			}
+		}
+	}
+
+	for _, test := range tests {
+		_, err := client.Delete(context.Background(), test.url)
+
+		if test.shouldErr {
+			if err == nil {
+				t.Errorf("%s: expected error", test.label)
+			}
+		} else {
+			if err != nil {
+				t.Errorf("%s: unexpected error %#v: %s", test.label, err, err)
+			}
+		}
+	}
+}
+
+func TestPost(t *testing.T) {
+	mux := http.NewServeMux()
+	srv := httptest.NewServer(mux)
+	client := NewJSONClient(&Options{srv.URL, "api_key", 10, ""})
+	defer srv.Close()
+
+	mux.HandleFunc("/pass", func(w http.ResponseWriter, req *http.Request) {
+		w.WriteHeader(http.StatusOK)
+	})
+
+	mux.HandleFunc("/fail", func(w http.ResponseWriter, req *http.Request) {
+		w.WriteHeader(http.StatusInternalServerError)
+	})
+
+	tests := []struct {
+		label     string
+		url       string
+		body      interface{}
+		shouldErr bool
+	}{
+		{"ValidRequest", "/pass", "foo", false},
+		{"BadResponse", "/fail", make(chan int), true},
+	}
+
+	for _, test := range tests {
+		_, err := client.Post(context.Background(), test.url, test.body)
 
 		if test.shouldErr {
 			if err == nil {

@@ -58,15 +58,7 @@ func NewClient(client api.Client) *Client {
 
 // Create creates a new Address.
 func (ac *Client) Create(ctx context.Context, scaffold *scaffold.Address) (*Address, error) {
-	req, err := ac.client.NewRequest(ctx, "POST", basePath, scaffold)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := ac.client.Do(req)
-	if err != nil {
-		return nil, err
-	}
+	resp, err := ac.client.Post(ctx, basePath, scaffold)
 
 	addr := &Address{}
 	err = api.Deserialize(resp, addr)
@@ -101,12 +93,7 @@ func (ac *Client) Retrieve(ctx context.Context, id string) (*Address, error) {
 func (ac *Client) Delete(ctx context.Context, id string) error {
 	relPath := fmt.Sprintf("%s/%s", basePath, id)
 
-	req, err := ac.client.NewRequest(ctx, "DELETE", relPath, nil)
-	if err != nil {
-		return err
-	}
-
-	resp, err := ac.client.Do(req)
+	resp, err := ac.client.Delete(ctx, relPath)
 	if err != nil {
 		return err
 	}
