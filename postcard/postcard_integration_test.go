@@ -74,15 +74,6 @@ func TestBasicIntegration(t *testing.T) {
 		t.Errorf("Integration: expected error on invalid id")
 	}
 
-	err = c.Cancel(ctx, psc.ID)
-	if err != nil {
-		t.Errorf("Integration: error canceling Postcard: %s", err)
-	}
-	err = c.Cancel(ctx, "something fake")
-	if err == nil {
-		t.Errorf("Integration: expected error on invalid id")
-	}
-
 	limit, offset := 2, 1
 	pscs, err := c.List(ctx, limit, offset)
 	if err != nil {
@@ -95,5 +86,14 @@ func TestBasicIntegration(t *testing.T) {
 	_, err = c.List(ctx, 5, -1000)
 	if err == nil {
 		t.Errorf("List: expected error on invalid offset")
+	}
+
+	err = c.Cancel(ctx, psc.ID)
+	if err != nil {
+		t.Errorf("Integration: error canceling Postcard: %s", err)
+	}
+	err = c.Cancel(ctx, "something fake")
+	if err == nil {
+		t.Errorf("Integration: expected error on invalid id")
 	}
 }
