@@ -59,6 +59,9 @@ func NewClient(client api.Client) *Client {
 // Create creates a new Address.
 func (ac *Client) Create(ctx context.Context, scaffold *scaffold.Address) (*Address, error) {
 	resp, err := ac.client.Post(ctx, basePath, scaffold)
+	if err != nil {
+		return nil, err
+	}
 
 	addr := &Address{}
 	err = api.Deserialize(resp, addr)
