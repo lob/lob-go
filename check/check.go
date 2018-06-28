@@ -44,7 +44,7 @@ type Check struct {
 	ExpectedDeliveryDate         string                  `json:"expected_delivery_date"`
 	SendDate                     string                  `json:"send_date"`
 	TrackingEvents               []tracking.Event        `json:"tracking_events"`
-	Thumbnail                    []thumbnail.Thumbnail   `json:"thumbnail"`
+	Thumbnails                   []thumbnail.Thumbnail   `json:"thumbnails"`
 	DateCreated                  string                  `json:"date_created"`
 	DateModified                 string                  `json:"date_modified"`
 	Metadata                     map[string]string       `json:"metadata"`

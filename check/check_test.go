@@ -59,7 +59,7 @@ func TestCreateInline(t *testing.T) {
 		t.Errorf("Create: error parsing response as Check: %s", err)
 	}
 	if chk.ID == "" || chk.To.ID != to.ID {
-		t.Errorf("Create: address parsed incorrectly")
+		t.Errorf("Create: check parsed incorrectly")
 	}
 }
 

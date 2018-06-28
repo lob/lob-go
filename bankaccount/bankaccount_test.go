@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"strings"
 	"testing"
@@ -38,7 +37,6 @@ func TestCreate(t *testing.T) {
 	}
 
 	handler := func(rw http.ResponseWriter, req *http.Request) {
-		log.Printf(req.URL.Path)
 		if req.URL.Path != "/"+basePath {
 			http.Error(rw, "internal server error", http.StatusInternalServerError)
 		}
@@ -52,10 +50,10 @@ func TestCreate(t *testing.T) {
 
 	acct, err := c.Create(context.Background(), scaffold)
 	if err != nil {
-		t.Errorf("Create: error parsing response as Address: %s", err)
+		t.Errorf("Create: error parsing response as BankAccount: %s", err)
 	}
 	if acct.ID == "" || acct.BankName != name || acct.Description != nil {
-		t.Errorf("Create: address parsed incorrectly")
+		t.Errorf("Create: account parsed incorrectly")
 	}
 }
 
@@ -78,7 +76,7 @@ func TestRetrieve(t *testing.T) {
 		t.Errorf("Retrieve: error parsing response as BankAccount: %s", err)
 	}
 	if acct.ID != id {
-		t.Errorf("Retrieve: address parsed incorrectly")
+		t.Errorf("Retrieve: account parsed incorrectly")
 	}
 
 	_, err = c.Retrieve(context.Background(), "something fake")
