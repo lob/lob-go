@@ -9,8 +9,8 @@ import (
 	"github.com/lob/lob-go/postcard"
 )
 
+// Client wraps resource-specific interfaces.
 type Client struct {
-	// add resource interfaces here
 	Address     address.Handler
 	BankAccount bankaccount.Handler
 	Check       check.Handler
