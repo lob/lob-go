@@ -85,6 +85,10 @@ func (pc *Client) Create(ctx context.Context, scfld *scaffold.Postcard) (*Postca
 		}
 	}
 
+	if scfld.IdempotencyKey != "" {
+		req.Header.Add(api.IdempotencyKeyHeader, scfld.IdempotencyKey)
+	}
+
 	resp, err := pc.client.Do(req)
 	if err != nil {
 		return nil, err

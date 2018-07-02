@@ -95,6 +95,10 @@ func (cc *Client) Create(ctx context.Context, scfld *scaffold.Check) (*Check, er
 		}
 	}
 
+	if scfld.IdempotencyKey != "" {
+		req.Header.Add(api.IdempotencyKeyHeader, scfld.IdempotencyKey)
+	}
+
 	resp, err := cc.client.Do(req)
 	if err != nil {
 		return nil, err

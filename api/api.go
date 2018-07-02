@@ -19,6 +19,9 @@ const (
 	defaultMaxQPS = 10
 	mediaType     = "application/json"
 	userAgent     = "LobGo/0.0.0" // TODO(damian): figure out how we want to handle versioning
+
+	// IdempotencyKeyHeader is the header string used when issuing idempotent requests.
+	IdempotencyKeyHeader = "Idempotency-Key"
 )
 
 // The Client interface defines methods for interacting with an HTTP API.

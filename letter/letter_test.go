@@ -36,7 +36,8 @@ func TestCreateInline(t *testing.T) {
 	}
 
 	scaffold := &scaffold.Letter{
-		To: to,
+		To:             to,
+		IdempotencyKey: "foo",
 	}
 
 	handler := func(rw http.ResponseWriter, req *http.Request) {
@@ -44,6 +45,9 @@ func TestCreateInline(t *testing.T) {
 			http.Error(rw, "internal server error", http.StatusInternalServerError)
 		}
 		if req.Header.Get("Content-Type") != "application/json" {
+			http.Error(rw, "internal server error", http.StatusInternalServerError)
+		}
+		if req.Header.Get(api.IdempotencyKeyHeader) != "foo" {
 			http.Error(rw, "internal server error", http.StatusInternalServerError)
 		}
 		io.WriteString(rw, fmt.Sprintf(`{"id":"%s", "to": %s}`, id, to.String()))

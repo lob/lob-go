@@ -50,6 +50,7 @@ type Check struct {
 	MailType       nullable.String   `json:"mail_type"`
 	SendDate       nullable.String   `json:"send_date"`
 	Metadata       map[string]string `json:"metadata"`
+	IdempotencyKey string            `json:"-"`
 }
 
 // Letter scaffold wraps fields used to create a Letter object in Lob API.
@@ -68,6 +69,7 @@ type Letter struct {
 	SendDate         nullable.String   `json:"send_date"`
 	Description      string            `json:"description"`
 	Metadata         map[string]string `json:"metadata"`
+	IdempotencyKey   string            `json:"-"`
 }
 
 // Postcard scaffold wraps fields used to create a Postcard object in Lob API.
@@ -82,6 +84,7 @@ type Postcard struct {
 	MailType       nullable.String   `json:"mail_type"`
 	SendDate       nullable.String   `json:"send_date"`
 	Metadata       map[string]string `json:"metadata"`
+	IdempotencyKey string            `json:"-"`
 }
 
 // MarshalAsFormValues attempts to coerce the fields of the given scaffold into strings,
