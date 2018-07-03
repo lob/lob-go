@@ -11,11 +11,11 @@ import (
 
 func TestBasicIntegration(t *testing.T) {
 	if testing.Short() {
-		t.Skip("Create: Skipping integration test")
+		t.Skip("Skipping integration test")
 	}
 	ctx := context.Background()
 
-	scaffold := &scaffold.BankAccount{
+	scfld := &scaffold.BankAccount{
 		RoutingNumber: "322271627",
 		AccountNumber: "123456789",
 		AccountType:   "company",
@@ -25,7 +25,7 @@ func TestBasicIntegration(t *testing.T) {
 	client := test.NewClient()
 	c := bankaccount.NewClient(client)
 
-	acct, err := c.Create(ctx, scaffold)
+	acct, err := c.Create(ctx, scfld)
 	if err != nil {
 		t.Fatalf("Integration: error creating BankAccount: %s", err)
 	}

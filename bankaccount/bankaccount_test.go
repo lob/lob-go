@@ -125,7 +125,7 @@ func TestVerify(t *testing.T) {
 
 	_, err := c.Verify(context.Background(), id, []int{1, 35})
 	if err != nil {
-		t.Errorf("Verify: error deleting BankAccount: %s", err)
+		t.Errorf("Verify: error verifying BankAccount: %s", err)
 	}
 	_, err = c.Verify(context.Background(), "some fake id", []int{0, 0})
 	if err == nil {

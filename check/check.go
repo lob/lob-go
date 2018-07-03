@@ -79,7 +79,11 @@ func (cc *Client) Create(ctx context.Context, scfld *scaffold.Check) (*Check, er
 	var req *http.Request
 	var err error
 
-	if reflect.TypeOf(scfld.Logo) == reflect.TypeOf([]byte{}) {
+	hasFile := reflect.TypeOf(scfld.Logo) == reflect.TypeOf([]byte{})
+	hasFile = hasFile || reflect.TypeOf(scfld.CheckBottom) == reflect.TypeOf([]byte{})
+	hasFile = hasFile || reflect.TypeOf(scfld.Attachment) == reflect.TypeOf([]byte{})
+
+	if hasFile {
 		req, err = cc.newFileUploadRequest(ctx, scfld)
 		if err != nil {
 			return nil, err
@@ -178,7 +182,10 @@ func (cc *Client) newFileUploadRequest(ctx context.Context, scfld *scaffold.Chec
 
 	// Add non-file fields
 	for key, val := range formFields {
-		_ = w.WriteField(key, val)
+		err = w.WriteField(key, val)
+		if err != nil {
+			return nil, err
+		}
 	}
 	err = w.Close()
 	if err != nil {

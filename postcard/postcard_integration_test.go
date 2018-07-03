@@ -15,7 +15,7 @@ import (
 
 func TestBasicIntegration(t *testing.T) {
 	if testing.Short() {
-		t.Skip("Create: Skipping integration test")
+		t.Skip("Skipping integration test")
 	}
 	ctx := context.Background()
 
