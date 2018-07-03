@@ -55,15 +55,6 @@ func TestBasicIntegration(t *testing.T) {
 		t.Errorf("Expected error on invalid id")
 	}
 
-	err = c.Delete(ctx, addr.ID)
-	if err != nil {
-		t.Errorf("Error deleting Address: %s", err)
-	}
-	err = c.Delete(ctx, "something fake")
-	if err == nil {
-		t.Errorf("Expected error on invalid id")
-	}
-
 	limit, offset := 2, 1
 	addrs, err := c.List(ctx, limit, offset)
 	if err != nil {
@@ -76,5 +67,14 @@ func TestBasicIntegration(t *testing.T) {
 	_, err = c.List(ctx, 5, -1000)
 	if err == nil {
 		t.Errorf("Expected error on invalid offset")
+	}
+
+	err = c.Delete(ctx, addr.ID)
+	if err != nil {
+		t.Errorf("Error deleting Address: %s", err)
+	}
+	err = c.Delete(ctx, "something fake")
+	if err == nil {
+		t.Errorf("Expected error on invalid id")
 	}
 }
