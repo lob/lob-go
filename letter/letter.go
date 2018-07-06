@@ -88,6 +88,10 @@ func (lc *Client) Create(ctx context.Context, scfld *scaffold.Letter) (*Letter, 
 		}
 	}
 
+	if scfld.IdempotencyKey != "" {
+		req.Header.Add(api.IdempotencyKeyHeader, scfld.IdempotencyKey)
+	}
+
 	resp, err := lc.client.Do(req)
 	if err != nil {
 		return nil, err
