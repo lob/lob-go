@@ -13,6 +13,7 @@ package lob
 
 import (
 	"encoding/json"
+	
 )
 
 // DeliverabilityAnalysis A nested object containing a breakdown of the deliverability of an address.

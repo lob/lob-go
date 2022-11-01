@@ -13,6 +13,7 @@ package lob
 
 import (
 	"encoding/json"
+	
 )
 
 // PostcardDetailsWritable Properties that the postcards in your Creative should have.

@@ -13,6 +13,7 @@ package lob
 
 import (
 	"encoding/json"
+	
 )
 
 // LetterDetailsReturned Properties that the letters in your Creative should have.
