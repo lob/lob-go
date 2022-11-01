@@ -13,6 +13,7 @@ package lob
 
 import (
 	"encoding/json"
+	
 )
 
 // CustomEnvelopeReturned A nested custom envelope object containing more information about the custom envelope used or `null` if a custom envelope was not used.

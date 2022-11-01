@@ -13,6 +13,7 @@ package lob
 
 import (
 	"encoding/json"
+	
 )
 
 // BulkError Lob uses RESTful HTTP response codes to indicate success or failure of an API request.

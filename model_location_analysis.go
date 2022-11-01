@@ -13,6 +13,7 @@ package lob
 
 import (
 	"encoding/json"
+	
 )
 
 // LocationAnalysis A nested object containing a breakdown of the analysis of a reverse geocoded location.

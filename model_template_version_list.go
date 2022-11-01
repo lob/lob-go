@@ -13,6 +13,7 @@ package lob
 
 import (
 	"encoding/json"
+	"strings"
 )
 
 // TemplateVersionList struct for TemplateVersionList
@@ -320,3 +321,60 @@ func (v *NullableTemplateVersionList) UnmarshalJSON(src []byte) error {
 }
 
 
+func (o *TemplateVersionList) GetNextPageToken() string {
+    if *o.NextUrl.value == "" {
+        return "";
+    }
+
+	queryPartitionArray := strings.Split(*o.NextUrl.value, "?")
+
+    if len(queryPartitionArray) < 2 {
+        return "";
+    }
+
+    paramPartitionArray := strings.Split(queryPartitionArray[1], ("&"))
+
+	var beforeParamString string
+	
+	for _, partition := range paramPartitionArray {
+		if strings.Contains(partition, "after=") {
+			beforeParamString = partition
+			break
+		}
+	}
+
+    if (beforeParamString == "") {
+        return "";
+    }
+    return strings.Split(beforeParamString,"after=")[1];
+
+  }
+
+  func (o *TemplateVersionList) GetPrevPageToken() string {
+	if *o.PreviousUrl.value == "" {
+        return "";
+    }
+
+	queryPartitionArray := strings.Split(*o.PreviousUrl.value, "?")
+
+    if len(queryPartitionArray) < 2 {
+        return "";
+    }
+
+    paramPartitionArray := strings.Split(queryPartitionArray[1], ("&"))
+
+	var afterParamString string
+	
+	for _, partition := range paramPartitionArray {
+		if strings.Contains(partition, "before=") {
+			afterParamString = partition
+			break
+		}
+	}
+
+    if (afterParamString == "") {
+        return "";
+    }
+    return strings.Split(afterParamString,"before=")[1];
+
+  }
