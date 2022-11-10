@@ -5,7 +5,7 @@ on:
   push:
 
 jobs:
-  ruby_tests:
+  go_tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -13,21 +13,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go-version }}
 
-    - name: Set up Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: ${{ matrix.go-version }}
+      - name: Build
+        run: go build
 
-    - name: Build
-      run: go build
-
-    - name: Test
-      run: go test -v ./__tests__
-      env:
-        LOB_API_TEST_KEY: ${{ secrets.LOB_API_TEST_KEY }}
-        LOB_API_LIVE_KEY: ${{ secrets.LOB_API_LIVE_KEY }}
+      - name: Test
+        run: go test -v ./__tests__
+        env:
+          LOB_API_TEST_KEY: ${{ secrets.LOB_API_TEST_KEY }}
+          LOB_API_LIVE_KEY: ${{ secrets.LOB_API_LIVE_KEY }}
+    
