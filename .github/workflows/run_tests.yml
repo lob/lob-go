@@ -1,0 +1,29 @@
+name: Go
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  go_tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: ["1.18", "1.19"]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: Build
+        run: go build
+
+      - name: Test
+        run: go test -v ./__tests__
+        env:
+          LOB_API_TEST_KEY: ${{ secrets.LOB_API_TEST_KEY }}
+          LOB_API_LIVE_KEY: ${{ secrets.LOB_API_LIVE_KEY }}
+    
