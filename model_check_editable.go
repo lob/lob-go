@@ -1,7 +1,7 @@
 /*
 Lob
 
-The Lob API is organized around REST. Our API is designed to have predictable, resource-oriented URLs and uses HTTP response codes to indicate any API errors. <p> Looking for our [previous documentation](https://lob.github.io/legacy-docs/)? 
+The Lob API is organized around REST. Our API is designed to have predictable, resource-oriented URLs and uses HTTP response codes to indicate any API errors. <p> Looking for our [previous documentation](https://lob.github.io/legacy-docs/)?
 
 API version: 1.3.0
 Contact: lob-openapi@lob.com
@@ -13,7 +13,7 @@ package lob
 
 import (
 	"encoding/json"
-	
+	"fmt"
 	"time"
 )
 
@@ -56,16 +56,46 @@ type CheckEditable struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCheckEditable(from string, to string, bankAccount NullableString, amount float32) *CheckEditable {
+
+func NewCheckEditable[V string | AddressEditable](from V, to V, bankAccount NullableString, amount float32) (*CheckEditable) {
 	this := CheckEditable{}
-	this.From = from
-	this.To = to
+	// fromType := fmt.Sprintf("%T", from)
+	// toType := fmt.Sprintf("%T", to)
+	// if fromType != "string" && fromType != "AddressEditable" {
+	// 	return nil, errors.New("from type expected string or addresseditable but received " + fromType)
+	// }
+	// if toType != "string" && toType != "AddressEditable" {
+	// 	return nil, errors.New("to type expected string or addresseditable but received " + toType)
+	// }
+	this.From = fmt.Sprintf("%v", from)
+	this.To = fmt.Sprintf("%v", to)
 	this.BankAccount = bankAccount
 	this.Amount = amount
 	var mailType string = "usps_first_class"
 	this.MailType = &mailType
 	return &this
 }
+
+// func NewCheckEditable(from AddressEditable, to AddressEditable, bankAccount NullableString, amount float32) *CheckEditable {
+// 	this := CheckEditable{}
+// 	tempFrom, err := json.Marshal(from)
+// 	if err != nil {
+//         fmt.Println(err)
+//         errors.New(err.Error())
+//     }
+// 	tempTo, err := json.Marshal(to)
+// 	if err != nil {
+//         fmt.Println(err)
+//         errors.New(err.Error())
+//     }
+//  	this.From = string(tempFrom)
+// 	this.To = string(tempTo)
+// 	this.BankAccount = bankAccount
+// 	this.Amount = amount
+// 	var mailType string = "usps_first_class"
+// 	this.MailType = &mailType
+// 	return &this
+// }
 
 // NewCheckEditableWithDefaults instantiates a new CheckEditable object
 // This constructor will only assign default values to properties that have it defined,
