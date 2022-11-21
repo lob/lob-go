@@ -2,6 +2,7 @@ package tests
 
 import (
 	"context"
+	"os"
 	"testing"
 
 	lob "github.com/lob/lob-go"
@@ -22,7 +23,7 @@ type AddressTestSuite struct {
 // Before all
 func (suite *AddressTestSuite) SetupTest() {
 	suite.ctx = context.Background()
-	suite.ctx = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: "test_62291d3cc85971719264edb12016561ed19"})
+	suite.ctx = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("LOB_API_TEST_KEY")})
 
 	suite.badctx = context.Background()
 	suite.badctx = context.WithValue(suite.badctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: "bad api key"})
@@ -31,7 +32,7 @@ func (suite *AddressTestSuite) SetupTest() {
 
 	suite.apiClient = *lob.NewAPIClient(&suite.configuration)
 
-	suite.addressEditableList = CreateAddressesList() // AddressEditable
+	suite.addressEditableList = CreateAddressesEditableList() // AddressEditable
 }
 
 func (suite *AddressTestSuite) TestAddressCreate() {

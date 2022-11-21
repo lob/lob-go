@@ -55,7 +55,7 @@ type Letter struct {
 	// Tracking events are not populated for registered or regular (no extra service) letters.
 	TrackingEvents []TrackingEventNormal `json:"tracking_events,omitempty"`
 	// Specifies the address the return envelope will be sent back to. This is an optional argument that is available if an account is signed up for the return envelope tracking beta, and has `return_envelope`, and `perforated_page` fields populated in the API request.
-	ReturnAddress *string `json:"return_address,omitempty"`
+	ReturnAddress interface{} `json:"return_address,omitempty"`
 	MailType *MailType `json:"mail_type,omitempty"`
 	// Set this key to `true` if you would like to print in color. Set to `false` if you would like to print in black and white.
 	Color *bool `json:"color,omitempty"`
@@ -724,22 +724,23 @@ func (o *Letter) SetTrackingEvents(v []TrackingEventNormal) {
 	o.TrackingEvents = v
 }
 
-// GetReturnAddress returns the ReturnAddress field value if set, zero value otherwise.
-func (o *Letter) GetReturnAddress() string {
-	if o == nil || o.ReturnAddress == nil {
-		var ret string
+// GetReturnAddress returns the ReturnAddress field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Letter) GetReturnAddress() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.ReturnAddress
+	return o.ReturnAddress
 }
 
 // GetReturnAddressOk returns a tuple with the ReturnAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Letter) GetReturnAddressOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Letter) GetReturnAddressOk() (*interface{}, bool) {
 	if o == nil || o.ReturnAddress == nil {
 		return nil, false
 	}
-	return o.ReturnAddress, true
+	return &o.ReturnAddress, true
 }
 
 // HasReturnAddress returns a boolean if a field has been set.
@@ -751,9 +752,9 @@ func (o *Letter) HasReturnAddress() bool {
 	return false
 }
 
-// SetReturnAddress gets a reference to the given string and assigns it to the ReturnAddress field.
-func (o *Letter) SetReturnAddress(v string) {
-	o.ReturnAddress = &v
+// SetReturnAddress gets a reference to the given interface{} and assigns it to the ReturnAddress field.
+func (o *Letter) SetReturnAddress(v interface{}) {
+	o.ReturnAddress = v
 }
 
 // GetMailType returns the MailType field value if set, zero value otherwise.

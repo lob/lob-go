@@ -20,9 +20,9 @@ import (
 // PostcardEditable struct for PostcardEditable
 type PostcardEditable struct {
 	// Must either be an address ID or an inline object with correct address parameters.
-	To string `json:"to"`
+	To interface{} `json:"to"`
 	// Required if `to` address is international. Must either be an address ID or an inline object with correct address parameters.
-	From *string `json:"from,omitempty"`
+	From interface{} `json:"from,omitempty"`
 	Size *PostcardSize `json:"size,omitempty"`
 	// An internal description that identifies this resource. Must be no longer than 255 characters. 
 	Description NullableString `json:"description,omitempty"`
@@ -45,7 +45,7 @@ type PostcardEditable struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostcardEditable(to string, front string, back string) *PostcardEditable {
+func NewPostcardEditable(to interface{}, front string, back string) *PostcardEditable {
 	this := PostcardEditable{}
 	this.To = to
 	var size PostcardSize = POSTCARDSIZE__4X6
@@ -70,9 +70,10 @@ func NewPostcardEditableWithDefaults() *PostcardEditable {
 }
 
 // GetTo returns the To field value
-func (o *PostcardEditable) GetTo() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *PostcardEditable) GetTo() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -81,34 +82,36 @@ func (o *PostcardEditable) GetTo() string {
 
 // GetToOk returns a tuple with the To field value
 // and a boolean to check if the value has been set.
-func (o *PostcardEditable) GetToOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PostcardEditable) GetToOk() (*interface{}, bool) {
+	if o == nil || o.To == nil {
 		return nil, false
 	}
 	return &o.To, true
 }
 
 // SetTo sets field value
-func (o *PostcardEditable) SetTo(v string) {
+func (o *PostcardEditable) SetTo(v interface{}) {
 	o.To = v
 }
 
-// GetFrom returns the From field value if set, zero value otherwise.
-func (o *PostcardEditable) GetFrom() string {
-	if o == nil || o.From == nil {
-		var ret string
+// GetFrom returns the From field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PostcardEditable) GetFrom() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.From
+	return o.From
 }
 
 // GetFromOk returns a tuple with the From field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostcardEditable) GetFromOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PostcardEditable) GetFromOk() (*interface{}, bool) {
 	if o == nil || o.From == nil {
 		return nil, false
 	}
-	return o.From, true
+	return &o.From, true
 }
 
 // HasFrom returns a boolean if a field has been set.
@@ -120,9 +123,9 @@ func (o *PostcardEditable) HasFrom() bool {
 	return false
 }
 
-// SetFrom gets a reference to the given string and assigns it to the From field.
-func (o *PostcardEditable) SetFrom(v string) {
-	o.From = &v
+// SetFrom gets a reference to the given interface{} and assigns it to the From field.
+func (o *PostcardEditable) SetFrom(v interface{}) {
+	o.From = v
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
@@ -410,7 +413,7 @@ func (o *PostcardEditable) SetBillingGroupId(v string) {
 
 func (o PostcardEditable) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.To != nil {
 		toSerialize["to"] = o.To
 	}
 	if o.From != nil {

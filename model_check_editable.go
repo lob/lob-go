@@ -20,9 +20,9 @@ import (
 // CheckEditable struct for CheckEditable
 type CheckEditable struct {
 	// Must either be an address ID or an inline object with correct address parameters.
-	From string `json:"from"`
+	From interface{} `json:"from"`
 	// Must either be an address ID or an inline object with correct address parameters.
-	To string `json:"to"`
+	To interface{} `json:"to"`
 	BankAccount NullableString `json:"bank_account"`
 	// The payment amount to be sent in US dollars.
 	Amount float32 `json:"amount"`
@@ -56,7 +56,7 @@ type CheckEditable struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCheckEditable(from string, to string, bankAccount NullableString, amount float32) *CheckEditable {
+func NewCheckEditable(from interface{}, to interface{}, bankAccount NullableString, amount float32) *CheckEditable {
 	this := CheckEditable{}
 	this.From = from
 	this.To = to
@@ -78,9 +78,10 @@ func NewCheckEditableWithDefaults() *CheckEditable {
 }
 
 // GetFrom returns the From field value
-func (o *CheckEditable) GetFrom() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *CheckEditable) GetFrom() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -89,22 +90,24 @@ func (o *CheckEditable) GetFrom() string {
 
 // GetFromOk returns a tuple with the From field value
 // and a boolean to check if the value has been set.
-func (o *CheckEditable) GetFromOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CheckEditable) GetFromOk() (*interface{}, bool) {
+	if o == nil || o.From == nil {
 		return nil, false
 	}
 	return &o.From, true
 }
 
 // SetFrom sets field value
-func (o *CheckEditable) SetFrom(v string) {
+func (o *CheckEditable) SetFrom(v interface{}) {
 	o.From = v
 }
 
 // GetTo returns the To field value
-func (o *CheckEditable) GetTo() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *CheckEditable) GetTo() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -113,15 +116,16 @@ func (o *CheckEditable) GetTo() string {
 
 // GetToOk returns a tuple with the To field value
 // and a boolean to check if the value has been set.
-func (o *CheckEditable) GetToOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CheckEditable) GetToOk() (*interface{}, bool) {
+	if o == nil || o.To == nil {
 		return nil, false
 	}
 	return &o.To, true
 }
 
 // SetTo sets field value
-func (o *CheckEditable) SetTo(v string) {
+func (o *CheckEditable) SetTo(v interface{}) {
 	o.To = v
 }
 
@@ -582,10 +586,10 @@ func (o *CheckEditable) SetBillingGroupId(v string) {
 
 func (o CheckEditable) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.From != nil {
 		toSerialize["from"] = o.From
 	}
-	if true {
+	if o.To != nil {
 		toSerialize["to"] = o.To
 	}
 	if true {
