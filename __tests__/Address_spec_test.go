@@ -32,7 +32,7 @@ func (suite *AddressTestSuite) SetupTest() {
 
 	suite.apiClient = *lob.NewAPIClient(&suite.configuration)
 
-	suite.addressEditableList = CreateAddressesList() // AddressEditable
+	suite.addressEditableList = CreateAddressesEditableList() // AddressEditable
 }
 
 func (suite *AddressTestSuite) TestAddressCreate() {

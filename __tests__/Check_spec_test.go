@@ -45,7 +45,7 @@ func (suite *CheckTestSuite) SetupTest() {
 	verifyAmounts := []int32{11, 35}
 	suite.mockVerify = *lob.NewBankAccountVerify(verifyAmounts)
 
-	suite.addressEditableList = CreateAddressesList()
+	suite.addressEditableList = CreateAddressesEditableList()
 	suite.checkEditable = *lob.NewCheckEditable(suite.addressEditableList[0], string("adr_12345"), *lob.NewNullableString(&suite.mockAccount.Id), 100)
 }
 

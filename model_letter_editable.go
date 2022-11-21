@@ -40,9 +40,9 @@ type LetterEditable struct {
 	PerforatedPage NullableInt32 `json:"perforated_page,omitempty"`
 	CustomEnvelope NullableString `json:"custom_envelope,omitempty"`
 	// Must either be an address ID or an inline object with correct address parameters.
-	To string `json:"to"`
+	To interface{} `json:"to"`
 	// Must either be an address ID or an inline object with correct address parameters.
-	From string `json:"from"`
+	From interface{} `json:"from"`
 	// PDF file containing the letter's formatting.
 	File string `json:"file"`
 	// Add an extra service to your letter:   * `certified` - track and confirm delivery for domestic destinations. An extra sheet (1 PDF page single-sided or 2 PDF pages double-sided) is added to the beginning of your letter for address and barcode information. See here for templates: [#10 envelope](https://s3-us-west-2.amazonaws.com/public.lob.com/assets/templates/letter_certified_template.pdf) and [flat envelope](https://s3-us-west-2.amazonaws.com/public.lob.com/assets/templates/letter_certified_flat_template.pdf) (used for letters over 6 pages single-sided or 12 pages double-sided). You will not be charged for this extra sheet.   * `certified_return_receipt` - request an electronic copy of the recipient's signature to prove delivery of your certified letter   * `registered` - provides tracking and confirmation for international addresses 
@@ -57,7 +57,7 @@ type LetterEditable struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLetterEditable(color bool, to string, from string, file string) *LetterEditable {
+func NewLetterEditable(color bool, to interface{}, from interface{}, file string) *LetterEditable {
 	this := LetterEditable{}
 	var mailType MailType = MAILTYPE_FIRST_CLASS
 	this.MailType = &mailType
@@ -463,9 +463,10 @@ func (o *LetterEditable) UnsetCustomEnvelope() {
 }
 
 // GetTo returns the To field value
-func (o *LetterEditable) GetTo() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *LetterEditable) GetTo() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -474,22 +475,24 @@ func (o *LetterEditable) GetTo() string {
 
 // GetToOk returns a tuple with the To field value
 // and a boolean to check if the value has been set.
-func (o *LetterEditable) GetToOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LetterEditable) GetToOk() (*interface{}, bool) {
+	if o == nil || o.To == nil {
 		return nil, false
 	}
 	return &o.To, true
 }
 
 // SetTo sets field value
-func (o *LetterEditable) SetTo(v string) {
+func (o *LetterEditable) SetTo(v interface{}) {
 	o.To = v
 }
 
 // GetFrom returns the From field value
-func (o *LetterEditable) GetFrom() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *LetterEditable) GetFrom() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -498,15 +501,16 @@ func (o *LetterEditable) GetFrom() string {
 
 // GetFromOk returns a tuple with the From field value
 // and a boolean to check if the value has been set.
-func (o *LetterEditable) GetFromOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LetterEditable) GetFromOk() (*interface{}, bool) {
+	if o == nil || o.From == nil {
 		return nil, false
 	}
 	return &o.From, true
 }
 
 // SetFrom sets field value
-func (o *LetterEditable) SetFrom(v string) {
+func (o *LetterEditable) SetFrom(v interface{}) {
 	o.From = v
 }
 
@@ -676,10 +680,10 @@ func (o LetterEditable) MarshalJSON() ([]byte, error) {
 	if o.CustomEnvelope.IsSet() {
 		toSerialize["custom_envelope"] = o.CustomEnvelope.Get()
 	}
-	if true {
+	if o.To != nil {
 		toSerialize["to"] = o.To
 	}
-	if true {
+	if o.From != nil {
 		toSerialize["from"] = o.From
 	}
 	if true {
