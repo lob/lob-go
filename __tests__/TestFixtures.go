@@ -7,6 +7,19 @@ import (
 var addressEditableArray [7]lob.AddressEditable
 var addressArray [7]lob.AddressDomestic
 
+func GetFileLocation() string {
+	return "https://s3-us-west-2.amazonaws.com/public.lob.com/assets/card_horizontal.pdf"
+}
+func GetFileLocation6x18() string {
+	return "https://s3.us-west-2.amazonaws.com/public.lob.com/assets/templates/self_mailers/6x18_sfm_inside.pdf"
+}
+func GetFileLocation8x11() string {
+	return "https://s3-us-west-2.amazonaws.com/public.lob.com/assets/us_letter_1pg.pdf"
+}
+func GetFileLocation4x6() string {
+	return "https://s3-us-west-2.amazonaws.com/public.lob.com/assets/templates/4x6_pc_template.pdf"
+}
+
 func populateAddressEditable(
 	addressE *lob.AddressEditable,
 	name string,
