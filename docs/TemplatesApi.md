@@ -4,17 +4,17 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](TemplatesApi.md#create) | **Post** /templates | create
-[**delete**](TemplatesApi.md#delete) | **Delete** /templates/{tmpl_id} | delete
-[**get**](TemplatesApi.md#get) | **Get** /templates/{tmpl_id} | get
-[**update**](TemplatesApi.md#update) | **Post** /templates/{tmpl_id} | update
-[**list**](TemplatesApi.md#list) | **Get** /templates | list
+[**Create**](TemplatesApi.md#Create) | **Post** /templates | create
+[**Delete**](TemplatesApi.md#Delete) | **Delete** /templates/{tmpl_id} | delete
+[**Get**](TemplatesApi.md#Get) | **Get** /templates/{tmpl_id} | get
+[**Update**](TemplatesApi.md#Update) | **Post** /templates/{tmpl_id} | update
+[**List**](TemplatesApi.md#List) | **Get** /templates | list
 
 
 
 ## CreateTemplate
 
-> Template create(ctx).TemplateWritable(templateWritable).Execute()
+> Template Create(ctx).TemplateWritable(templateWritable).Execute()
 
 create
 
@@ -37,13 +37,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplatesApi.create(context.Background()).TemplateWritable(templateWritable).Execute()
+    resp, r, err := apiClient.TemplatesApi.Create(context.Background()).TemplateWritable(templateWritable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `create`: Template
-    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.create`: %v\n", resp)
+    // response from `Create`: Template
+    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.Create`: %v\n", resp)
 }
 ```
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## TemplateDelete
 
-> TemplateDeletion delete(ctx, tmplId).Execute()
+> TemplateDeletion Delete(ctx, tmplId).Execute()
 
 delete
 
@@ -103,13 +103,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplatesApi.delete(context.Background(), tmplId).Execute()
+    resp, r, err := apiClient.TemplatesApi.Delete(context.Background(), tmplId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.delete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `delete`: TemplateDeletion
-    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.delete`: %v\n", resp)
+    // response from `Delete`: TemplateDeletion
+    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.Delete`: %v\n", resp)
 }
 ```
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## TemplateRetrieve
 
-> Template get(ctx, tmplId).Execute()
+> Template Get(ctx, tmplId).Execute()
 
 get
 
@@ -173,13 +173,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplatesApi.get(context.Background(), tmplId).Execute()
+    resp, r, err := apiClient.TemplatesApi.Get(context.Background(), tmplId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.get``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `get`: Template
-    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.get`: %v\n", resp)
+    // response from `Get`: Template
+    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.Get`: %v\n", resp)
 }
 ```
 
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 ## TemplateUpdate
 
-> Template update(ctx, tmplId).TemplateUpdate(templateUpdate).Execute()
+> Template Update(ctx, tmplId).TemplateUpdate(templateUpdate).Execute()
 
 update
 
@@ -244,13 +244,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplatesApi.update(context.Background(), tmplId).TemplateUpdate(templateUpdate).Execute()
+    resp, r, err := apiClient.TemplatesApi.Update(context.Background(), tmplId).TemplateUpdate(templateUpdate).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.update``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `update`: Template
-    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.update`: %v\n", resp)
+    // response from `Update`: Template
+    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.Update`: %v\n", resp)
 }
 ```
 
@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 
 ## TemplatesList
 
-> TemplateList list(ctx).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Execute()
+> TemplateList List(ctx).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Execute()
 
 list
 
@@ -321,13 +321,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplatesApi.list(context.Background()).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Execute()
+    resp, r, err := apiClient.TemplatesApi.List(context.Background()).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.list``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `list`: TemplateList
-    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.list`: %v\n", resp)
+    // response from `List`: TemplateList
+    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.List`: %v\n", resp)
 }
 ```
 

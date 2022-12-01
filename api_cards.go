@@ -48,7 +48,7 @@ Creates a new card given information
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCardCreateRequest
 */
-func (a *CardsApiService) CardCreate(ctx context.Context) ApiCardCreateRequest {
+func (a *CardsApiService) Create(ctx context.Context) ApiCardCreateRequest {
 	return ApiCardCreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -161,7 +161,7 @@ Delete an existing card. You need only supply the unique identifier that was ret
  @param cardId id of the card
  @return ApiCardDeleteRequest
 */
-func (a *CardsApiService) CardDelete(ctx context.Context, cardId string) ApiCardDeleteRequest {
+func (a *CardsApiService) Delete(ctx context.Context, cardId string) ApiCardDeleteRequest {
 	return ApiCardDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -271,7 +271,7 @@ Retrieves the details of an existing card. You need only supply the unique custo
  @param cardId id of the card
  @return ApiCardRetrieveRequest
 */
-func (a *CardsApiService) CardRetrieve(ctx context.Context, cardId string) ApiCardRetrieveRequest {
+func (a *CardsApiService) Get(ctx context.Context, cardId string) ApiCardRetrieveRequest {
 	return ApiCardRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -387,7 +387,7 @@ Update the details of an existing card. You need only supply the unique identifi
  @param cardId id of the card
  @return ApiCardUpdateRequest
 */
-func (a *CardsApiService) CardUpdate(ctx context.Context, cardId string) ApiCardUpdateRequest {
+func (a *CardsApiService) Update(ctx context.Context, cardId string) ApiCardUpdateRequest {
 	return ApiCardUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -528,7 +528,7 @@ Returns a list of your cards. The cards are returned sorted by creation date, wi
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCardsListRequest
 */
-func (a *CardsApiService) CardsList(ctx context.Context) ApiCardsListRequest {
+func (a *CardsApiService) List(ctx context.Context) ApiCardsListRequest {
 	return ApiCardsListRequest{
 		ApiService: a,
 		ctx: ctx,

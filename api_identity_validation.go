@@ -46,7 +46,7 @@ Validates whether a given name is associated with an address.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiIdentityValidationRequest
 */
-func (a *IdentityValidationApiService) IdentityValidation(ctx context.Context) ApiIdentityValidationRequest {
+func (a *IdentityValidationApiService) Validate(ctx context.Context) ApiIdentityValidationRequest {
 	return ApiIdentityValidationRequest{
 		ApiService: a,
 		ctx: ctx,

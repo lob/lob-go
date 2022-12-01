@@ -40,7 +40,7 @@ Don't call this. It's so that the right models can be generated.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPlaceholderRequest
 */
-func (a *DefaultApiService) Placeholder(ctx context.Context) ApiPlaceholderRequest {
+func (a *DefaultApiService) Placeholder_no_call(ctx context.Context) ApiPlaceholderRequest {
 	return ApiPlaceholderRequest{
 		ApiService: a,
 		ctx: ctx,

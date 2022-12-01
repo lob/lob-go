@@ -49,7 +49,7 @@ Creates a new card order given information
  @param cardId The ID of the card to which the card orders belong.
  @return ApiCardOrderCreateRequest
 */
-func (a *CardOrdersApiService) CardOrderCreate(ctx context.Context, cardId string) ApiCardOrderCreateRequest {
+func (a *CardOrdersApiService) Create(ctx context.Context, cardId string) ApiCardOrderCreateRequest {
 	return ApiCardOrderCreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -178,7 +178,7 @@ Retrieves the card orders associated with the given card id.
  @param cardId The ID of the card to which the card orders belong.
  @return ApiCardOrdersRetrieveRequest
 */
-func (a *CardOrdersApiService) CardOrdersRetrieve(ctx context.Context, cardId string) ApiCardOrdersRetrieveRequest {
+func (a *CardOrdersApiService) Get(ctx context.Context, cardId string) ApiCardOrdersRetrieveRequest {
 	return ApiCardOrdersRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,

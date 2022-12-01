@@ -49,7 +49,7 @@ Creates a new address given information
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiAddressCreateRequest
 */
-func (a *AddressesApiService) AddressCreate(ctx context.Context) ApiAddressCreateRequest {
+func (a *AddressesApiService) Create(ctx context.Context) ApiAddressCreateRequest {
 	return ApiAddressCreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -162,7 +162,7 @@ Deletes the details of an existing address.
  @param adrId id of the address
  @return ApiAddressDeleteRequest
 */
-func (a *AddressesApiService) AddressDelete(ctx context.Context, adrId string) ApiAddressDeleteRequest {
+func (a *AddressesApiService) Delete(ctx context.Context, adrId string) ApiAddressDeleteRequest {
 	return ApiAddressDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -272,7 +272,7 @@ Retrieves the details of an existing address.
  @param adrId id of the address
  @return ApiAddressRetrieveRequest
 */
-func (a *AddressesApiService) AddressRetrieve(ctx context.Context, adrId string) ApiAddressRetrieveRequest {
+func (a *AddressesApiService) Get(ctx context.Context, adrId string) ApiAddressRetrieveRequest {
 	return ApiAddressRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -422,7 +422,7 @@ Returns a list of your addresses.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiAddressesListRequest
 */
-func (a *AddressesApiService) AddressesList(ctx context.Context) ApiAddressesListRequest {
+func (a *AddressesApiService) List(ctx context.Context) ApiAddressesListRequest {
 	return ApiAddressesListRequest{
 		ApiService: a,
 		ctx: ctx,

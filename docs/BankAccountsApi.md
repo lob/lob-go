@@ -4,17 +4,17 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](BankAccountsApi.md#create) | **Post** /bank_accounts | create
-[**delete**](BankAccountsApi.md#delete) | **Delete** /bank_accounts/{bank_id} | delete
-[**get**](BankAccountsApi.md#get) | **Get** /bank_accounts/{bank_id} | get
-[**verify**](BankAccountsApi.md#verify) | **Post** /bank_accounts/{bank_id}/verify | verify
-[**list**](BankAccountsApi.md#list) | **Get** /bank_accounts | list
+[**Create**](BankAccountsApi.md#Create) | **Post** /bank_accounts | create
+[**Delete**](BankAccountsApi.md#Delete) | **Delete** /bank_accounts/{bank_id} | delete
+[**Get**](BankAccountsApi.md#Get) | **Get** /bank_accounts/{bank_id} | get
+[**Verify**](BankAccountsApi.md#Verify) | **Post** /bank_accounts/{bank_id}/verify | verify
+[**List**](BankAccountsApi.md#List) | **Get** /bank_accounts | list
 
 
 
 ## BankAccountCreate
 
-> BankAccount create(ctx).BankAccountWritable(bankAccountWritable).Execute()
+> BankAccount Create(ctx).BankAccountWritable(bankAccountWritable).Execute()
 
 create
 
@@ -37,13 +37,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BankAccountsApi.create(context.Background()).BankAccountWritable(bankAccountWritable).Execute()
+    resp, r, err := apiClient.BankAccountsApi.Create(context.Background()).BankAccountWritable(bankAccountWritable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BankAccountsApi.create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BankAccountsApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `create`: BankAccount
-    fmt.Fprintf(os.Stdout, "Response from `BankAccountsApi.create`: %v\n", resp)
+    // response from `Create`: BankAccount
+    fmt.Fprintf(os.Stdout, "Response from `BankAccountsApi.Create`: %v\n", resp)
 }
 ```
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## BankAccountDelete
 
-> BankAccountDeletion delete(ctx, bankId).Execute()
+> BankAccountDeletion Delete(ctx, bankId).Execute()
 
 delete
 
@@ -103,13 +103,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BankAccountsApi.delete(context.Background(), bankId).Execute()
+    resp, r, err := apiClient.BankAccountsApi.Delete(context.Background(), bankId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BankAccountsApi.delete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BankAccountsApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `delete`: BankAccountDeletion
-    fmt.Fprintf(os.Stdout, "Response from `BankAccountsApi.delete`: %v\n", resp)
+    // response from `Delete`: BankAccountDeletion
+    fmt.Fprintf(os.Stdout, "Response from `BankAccountsApi.Delete`: %v\n", resp)
 }
 ```
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## BankAccountRetrieve
 
-> BankAccount get(ctx, bankId).Execute()
+> BankAccount Get(ctx, bankId).Execute()
 
 get
 
@@ -173,13 +173,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BankAccountsApi.get(context.Background(), bankId).Execute()
+    resp, r, err := apiClient.BankAccountsApi.Get(context.Background(), bankId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BankAccountsApi.get``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BankAccountsApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `get`: BankAccount
-    fmt.Fprintf(os.Stdout, "Response from `BankAccountsApi.get`: %v\n", resp)
+    // response from `Get`: BankAccount
+    fmt.Fprintf(os.Stdout, "Response from `BankAccountsApi.Get`: %v\n", resp)
 }
 ```
 
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 ## BankAccountVerify
 
-> BankAccount verify(ctx, bankId).BankAccountVerify(bankAccountVerify).Execute()
+> BankAccount Verify(ctx, bankId).BankAccountVerify(bankAccountVerify).Execute()
 
 verify
 
@@ -244,13 +244,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BankAccountsApi.verify(context.Background(), bankId).BankAccountVerify(bankAccountVerify).Execute()
+    resp, r, err := apiClient.BankAccountsApi.Verify(context.Background(), bankId).BankAccountVerify(bankAccountVerify).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BankAccountsApi.verify``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BankAccountsApi.Verify``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `verify`: BankAccount
-    fmt.Fprintf(os.Stdout, "Response from `BankAccountsApi.verify`: %v\n", resp)
+    // response from `Verify`: BankAccount
+    fmt.Fprintf(os.Stdout, "Response from `BankAccountsApi.Verify`: %v\n", resp)
 }
 ```
 
@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 
 ## BankAccountsList
 
-> BankAccountList list(ctx).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Execute()
+> BankAccountList List(ctx).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Execute()
 
 list
 
@@ -321,13 +321,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BankAccountsApi.list(context.Background()).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Execute()
+    resp, r, err := apiClient.BankAccountsApi.List(context.Background()).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BankAccountsApi.list``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BankAccountsApi.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `list`: BankAccountList
-    fmt.Fprintf(os.Stdout, "Response from `BankAccountsApi.list`: %v\n", resp)
+    // response from `List`: BankAccountList
+    fmt.Fprintf(os.Stdout, "Response from `BankAccountsApi.List`: %v\n", resp)
 }
 ```
 

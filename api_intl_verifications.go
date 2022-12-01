@@ -46,7 +46,7 @@ Verify a list of international (except US or US territories) address with a live
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiBulkIntlVerificationsRequest
 */
-func (a *IntlVerificationsApiService) BulkIntlVerifications(ctx context.Context) ApiBulkIntlVerificationsRequest {
+func (a *IntlVerificationsApiService) VerifyBulk(ctx context.Context) ApiBulkIntlVerificationsRequest {
 	return ApiBulkIntlVerificationsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -170,7 +170,7 @@ Verify an international (except US or US territories) address with a live API ke
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiIntlVerificationRequest
 */
-func (a *IntlVerificationsApiService) IntlVerification(ctx context.Context) ApiIntlVerificationRequest {
+func (a *IntlVerificationsApiService) VerifySingle(ctx context.Context) ApiIntlVerificationRequest {
 	return ApiIntlVerificationRequest{
 		ApiService: a,
 		ctx: ctx,

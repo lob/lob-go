@@ -4,17 +4,17 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](TemplateVersionsApi.md#create) | **Post** /templates/{tmpl_id}/versions | create
-[**delete**](TemplateVersionsApi.md#delete) | **Delete** /templates/{tmpl_id}/versions/{vrsn_id} | delete
-[**get**](TemplateVersionsApi.md#get) | **Get** /templates/{tmpl_id}/versions/{vrsn_id} | get
-[**update**](TemplateVersionsApi.md#update) | **Post** /templates/{tmpl_id}/versions/{vrsn_id} | update
-[**list**](TemplateVersionsApi.md#list) | **Get** /templates/{tmpl_id}/versions | list
+[**Create**](TemplateVersionsApi.md#Create) | **Post** /templates/{tmpl_id}/versions | create
+[**Delete**](TemplateVersionsApi.md#Delete) | **Delete** /templates/{tmpl_id}/versions/{vrsn_id} | delete
+[**Get**](TemplateVersionsApi.md#Get) | **Get** /templates/{tmpl_id}/versions/{vrsn_id} | get
+[**Update**](TemplateVersionsApi.md#Update) | **Post** /templates/{tmpl_id}/versions/{vrsn_id} | update
+[**List**](TemplateVersionsApi.md#List) | **Get** /templates/{tmpl_id}/versions | list
 
 
 
 ## CreateTemplateVersion
 
-> TemplateVersion create(ctx, tmplId).TemplateVersionWritable(templateVersionWritable).Execute()
+> TemplateVersion Create(ctx, tmplId).TemplateVersionWritable(templateVersionWritable).Execute()
 
 create
 
@@ -38,13 +38,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplateVersionsApi.create(context.Background(), tmplId).TemplateVersionWritable(templateVersionWritable).Execute()
+    resp, r, err := apiClient.TemplateVersionsApi.Create(context.Background(), tmplId).TemplateVersionWritable(templateVersionWritable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplateVersionsApi.create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TemplateVersionsApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `create`: TemplateVersion
-    fmt.Fprintf(os.Stdout, "Response from `TemplateVersionsApi.create`: %v\n", resp)
+    // response from `Create`: TemplateVersion
+    fmt.Fprintf(os.Stdout, "Response from `TemplateVersionsApi.Create`: %v\n", resp)
 }
 ```
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## TemplateVersionDelete
 
-> TemplateVersionDeletion delete(ctx, tmplId, vrsnId).Execute()
+> TemplateVersionDeletion Delete(ctx, tmplId, vrsnId).Execute()
 
 delete
 
@@ -110,13 +110,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplateVersionsApi.delete(context.Background(), tmplId, vrsnId).Execute()
+    resp, r, err := apiClient.TemplateVersionsApi.Delete(context.Background(), tmplId, vrsnId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplateVersionsApi.delete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TemplateVersionsApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `delete`: TemplateVersionDeletion
-    fmt.Fprintf(os.Stdout, "Response from `TemplateVersionsApi.delete`: %v\n", resp)
+    // response from `Delete`: TemplateVersionDeletion
+    fmt.Fprintf(os.Stdout, "Response from `TemplateVersionsApi.Delete`: %v\n", resp)
 }
 ```
 
@@ -159,7 +159,7 @@ Name | Type | Description  | Notes
 
 ## TemplateVersionRetrieve
 
-> TemplateVersion get(ctx, tmplId, vrsnId).Execute()
+> TemplateVersion Get(ctx, tmplId, vrsnId).Execute()
 
 get
 
@@ -183,13 +183,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplateVersionsApi.get(context.Background(), tmplId, vrsnId).Execute()
+    resp, r, err := apiClient.TemplateVersionsApi.Get(context.Background(), tmplId, vrsnId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplateVersionsApi.get``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TemplateVersionsApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `get`: TemplateVersion
-    fmt.Fprintf(os.Stdout, "Response from `TemplateVersionsApi.get`: %v\n", resp)
+    // response from `Get`: TemplateVersion
+    fmt.Fprintf(os.Stdout, "Response from `TemplateVersionsApi.Get`: %v\n", resp)
 }
 ```
 
@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 
 ## TemplateVersionUpdate
 
-> TemplateVersion update(ctx, tmplId, vrsnId).TemplateVersionUpdatable(templateVersionUpdatable).Execute()
+> TemplateVersion Update(ctx, tmplId, vrsnId).TemplateVersionUpdatable(templateVersionUpdatable).Execute()
 
 update
 
@@ -257,13 +257,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplateVersionsApi.update(context.Background(), tmplId, vrsnId).TemplateVersionUpdatable(templateVersionUpdatable).Execute()
+    resp, r, err := apiClient.TemplateVersionsApi.Update(context.Background(), tmplId, vrsnId).TemplateVersionUpdatable(templateVersionUpdatable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplateVersionsApi.update``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TemplateVersionsApi.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `update`: TemplateVersion
-    fmt.Fprintf(os.Stdout, "Response from `TemplateVersionsApi.update`: %v\n", resp)
+    // response from `Update`: TemplateVersion
+    fmt.Fprintf(os.Stdout, "Response from `TemplateVersionsApi.Update`: %v\n", resp)
 }
 ```
 
@@ -307,7 +307,7 @@ Name | Type | Description  | Notes
 
 ## TemplateVersionsList
 
-> TemplateVersionList list(ctx, tmplId).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Execute()
+> TemplateVersionList List(ctx, tmplId).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Execute()
 
 list
 
@@ -336,13 +336,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplateVersionsApi.list(context.Background(), tmplId).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Execute()
+    resp, r, err := apiClient.TemplateVersionsApi.List(context.Background(), tmplId).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplateVersionsApi.list``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TemplateVersionsApi.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `list`: TemplateVersionList
-    fmt.Fprintf(os.Stdout, "Response from `TemplateVersionsApi.list`: %v\n", resp)
+    // response from `List`: TemplateVersionList
+    fmt.Fprintf(os.Stdout, "Response from `TemplateVersionsApi.List`: %v\n", resp)
 }
 ```
 

@@ -4,17 +4,17 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](BuckslipsApi.md#create) | **Post** /buckslips | create
-[**delete**](BuckslipsApi.md#delete) | **Delete** /buckslips/{buckslip_id} | delete
-[**get**](BuckslipsApi.md#get) | **Get** /buckslips/{buckslip_id} | get
-[**update**](BuckslipsApi.md#update) | **Patch** /buckslips/{buckslip_id} | update
+[**Create**](BuckslipsApi.md#Create) | **Post** /buckslips | create
+[**Delete**](BuckslipsApi.md#Delete) | **Delete** /buckslips/{buckslip_id} | delete
+[**Get**](BuckslipsApi.md#Get) | **Get** /buckslips/{buckslip_id} | get
+[**Update**](BuckslipsApi.md#Update) | **Patch** /buckslips/{buckslip_id} | update
 [**List**](BuckslipsApi.md#List) | **Get** /buckslips | List
 
 
 
 ## BuckslipCreate
 
-> Buckslip create(ctx).BuckslipEditable(buckslipEditable).Execute()
+> Buckslip Create(ctx).BuckslipEditable(buckslipEditable).Execute()
 
 create
 
@@ -37,13 +37,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BuckslipsApi.create(context.Background()).BuckslipEditable(buckslipEditable).Execute()
+    resp, r, err := apiClient.BuckslipsApi.Create(context.Background()).BuckslipEditable(buckslipEditable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipsApi.create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipsApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `create`: Buckslip
-    fmt.Fprintf(os.Stdout, "Response from `BuckslipsApi.create`: %v\n", resp)
+    // response from `Create`: Buckslip
+    fmt.Fprintf(os.Stdout, "Response from `BuckslipsApi.Create`: %v\n", resp)
 }
 ```
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## BuckslipDelete
 
-> BuckslipDeletion delete(ctx, buckslipId).Execute()
+> BuckslipDeletion Delete(ctx, buckslipId).Execute()
 
 delete
 
@@ -103,13 +103,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BuckslipsApi.delete(context.Background(), buckslipId).Execute()
+    resp, r, err := apiClient.BuckslipsApi.Delete(context.Background(), buckslipId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipsApi.delete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipsApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `delete`: BuckslipDeletion
-    fmt.Fprintf(os.Stdout, "Response from `BuckslipsApi.delete`: %v\n", resp)
+    // response from `Delete`: BuckslipDeletion
+    fmt.Fprintf(os.Stdout, "Response from `BuckslipsApi.Delete`: %v\n", resp)
 }
 ```
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## BuckslipRetrieve
 
-> Buckslip get(ctx, buckslipId).Execute()
+> Buckslip Get(ctx, buckslipId).Execute()
 
 get
 
@@ -173,13 +173,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BuckslipsApi.get(context.Background(), buckslipId).Execute()
+    resp, r, err := apiClient.BuckslipsApi.Get(context.Background(), buckslipId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipsApi.get``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipsApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `get`: Buckslip
-    fmt.Fprintf(os.Stdout, "Response from `BuckslipsApi.get`: %v\n", resp)
+    // response from `Get`: Buckslip
+    fmt.Fprintf(os.Stdout, "Response from `BuckslipsApi.Get`: %v\n", resp)
 }
 ```
 
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 ## BuckslipUpdate
 
-> Buckslip update(ctx, buckslipId).BuckslipUpdatable(buckslipUpdatable).Execute()
+> Buckslip Update(ctx, buckslipId).BuckslipUpdatable(buckslipUpdatable).Execute()
 
 update
 
@@ -244,13 +244,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BuckslipsApi.update(context.Background(), buckslipId).BuckslipUpdatable(buckslipUpdatable).Execute()
+    resp, r, err := apiClient.BuckslipsApi.Update(context.Background(), buckslipId).BuckslipUpdatable(buckslipUpdatable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipsApi.update``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipsApi.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `update`: Buckslip
-    fmt.Fprintf(os.Stdout, "Response from `BuckslipsApi.update`: %v\n", resp)
+    // response from `Update`: Buckslip
+    fmt.Fprintf(os.Stdout, "Response from `BuckslipsApi.Update`: %v\n", resp)
 }
 ```
 

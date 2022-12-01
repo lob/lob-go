@@ -4,14 +4,14 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**verifyBulk**](IntlVerificationsApi.md#verifyBulk) | **Post** /bulk/intl_verifications | verifyBulk
-[**verifySingle**](IntlVerificationsApi.md#verifySingle) | **Post** /intl_verifications | verifySingle
+[**VerifyBulk**](IntlVerificationsApi.md#VerifyBulk) | **Post** /bulk/intl_verifications | verifyBulk
+[**VerifySingle**](IntlVerificationsApi.md#VerifySingle) | **Post** /intl_verifications | verifySingle
 
 
 
 ## BulkIntlVerifications
 
-> IntlVerifications verifyBulk(ctx).IntlVerificationsPayload(intlVerificationsPayload).Execute()
+> IntlVerifications VerifyBulk(ctx).IntlVerificationsPayload(intlVerificationsPayload).Execute()
 
 verifyBulk
 
@@ -34,13 +34,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IntlVerificationsApi.verifyBulk(context.Background()).IntlVerificationsPayload(intlVerificationsPayload).Execute()
+    resp, r, err := apiClient.IntlVerificationsApi.VerifyBulk(context.Background()).IntlVerificationsPayload(intlVerificationsPayload).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IntlVerificationsApi.verifyBulk``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IntlVerificationsApi.VerifyBulk``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `verifyBulk`: IntlVerifications
-    fmt.Fprintf(os.Stdout, "Response from `IntlVerificationsApi.verifyBulk`: %v\n", resp)
+    // response from `VerifyBulk`: IntlVerifications
+    fmt.Fprintf(os.Stdout, "Response from `IntlVerificationsApi.VerifyBulk`: %v\n", resp)
 }
 ```
 
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 ## IntlVerification
 
-> IntlVerification verifySingle(ctx).IntlVerificationWritable(intlVerificationWritable).XLangOutput(xLangOutput).Execute()
+> IntlVerification VerifySingle(ctx).IntlVerificationWritable(intlVerificationWritable).XLangOutput(xLangOutput).Execute()
 
 verifySingle
 
@@ -101,13 +101,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IntlVerificationsApi.verifySingle(context.Background()).IntlVerificationWritable(intlVerificationWritable).XLangOutput(xLangOutput).Execute()
+    resp, r, err := apiClient.IntlVerificationsApi.VerifySingle(context.Background()).IntlVerificationWritable(intlVerificationWritable).XLangOutput(xLangOutput).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IntlVerificationsApi.verifySingle``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IntlVerificationsApi.VerifySingle``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `verifySingle`: IntlVerification
-    fmt.Fprintf(os.Stdout, "Response from `IntlVerificationsApi.verifySingle`: %v\n", resp)
+    // response from `VerifySingle`: IntlVerification
+    fmt.Fprintf(os.Stdout, "Response from `IntlVerificationsApi.VerifySingle`: %v\n", resp)
 }
 ```
 

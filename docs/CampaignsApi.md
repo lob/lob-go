@@ -4,17 +4,17 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](CampaignsApi.md#create) | **Post** /campaigns | create
-[**delete**](CampaignsApi.md#delete) | **Delete** /campaigns/{cmp_id} | delete
-[**get**](CampaignsApi.md#get) | **Get** /campaigns/{cmp_id} | get
-[**update**](CampaignsApi.md#update) | **Patch** /campaigns/{cmp_id} | update
-[**list**](CampaignsApi.md#list) | **Get** /campaigns | list
+[**Create**](CampaignsApi.md#Create) | **Post** /campaigns | create
+[**Delete**](CampaignsApi.md#Delete) | **Delete** /campaigns/{cmp_id} | delete
+[**Get**](CampaignsApi.md#Get) | **Get** /campaigns/{cmp_id} | get
+[**Update**](CampaignsApi.md#Update) | **Patch** /campaigns/{cmp_id} | update
+[**List**](CampaignsApi.md#List) | **Get** /campaigns | list
 
 
 
 ## CampaignCreate
 
-> Campaign create(ctx).CampaignWritable(campaignWritable).XLangOutput(xLangOutput).Execute()
+> Campaign Create(ctx).CampaignWritable(campaignWritable).XLangOutput(xLangOutput).Execute()
 
 create
 
@@ -38,13 +38,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CampaignsApi.create(context.Background()).CampaignWritable(campaignWritable).XLangOutput(xLangOutput).Execute()
+    resp, r, err := apiClient.CampaignsApi.Create(context.Background()).CampaignWritable(campaignWritable).XLangOutput(xLangOutput).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `create`: Campaign
-    fmt.Fprintf(os.Stdout, "Response from `CampaignsApi.create`: %v\n", resp)
+    // response from `Create`: Campaign
+    fmt.Fprintf(os.Stdout, "Response from `CampaignsApi.Create`: %v\n", resp)
 }
 ```
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## CampaignDelete
 
-> CampaignDeletion delete(ctx, cmpId).Execute()
+> CampaignDeletion Delete(ctx, cmpId).Execute()
 
 delete
 
@@ -105,13 +105,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CampaignsApi.delete(context.Background(), cmpId).Execute()
+    resp, r, err := apiClient.CampaignsApi.Delete(context.Background(), cmpId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.delete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `delete`: CampaignDeletion
-    fmt.Fprintf(os.Stdout, "Response from `CampaignsApi.delete`: %v\n", resp)
+    // response from `Delete`: CampaignDeletion
+    fmt.Fprintf(os.Stdout, "Response from `CampaignsApi.Delete`: %v\n", resp)
 }
 ```
 
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ## CampaignRetrieve
 
-> Campaign get(ctx, cmpId).Execute()
+> Campaign Get(ctx, cmpId).Execute()
 
 get
 
@@ -175,13 +175,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CampaignsApi.get(context.Background(), cmpId).Execute()
+    resp, r, err := apiClient.CampaignsApi.Get(context.Background(), cmpId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.get``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `get`: Campaign
-    fmt.Fprintf(os.Stdout, "Response from `CampaignsApi.get`: %v\n", resp)
+    // response from `Get`: Campaign
+    fmt.Fprintf(os.Stdout, "Response from `CampaignsApi.Get`: %v\n", resp)
 }
 ```
 
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## CampaignUpdate
 
-> Campaign update(ctx, cmpId).CampaignUpdatable(campaignUpdatable).Execute()
+> Campaign Update(ctx, cmpId).CampaignUpdatable(campaignUpdatable).Execute()
 
 update
 
@@ -246,13 +246,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CampaignsApi.update(context.Background(), cmpId).CampaignUpdatable(campaignUpdatable).Execute()
+    resp, r, err := apiClient.CampaignsApi.Update(context.Background(), cmpId).CampaignUpdatable(campaignUpdatable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.update``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `update`: Campaign
-    fmt.Fprintf(os.Stdout, "Response from `CampaignsApi.update`: %v\n", resp)
+    // response from `Update`: Campaign
+    fmt.Fprintf(os.Stdout, "Response from `CampaignsApi.Update`: %v\n", resp)
 }
 ```
 
@@ -294,7 +294,7 @@ Name | Type | Description  | Notes
 
 ## CampaignsList
 
-> CampaignsList list(ctx).Limit(limit).Include(include).Before(before).After(after).Execute()
+> CampaignsList List(ctx).Limit(limit).Include(include).Before(before).After(after).Execute()
 
 list
 
@@ -320,13 +320,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CampaignsApi.list(context.Background()).Limit(limit).Include(include).Before(before).After(after).Execute()
+    resp, r, err := apiClient.CampaignsApi.List(context.Background()).Limit(limit).Include(include).Before(before).After(after).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.list``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `list`: CampaignsList
-    fmt.Fprintf(os.Stdout, "Response from `CampaignsApi.list`: %v\n", resp)
+    // response from `List`: CampaignsList
+    fmt.Fprintf(os.Stdout, "Response from `CampaignsApi.List`: %v\n", resp)
 }
 ```
 

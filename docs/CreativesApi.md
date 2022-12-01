@@ -4,15 +4,15 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](CreativesApi.md#create) | **Post** /creatives | create
-[**get**](CreativesApi.md#get) | **Get** /creatives/{crv_id} | get
-[**update**](CreativesApi.md#update) | **Patch** /creatives/{crv_id} | update
+[**Create**](CreativesApi.md#Create) | **Post** /creatives | create
+[**Get**](CreativesApi.md#Get) | **Get** /creatives/{crv_id} | get
+[**Update**](CreativesApi.md#Update) | **Patch** /creatives/{crv_id} | update
 
 
 
 ## CreativeCreate
 
-> CreativeResponse create(ctx).CreativeWritable(creativeWritable).XLangOutput(xLangOutput).Execute()
+> CreativeResponse Create(ctx).CreativeWritable(creativeWritable).XLangOutput(xLangOutput).Execute()
 
 create
 
@@ -36,13 +36,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CreativesApi.create(context.Background()).CreativeWritable(creativeWritable).XLangOutput(xLangOutput).Execute()
+    resp, r, err := apiClient.CreativesApi.Create(context.Background()).CreativeWritable(creativeWritable).XLangOutput(xLangOutput).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CreativesApi.create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CreativesApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `create`: CreativeResponse
-    fmt.Fprintf(os.Stdout, "Response from `CreativesApi.create`: %v\n", resp)
+    // response from `Create`: CreativeResponse
+    fmt.Fprintf(os.Stdout, "Response from `CreativesApi.Create`: %v\n", resp)
 }
 ```
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## CreativeRetrieve
 
-> CreativeResponse get(ctx, crvId).Execute()
+> CreativeResponse Get(ctx, crvId).Execute()
 
 get
 
@@ -103,13 +103,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CreativesApi.get(context.Background(), crvId).Execute()
+    resp, r, err := apiClient.CreativesApi.Get(context.Background(), crvId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CreativesApi.get``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CreativesApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `get`: CreativeResponse
-    fmt.Fprintf(os.Stdout, "Response from `CreativesApi.get`: %v\n", resp)
+    // response from `Get`: CreativeResponse
+    fmt.Fprintf(os.Stdout, "Response from `CreativesApi.Get`: %v\n", resp)
 }
 ```
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## CreativeUpdate
 
-> CreativeResponse update(ctx, crvId).CreativePatch(creativePatch).Execute()
+> CreativeResponse Update(ctx, crvId).CreativePatch(creativePatch).Execute()
 
 update
 
@@ -174,13 +174,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CreativesApi.update(context.Background(), crvId).CreativePatch(creativePatch).Execute()
+    resp, r, err := apiClient.CreativesApi.Update(context.Background(), crvId).CreativePatch(creativePatch).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CreativesApi.update``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CreativesApi.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `update`: CreativeResponse
-    fmt.Fprintf(os.Stdout, "Response from `CreativesApi.update`: %v\n", resp)
+    // response from `Update`: CreativeResponse
+    fmt.Fprintf(os.Stdout, "Response from `CreativesApi.Update`: %v\n", resp)
 }
 ```
 

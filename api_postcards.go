@@ -56,7 +56,7 @@ Creates a new postcard given information
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostcardCreateRequest
 */
-func (a *PostcardsApiService) PostcardCreate(ctx context.Context) ApiPostcardCreateRequest {
+func (a *PostcardsApiService) Create(ctx context.Context) ApiPostcardCreateRequest {
 	return ApiPostcardCreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -172,7 +172,7 @@ Completely removes a postcard from production. This can only be done if the post
  @param pscId id of the postcard
  @return ApiPostcardDeleteRequest
 */
-func (a *PostcardsApiService) PostcardDelete(ctx context.Context, pscId string) ApiPostcardDeleteRequest {
+func (a *PostcardsApiService) Cancel(ctx context.Context, pscId string) ApiPostcardDeleteRequest {
 	return ApiPostcardDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -282,7 +282,7 @@ Retrieves the details of an existing postcard. You need only supply the unique c
  @param pscId id of the postcard
  @return ApiPostcardRetrieveRequest
 */
-func (a *PostcardsApiService) PostcardRetrieve(ctx context.Context, pscId string) ApiPostcardRetrieveRequest {
+func (a *PostcardsApiService) Get(ctx context.Context, pscId string) ApiPostcardRetrieveRequest {
 	return ApiPostcardRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -467,7 +467,7 @@ Returns a list of your postcards. The addresses are returned sorted by creation 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostcardsListRequest
 */
-func (a *PostcardsApiService) PostcardsList(ctx context.Context) ApiPostcardsListRequest {
+func (a *PostcardsApiService) List(ctx context.Context) ApiPostcardsListRequest {
 	return ApiPostcardsListRequest{
 		ApiService: a,
 		ctx: ctx,

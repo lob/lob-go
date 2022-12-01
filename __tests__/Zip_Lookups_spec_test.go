@@ -40,14 +40,14 @@ func (suite *ZipLookupsTestSuite) SetupTest() {
 
 func (suite *ZipLookupsTestSuite) TestZipLookup() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.ZipLookupsApi.ZipLookup(suite.ctx).ZipEditable(suite.zipEditable).Execute()
+	resp, _, err := suite.apiClient.ZipLookupsApi.Lookup(suite.ctx).ZipEditable(suite.zipEditable).Execute()
 	assert.Nil(t, err)
 	assert.NotNil(t, resp)
 }
 
 func (suite *ZipLookupsTestSuite) TestZipLookupBadApiKey() {
 	t := suite.T()
-	_, _, err := suite.apiClient.ZipLookupsApi.ZipLookup(suite.badctx).ZipEditable(suite.zipEditable).Execute()
+	_, _, err := suite.apiClient.ZipLookupsApi.Lookup(suite.badctx).ZipEditable(suite.zipEditable).Execute()
 	if assert.NotNil(t, err) {
 		assert.Equal(t, "401 Unauthorized", err.Error())
 	}

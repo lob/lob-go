@@ -36,7 +36,7 @@ func (suite *CardOrderTestSuite) SetupTest() {
 	suite.addressEditableList = CreateAddressesEditableList() // AddressEditable
 
 	var cardEditable = *lob.NewCardEditable(GetFileLocation())
-	resp, _, err := suite.apiClient.CardsApi.CardCreate(suite.ctx).CardEditable(cardEditable).Execute()
+	resp, _, err := suite.apiClient.CardsApi.Create(suite.ctx).CardEditable(cardEditable).Execute()
 
 	if err != nil {
 		panic(err)
@@ -48,7 +48,7 @@ func (suite *CardOrderTestSuite) SetupTest() {
 
 func (suite *CardOrderTestSuite) TestCardOrderCreate() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.CardOrdersApi.CardOrderCreate(suite.ctx, suite.mockCard.GetId()).CardOrderEditable(suite.cardOrderEditable).Execute()
+	resp, _, err := suite.apiClient.CardOrdersApi.Create(suite.ctx, suite.mockCard.GetId()).CardOrderEditable(suite.cardOrderEditable).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.NotNil(t, resp.Id)
@@ -58,7 +58,7 @@ func (suite *CardOrderTestSuite) TestCardOrderCreate() {
 
 func (suite *CardOrderTestSuite) TestCardOrderCreateBadApiKey() {
 	t := suite.T()
-	_, _, err := suite.apiClient.CardOrdersApi.CardOrderCreate(suite.badctx, suite.mockCard.GetId()).CardOrderEditable(suite.cardOrderEditable).Execute()
+	_, _, err := suite.apiClient.CardOrdersApi.Create(suite.badctx, suite.mockCard.GetId()).CardOrderEditable(suite.cardOrderEditable).Execute()
 	if assert.NotNil(t, err) {
 		assert.Equal(t, "401 Unauthorized", err.Error())
 	}
@@ -66,9 +66,9 @@ func (suite *CardOrderTestSuite) TestCardOrderCreateBadApiKey() {
 
 func (suite *CardOrderTestSuite) TestCardOrderRetrieve() {
 	t := suite.T()
-	createdCardOrder, _, _ := suite.apiClient.CardOrdersApi.CardOrderCreate(suite.ctx, suite.mockCard.GetId()).CardOrderEditable(suite.cardOrderEditable).Execute()
+	createdCardOrder, _, _ := suite.apiClient.CardOrdersApi.Create(suite.ctx, suite.mockCard.GetId()).CardOrderEditable(suite.cardOrderEditable).Execute()
 
-	resp, _, err := suite.apiClient.CardOrdersApi.CardOrdersRetrieve(suite.ctx, createdCardOrder.GetCardId()).Execute()
+	resp, _, err := suite.apiClient.CardOrdersApi.Get(suite.ctx, createdCardOrder.GetCardId()).Execute()
 	assert.Nil(t, err)
 	assert.NotNil(t, resp)
 }

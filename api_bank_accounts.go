@@ -49,7 +49,7 @@ Creates a new bank account with the provided properties. Bank accounts created i
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiBankAccountCreateRequest
 */
-func (a *BankAccountsApiService) BankAccountCreate(ctx context.Context) ApiBankAccountCreateRequest {
+func (a *BankAccountsApiService) Create(ctx context.Context) ApiBankAccountCreateRequest {
 	return ApiBankAccountCreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -162,7 +162,7 @@ Permanently deletes a bank account. It cannot be undone.
  @param bankId id of the bank account
  @return ApiBankAccountDeleteRequest
 */
-func (a *BankAccountsApiService) BankAccountDelete(ctx context.Context, bankId string) ApiBankAccountDeleteRequest {
+func (a *BankAccountsApiService) Delete(ctx context.Context, bankId string) ApiBankAccountDeleteRequest {
 	return ApiBankAccountDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -272,7 +272,7 @@ Retrieves the details of an existing bank account. You need only supply the uniq
  @param bankId id of the bank account
  @return ApiBankAccountRetrieveRequest
 */
-func (a *BankAccountsApiService) BankAccountRetrieve(ctx context.Context, bankId string) ApiBankAccountRetrieveRequest {
+func (a *BankAccountsApiService) Get(ctx context.Context, bankId string) ApiBankAccountRetrieveRequest {
 	return ApiBankAccountRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -388,7 +388,7 @@ Verify a bank account in order to create a check.
  @param bankId id of the bank account to be verified
  @return ApiBankAccountVerifyRequest
 */
-func (a *BankAccountsApiService) BankAccountVerify(ctx context.Context, bankId string) ApiBankAccountVerifyRequest {
+func (a *BankAccountsApiService) Verify(ctx context.Context, bankId string) ApiBankAccountVerifyRequest {
 	return ApiBankAccountVerifyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -543,7 +543,7 @@ Returns a list of your bank accounts. The bank accounts are returned sorted by c
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiBankAccountsListRequest
 */
-func (a *BankAccountsApiService) BankAccountsList(ctx context.Context) ApiBankAccountsListRequest {
+func (a *BankAccountsApiService) List(ctx context.Context) ApiBankAccountsListRequest {
 	return ApiBankAccountsListRequest{
 		ApiService: a,
 		ctx: ctx,

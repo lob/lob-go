@@ -4,13 +4,13 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**validate**](IdentityValidationApi.md#validate) | **Post** /identity_validation | validate
+[**Validate**](IdentityValidationApi.md#Validate) | **Post** /identity_validation | validate
 
 
 
 ## IdentityValidation
 
-> IdentityValidation validate(ctx).MultiLineAddress(multiLineAddress).Execute()
+> IdentityValidation Validate(ctx).MultiLineAddress(multiLineAddress).Execute()
 
 validate
 
@@ -33,13 +33,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IdentityValidationApi.validate(context.Background()).MultiLineAddress(multiLineAddress).Execute()
+    resp, r, err := apiClient.IdentityValidationApi.Validate(context.Background()).MultiLineAddress(multiLineAddress).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IdentityValidationApi.validate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IdentityValidationApi.Validate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `validate`: IdentityValidation
-    fmt.Fprintf(os.Stdout, "Response from `IdentityValidationApi.validate`: %v\n", resp)
+    // response from `Validate`: IdentityValidation
+    fmt.Fprintf(os.Stdout, "Response from `IdentityValidationApi.Validate`: %v\n", resp)
 }
 ```
 

@@ -41,14 +41,14 @@ func (suite *ReverseGeocodeLookupsTestSuite) SetupTest() {
 
 func (suite *ReverseGeocodeLookupsTestSuite) TestReverseGeocodeLookup() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.ReverseGeocodeLookupsApi.ReverseGeocodeLookup(suite.ctx).Location(suite.location).Execute()
+	resp, _, err := suite.apiClient.ReverseGeocodeLookupsApi.Lookup(suite.ctx).Location(suite.location).Execute()
 	assert.Nil(t, err)
 	assert.NotNil(t, resp)
 }
 
 func (suite *ReverseGeocodeLookupsTestSuite) TestReverseGeocodeLookupBadApiKey() {
 	t := suite.T()
-	_, _, err := suite.apiClient.ReverseGeocodeLookupsApi.ReverseGeocodeLookup(suite.badctx).Location(suite.location).Execute()
+	_, _, err := suite.apiClient.ReverseGeocodeLookupsApi.Lookup(suite.badctx).Location(suite.location).Execute()
 	if assert.NotNil(t, err) {
 		assert.Equal(t, "401 Unauthorized", err.Error())
 	}

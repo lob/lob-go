@@ -45,7 +45,7 @@ Completely removes a check from production. This can only be done if the check h
  @param chkId id of the check
  @return ApiCheckCancelRequest
 */
-func (a *ChecksApiService) CheckCancel(ctx context.Context, chkId string) ApiCheckCancelRequest {
+func (a *ChecksApiService) Cancel(ctx context.Context, chkId string) ApiCheckCancelRequest {
 	return ApiCheckCancelRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -166,7 +166,7 @@ Creates a new check with the provided properties.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCheckCreateRequest
 */
-func (a *ChecksApiService) CheckCreate(ctx context.Context) ApiCheckCreateRequest {
+func (a *ChecksApiService) Create(ctx context.Context) ApiCheckCreateRequest {
 	return ApiCheckCreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -282,7 +282,7 @@ Retrieves the details of an existing check. You need only supply the unique chec
  @param chkId id of the check
  @return ApiCheckRetrieveRequest
 */
-func (a *ChecksApiService) CheckRetrieve(ctx context.Context, chkId string) ApiCheckRetrieveRequest {
+func (a *ChecksApiService) Get(ctx context.Context, chkId string) ApiCheckRetrieveRequest {
 	return ApiCheckRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -460,7 +460,7 @@ Returns a list of your checks. The checks are returned sorted by creation date, 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiChecksListRequest
 */
-func (a *ChecksApiService) ChecksList(ctx context.Context) ApiChecksListRequest {
+func (a *ChecksApiService) List(ctx context.Context) ApiChecksListRequest {
 	return ApiChecksListRequest{
 		ApiService: a,
 		ctx: ctx,

@@ -4,14 +4,14 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**verifyBulk**](UsVerificationsApi.md#verifyBulk) | **Post** /bulk/us_verifications | verifyBulk
-[**verifySingle**](UsVerificationsApi.md#verifySingle) | **Post** /us_verifications | verifySingle
+[**VerifyBulk**](UsVerificationsApi.md#VerifyBulk) | **Post** /bulk/us_verifications | verifyBulk
+[**VerifySingle**](UsVerificationsApi.md#VerifySingle) | **Post** /us_verifications | verifySingle
 
 
 
 ## BulkUsVerifications
 
-> UsVerifications verifyBulk(ctx).MultipleComponentsList(multipleComponentsList).Case_(case_).Execute()
+> UsVerifications VerifyBulk(ctx).MultipleComponentsList(multipleComponentsList).Case_(case_).Execute()
 
 verifyBulk
 
@@ -35,13 +35,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsVerificationsApi.verifyBulk(context.Background()).MultipleComponentsList(multipleComponentsList).Case_(case_).Execute()
+    resp, r, err := apiClient.UsVerificationsApi.VerifyBulk(context.Background()).MultipleComponentsList(multipleComponentsList).Case_(case_).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsVerificationsApi.verifyBulk``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsVerificationsApi.VerifyBulk``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `verifyBulk`: UsVerifications
-    fmt.Fprintf(os.Stdout, "Response from `UsVerificationsApi.verifyBulk`: %v\n", resp)
+    // response from `VerifyBulk`: UsVerifications
+    fmt.Fprintf(os.Stdout, "Response from `UsVerificationsApi.VerifyBulk`: %v\n", resp)
 }
 ```
 
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ## UsVerification
 
-> UsVerification verifySingle(ctx).UsVerificationsWritable(usVerificationsWritable).Case_(case_).Execute()
+> UsVerification VerifySingle(ctx).UsVerificationsWritable(usVerificationsWritable).Case_(case_).Execute()
 
 verifySingle
 
@@ -103,13 +103,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsVerificationsApi.verifySingle(context.Background()).UsVerificationsWritable(usVerificationsWritable).Case_(case_).Execute()
+    resp, r, err := apiClient.UsVerificationsApi.VerifySingle(context.Background()).UsVerificationsWritable(usVerificationsWritable).Case_(case_).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsVerificationsApi.verifySingle``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsVerificationsApi.VerifySingle``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `verifySingle`: UsVerification
-    fmt.Fprintf(os.Stdout, "Response from `UsVerificationsApi.verifySingle`: %v\n", resp)
+    // response from `VerifySingle`: UsVerification
+    fmt.Fprintf(os.Stdout, "Response from `UsVerificationsApi.VerifySingle`: %v\n", resp)
 }
 ```
 

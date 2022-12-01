@@ -37,7 +37,7 @@ func (suite *IntlAutocompletionsSuite) SetupTest() {
 
 func (suite *IntlAutocompletionsSuite) TestIntlAutocompletions() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.IntlAutocompletionsApi.IntlAutocompletion(suite.ctx).IntlAutocompletionsWritable(suite.intlAutocomplationsWritable).Execute()
+	resp, _, err := suite.apiClient.IntlAutocompletionsApi.Autocomplete(suite.ctx).IntlAutocompletionsWritable(suite.intlAutocomplationsWritable).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Greater(t, len(resp.GetSuggestions()), 0)
@@ -47,7 +47,7 @@ func (suite *IntlAutocompletionsSuite) TestIntlAutocompletions() {
 
 func (suite *IntlAutocompletionsSuite) TestIntlAutocompletionsBadApiKey() {
 	t := suite.T()
-	_, _, err := suite.apiClient.IntlAutocompletionsApi.IntlAutocompletion(suite.badctx).IntlAutocompletionsWritable(suite.intlAutocomplationsWritable).Execute()
+	_, _, err := suite.apiClient.IntlAutocompletionsApi.Autocomplete(suite.badctx).IntlAutocompletionsWritable(suite.intlAutocomplationsWritable).Execute()
 	if assert.NotNil(t, err) {
 		assert.Equal(t, "401 Unauthorized", err.Error())
 	}

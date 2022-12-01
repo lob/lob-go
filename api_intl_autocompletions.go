@@ -53,7 +53,7 @@ Given an address prefix consisting of a partial primary line and country, as wel
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiIntlAutocompletionRequest
 */
-func (a *IntlAutocompletionsApiService) IntlAutocompletion(ctx context.Context) ApiIntlAutocompletionRequest {
+func (a *IntlAutocompletionsApiService) Autocomplete(ctx context.Context) ApiIntlAutocompletionRequest {
 	return ApiIntlAutocompletionRequest{
 		ApiService: a,
 		ctx: ctx,
