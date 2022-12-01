@@ -39,7 +39,7 @@ func (suite *CardsTestSuite) SetupTest() {
 
 func (suite *CardsTestSuite) TestCardsCreate() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.CardsApi.CardCreate(suite.ctx).CardEditable(suite.cardEditable).Execute()
+	resp, _, err := suite.apiClient.CardsApi.Create(suite.ctx).CardEditable(suite.cardEditable).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.NotNil(t, resp.Id)
@@ -49,7 +49,7 @@ func (suite *CardsTestSuite) TestCardsCreate() {
 
 func (suite *CardsTestSuite) TestCardCreateBadApiKey() {
 	t := suite.T()
-	_, _, err := suite.apiClient.CardsApi.CardCreate(suite.badctx).CardEditable(suite.cardEditable).Execute()
+	_, _, err := suite.apiClient.CardsApi.Create(suite.badctx).CardEditable(suite.cardEditable).Execute()
 	if assert.NotNil(t, err) {
 		assert.Equal(t, "401 Unauthorized", err.Error())
 	}
@@ -57,9 +57,9 @@ func (suite *CardsTestSuite) TestCardCreateBadApiKey() {
 
 func (suite *CardsTestSuite) TestCardRetrieve() {
 	t := suite.T()
-	createdCard, _, _ := suite.apiClient.CardsApi.CardCreate(suite.ctx).CardEditable(suite.cardEditable).Execute()
+	createdCard, _, _ := suite.apiClient.CardsApi.Create(suite.ctx).CardEditable(suite.cardEditable).Execute()
 
-	resp, _, err := suite.apiClient.CardsApi.CardRetrieve(suite.ctx, createdCard.Id).Execute()
+	resp, _, err := suite.apiClient.CardsApi.Get(suite.ctx, createdCard.Id).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, resp.Id, createdCard.Id)
@@ -68,9 +68,9 @@ func (suite *CardsTestSuite) TestCardRetrieve() {
 
 func (suite *CardsTestSuite) TestCardRetrieveBadApiKey() {
 	t := suite.T()
-	createdCard, _, _ := suite.apiClient.CardsApi.CardCreate(suite.ctx).CardEditable(suite.cardEditable).Execute()
+	createdCard, _, _ := suite.apiClient.CardsApi.Create(suite.ctx).CardEditable(suite.cardEditable).Execute()
 
-	_, _, err := suite.apiClient.CardsApi.CardRetrieve(suite.badctx, createdCard.Id).Execute()
+	_, _, err := suite.apiClient.CardsApi.Get(suite.badctx, createdCard.Id).Execute()
 	if assert.NotNil(t, err) {
 		assert.Equal(t, "401 Unauthorized", err.Error())
 	}
@@ -78,7 +78,7 @@ func (suite *CardsTestSuite) TestCardRetrieveBadApiKey() {
 
 func (suite *CardsTestSuite) TestCardList() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.CardsApi.CardsList(suite.ctx).Execute()
+	resp, _, err := suite.apiClient.CardsApi.List(suite.ctx).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Greater(t, resp.GetCount(), int32(0))
@@ -87,7 +87,7 @@ func (suite *CardsTestSuite) TestCardList() {
 
 func (suite *CardsTestSuite) TestCardListWithIncludeParameter() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.CardsApi.CardsList(suite.ctx).Limit(3).Execute()
+	resp, _, err := suite.apiClient.CardsApi.List(suite.ctx).Limit(3).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, resp.GetCount(), int32(3))
@@ -96,9 +96,9 @@ func (suite *CardsTestSuite) TestCardListWithIncludeParameter() {
 
 func (suite *CardsTestSuite) TestCardsListWithNextPageToken() {
 	t := suite.T()
-	firstResponse, _, firstErr := suite.apiClient.CardsApi.CardsList(suite.ctx).Limit(1).Execute()
+	firstResponse, _, firstErr := suite.apiClient.CardsApi.List(suite.ctx).Limit(1).Execute()
 	assert.Nil(t, firstErr)
-	responeAfter, _, err := suite.apiClient.CardsApi.CardsList(suite.ctx).After(firstResponse.GetNextPageToken()).Execute()
+	responeAfter, _, err := suite.apiClient.CardsApi.List(suite.ctx).After(firstResponse.GetNextPageToken()).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, responeAfter) {
 		assert.Greater(t, responeAfter.GetCount(), int32(0))
@@ -107,11 +107,11 @@ func (suite *CardsTestSuite) TestCardsListWithNextPageToken() {
 
 func (suite *CardsTestSuite) TestCardsListWithPrevPageToken() {
 	t := suite.T()
-	firstResponse, _, firstErr := suite.apiClient.CardsApi.CardsList(suite.ctx).Limit(1).Execute()
+	firstResponse, _, firstErr := suite.apiClient.CardsApi.List(suite.ctx).Limit(1).Execute()
 	assert.Nil(t, firstErr)
-	responeAfter, _, errAfter := suite.apiClient.CardsApi.CardsList(suite.ctx).After(firstResponse.GetNextPageToken()).Execute()
+	responeAfter, _, errAfter := suite.apiClient.CardsApi.List(suite.ctx).After(firstResponse.GetNextPageToken()).Execute()
 	assert.Nil(t, errAfter)
-	responseBefore, _, err := suite.apiClient.CardsApi.CardsList(suite.ctx).Before(responeAfter.GetPrevPageToken()).Execute()
+	responseBefore, _, err := suite.apiClient.CardsApi.List(suite.ctx).Before(responeAfter.GetPrevPageToken()).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, responseBefore) {
 		assert.Greater(t, responseBefore.GetCount(), int32(0))
@@ -120,11 +120,11 @@ func (suite *CardsTestSuite) TestCardsListWithPrevPageToken() {
 
 func (suite *CardsTestSuite) TestCardUpdate() {
 	t := suite.T()
-	createdCard, _, _ := suite.apiClient.CardsApi.CardCreate(suite.ctx).CardEditable(suite.cardEditable).Execute()
+	createdCard, _, _ := suite.apiClient.CardsApi.Create(suite.ctx).CardEditable(suite.cardEditable).Execute()
 	var updatedCard = *lob.NewCardUpdatable()
 	updatedCard.SetDescription("Card was updated")
 
-	resp, _, err := suite.apiClient.CardsApi.CardUpdate(suite.ctx, createdCard.Id).CardUpdatable(updatedCard).Execute()
+	resp, _, err := suite.apiClient.CardsApi.Update(suite.ctx, createdCard.Id).CardUpdatable(updatedCard).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, resp.GetDescription(), updatedCard.GetDescription())
@@ -133,9 +133,9 @@ func (suite *CardsTestSuite) TestCardUpdate() {
 
 func (suite *CardsTestSuite) TestCardDelete() {
 	t := suite.T()
-	createdCard, _, _ := suite.apiClient.CardsApi.CardCreate(suite.ctx).CardEditable(suite.cardEditable).Execute()
+	createdCard, _, _ := suite.apiClient.CardsApi.Create(suite.ctx).CardEditable(suite.cardEditable).Execute()
 
-	resp, _, err := suite.apiClient.CardsApi.CardDelete(suite.ctx, createdCard.Id).Execute()
+	resp, _, err := suite.apiClient.CardsApi.Delete(suite.ctx, createdCard.Id).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, resp.GetId(), createdCard.Id)

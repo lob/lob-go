@@ -39,7 +39,7 @@ func (suite *BillingGroupTestSuite) SetupTest() {
 
 func (suite *BillingGroupTestSuite) TestBillingGroupCreate() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.BillingGroupsApi.BillingGroupCreate(suite.ctx).BillingGroupEditable(suite.bgEditable).Execute()
+	resp, _, err := suite.apiClient.BillingGroupsApi.Create(suite.ctx).BillingGroupEditable(suite.bgEditable).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.NotNil(t, resp.Id)
@@ -49,7 +49,7 @@ func (suite *BillingGroupTestSuite) TestBillingGroupCreate() {
 
 func (suite *BillingGroupTestSuite) TestBillingGroupCreateBadApiKey() {
 	t := suite.T()
-	_, _, err := suite.apiClient.BillingGroupsApi.BillingGroupCreate(suite.badctx).BillingGroupEditable(suite.bgEditable).Execute()
+	_, _, err := suite.apiClient.BillingGroupsApi.Create(suite.badctx).BillingGroupEditable(suite.bgEditable).Execute()
 	if assert.NotNil(t, err) {
 		assert.Equal(t, "401 Unauthorized", err.Error())
 	}
@@ -57,9 +57,9 @@ func (suite *BillingGroupTestSuite) TestBillingGroupCreateBadApiKey() {
 
 func (suite *BillingGroupTestSuite) TestBillingGroupRetrieve() {
 	t := suite.T()
-	createdBG, _, _ := suite.apiClient.BillingGroupsApi.BillingGroupCreate(suite.ctx).BillingGroupEditable(suite.bgEditable).Execute()
+	createdBG, _, _ := suite.apiClient.BillingGroupsApi.Create(suite.ctx).BillingGroupEditable(suite.bgEditable).Execute()
 
-	resp, _, err := suite.apiClient.BillingGroupsApi.BillingGroupRetrieve(suite.ctx, createdBG.Id).Execute()
+	resp, _, err := suite.apiClient.BillingGroupsApi.Get(suite.ctx, createdBG.Id).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, resp.Id, createdBG.Id)
@@ -68,9 +68,9 @@ func (suite *BillingGroupTestSuite) TestBillingGroupRetrieve() {
 
 func (suite *BillingGroupTestSuite) TestBillingGroupRetrieveBadApiKey() {
 	t := suite.T()
-	createdBG, _, _ := suite.apiClient.BillingGroupsApi.BillingGroupCreate(suite.ctx).BillingGroupEditable(suite.bgEditable).Execute()
+	createdBG, _, _ := suite.apiClient.BillingGroupsApi.Create(suite.ctx).BillingGroupEditable(suite.bgEditable).Execute()
 
-	_, _, err := suite.apiClient.BillingGroupsApi.BillingGroupRetrieve(suite.badctx, createdBG.Id).Execute()
+	_, _, err := suite.apiClient.BillingGroupsApi.Get(suite.badctx, createdBG.Id).Execute()
 	if assert.NotNil(t, err) {
 		assert.Equal(t, "401 Unauthorized", err.Error())
 	}
@@ -78,7 +78,7 @@ func (suite *BillingGroupTestSuite) TestBillingGroupRetrieveBadApiKey() {
 
 func (suite *BillingGroupTestSuite) TestBillingGroupList() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.BillingGroupsApi.BillingGroupsList(suite.ctx).Execute()
+	resp, _, err := suite.apiClient.BillingGroupsApi.List(suite.ctx).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Greater(t, resp.GetCount(), int32(0))
@@ -87,7 +87,7 @@ func (suite *BillingGroupTestSuite) TestBillingGroupList() {
 
 func (suite *BillingGroupTestSuite) TestBillingGroupListWithIncludeParameter() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.BillingGroupsApi.BillingGroupsList(suite.ctx).Limit(3).Execute()
+	resp, _, err := suite.apiClient.BillingGroupsApi.List(suite.ctx).Limit(3).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, resp.GetCount(), int32(3))
@@ -96,10 +96,10 @@ func (suite *BillingGroupTestSuite) TestBillingGroupListWithIncludeParameter() {
 
 func (suite *BillingGroupTestSuite) TestBillingGroupUpdate() {
 	t := suite.T()
-	createdBG, _, _ := suite.apiClient.BillingGroupsApi.BillingGroupCreate(suite.ctx).BillingGroupEditable(suite.bgEditable).Execute()
+	createdBG, _, _ := suite.apiClient.BillingGroupsApi.Create(suite.ctx).BillingGroupEditable(suite.bgEditable).Execute()
 
 	suite.bgEditable.SetDescription("BG updated")
-	resp, _, err := suite.apiClient.BillingGroupsApi.BillingGroupUpdate(suite.ctx, createdBG.Id).BillingGroupEditable(suite.bgEditable).Execute()
+	resp, _, err := suite.apiClient.BillingGroupsApi.Update(suite.ctx, createdBG.Id).BillingGroupEditable(suite.bgEditable).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, resp.GetDescription(), "BG updated")

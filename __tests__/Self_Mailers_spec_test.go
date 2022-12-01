@@ -39,7 +39,7 @@ func (suite *SelfMailersTestSuite) SetupTest() {
 
 func (suite *SelfMailersTestSuite) TestSelfMailersCreate() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.SelfMailersApi.SelfMailerCreate(suite.ctx).SelfMailerEditable(suite.selfMailerEditable).Execute()
+	resp, _, err := suite.apiClient.SelfMailersApi.Create(suite.ctx).SelfMailerEditable(suite.selfMailerEditable).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.NotNil(t, resp.Id)
@@ -48,7 +48,7 @@ func (suite *SelfMailersTestSuite) TestSelfMailersCreate() {
 
 func (suite *SelfMailersTestSuite) TestSelfMailersCreateBadApiKey() {
 	t := suite.T()
-	_, _, err := suite.apiClient.SelfMailersApi.SelfMailerCreate(suite.badctx).SelfMailerEditable(suite.selfMailerEditable).Execute()
+	_, _, err := suite.apiClient.SelfMailersApi.Create(suite.badctx).SelfMailerEditable(suite.selfMailerEditable).Execute()
 	if assert.NotNil(t, err) {
 		assert.Equal(t, "401 Unauthorized", err.Error())
 	}
@@ -56,9 +56,9 @@ func (suite *SelfMailersTestSuite) TestSelfMailersCreateBadApiKey() {
 
 func (suite *SelfMailersTestSuite) TestSelfMailersRetrieve() {
 	t := suite.T()
-	createdSM, _, _ := suite.apiClient.SelfMailersApi.SelfMailerCreate(suite.ctx).SelfMailerEditable(suite.selfMailerEditable).Execute()
+	createdSM, _, _ := suite.apiClient.SelfMailersApi.Create(suite.ctx).SelfMailerEditable(suite.selfMailerEditable).Execute()
 
-	resp, _, err := suite.apiClient.SelfMailersApi.SelfMailerRetrieve(suite.ctx, createdSM.Id).Execute()
+	resp, _, err := suite.apiClient.SelfMailersApi.Get(suite.ctx, createdSM.Id).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, resp.Id, createdSM.Id)
@@ -67,9 +67,9 @@ func (suite *SelfMailersTestSuite) TestSelfMailersRetrieve() {
 
 func (suite *SelfMailersTestSuite) TestSelfMailerRetrieveBadApiKey() {
 	t := suite.T()
-	createdSM, _, _ := suite.apiClient.SelfMailersApi.SelfMailerCreate(suite.ctx).SelfMailerEditable(suite.selfMailerEditable).Execute()
+	createdSM, _, _ := suite.apiClient.SelfMailersApi.Create(suite.ctx).SelfMailerEditable(suite.selfMailerEditable).Execute()
 
-	_, _, err := suite.apiClient.SelfMailersApi.SelfMailerRetrieve(suite.badctx, createdSM.Id).Execute()
+	_, _, err := suite.apiClient.SelfMailersApi.Get(suite.badctx, createdSM.Id).Execute()
 	if assert.NotNil(t, err) {
 		assert.Equal(t, "401 Unauthorized", err.Error())
 	}
@@ -77,7 +77,7 @@ func (suite *SelfMailersTestSuite) TestSelfMailerRetrieveBadApiKey() {
 
 func (suite *SelfMailersTestSuite) TestSelfMailerList() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.SelfMailersApi.SelfMailersList(suite.ctx).Execute()
+	resp, _, err := suite.apiClient.SelfMailersApi.List(suite.ctx).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Greater(t, resp.GetCount(), int32(0))
@@ -86,7 +86,7 @@ func (suite *SelfMailersTestSuite) TestSelfMailerList() {
 
 func (suite *SelfMailersTestSuite) TestPostcardListWithIncludeParameter() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.SelfMailersApi.SelfMailersList(suite.ctx).Limit(3).Execute()
+	resp, _, err := suite.apiClient.SelfMailersApi.List(suite.ctx).Limit(3).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, resp.GetCount(), int32(3))
@@ -95,9 +95,9 @@ func (suite *SelfMailersTestSuite) TestPostcardListWithIncludeParameter() {
 
 func (suite *SelfMailersTestSuite) TestSelfMailersListWithNextPageToken() {
 	t := suite.T()
-	firstResponse, _, firstErr := suite.apiClient.SelfMailersApi.SelfMailersList(suite.ctx).Limit(1).Execute()
+	firstResponse, _, firstErr := suite.apiClient.SelfMailersApi.List(suite.ctx).Limit(1).Execute()
 	assert.Nil(t, firstErr)
-	responeAfter, _, err := suite.apiClient.SelfMailersApi.SelfMailersList(suite.ctx).After(firstResponse.GetNextPageToken()).Execute()
+	responeAfter, _, err := suite.apiClient.SelfMailersApi.List(suite.ctx).After(firstResponse.GetNextPageToken()).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, responeAfter) {
 		assert.Greater(t, responeAfter.GetCount(), int32(0))
@@ -106,11 +106,11 @@ func (suite *SelfMailersTestSuite) TestSelfMailersListWithNextPageToken() {
 
 func (suite *SelfMailersTestSuite) TestSelfMailersListWithPrevPageToken() {
 	t := suite.T()
-	firstResponse, _, firstErr := suite.apiClient.SelfMailersApi.SelfMailersList(suite.ctx).Limit(1).Execute()
+	firstResponse, _, firstErr := suite.apiClient.SelfMailersApi.List(suite.ctx).Limit(1).Execute()
 	assert.Nil(t, firstErr)
-	responeAfter, _, errAfter := suite.apiClient.SelfMailersApi.SelfMailersList(suite.ctx).After(firstResponse.GetNextPageToken()).Execute()
+	responeAfter, _, errAfter := suite.apiClient.SelfMailersApi.List(suite.ctx).After(firstResponse.GetNextPageToken()).Execute()
 	assert.Nil(t, errAfter)
-	responseBefore, _, err := suite.apiClient.SelfMailersApi.SelfMailersList(suite.ctx).Before(responeAfter.GetPrevPageToken()).Execute()
+	responseBefore, _, err := suite.apiClient.SelfMailersApi.List(suite.ctx).Before(responeAfter.GetPrevPageToken()).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, responseBefore) {
 		assert.Greater(t, responseBefore.GetCount(), int32(0))
@@ -119,9 +119,9 @@ func (suite *SelfMailersTestSuite) TestSelfMailersListWithPrevPageToken() {
 
 func (suite *SelfMailersTestSuite) TestPostcardDelete() {
 	t := suite.T()
-	createdSM, _, _ := suite.apiClient.SelfMailersApi.SelfMailerCreate(suite.ctx).SelfMailerEditable(suite.selfMailerEditable).Execute()
+	createdSM, _, _ := suite.apiClient.SelfMailersApi.Create(suite.ctx).SelfMailerEditable(suite.selfMailerEditable).Execute()
 
-	resp, _, err := suite.apiClient.SelfMailersApi.SelfMailerDelete(suite.ctx, createdSM.Id).Execute()
+	resp, _, err := suite.apiClient.SelfMailersApi.Delete(suite.ctx, createdSM.Id).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, resp.GetId(), createdSM.Id)

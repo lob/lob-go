@@ -39,7 +39,7 @@ func (suite *BankAccountTestSuite) SetupTest() {
 
 func (suite *BankAccountTestSuite) TestBankAccountCreate() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.BankAccountsApi.BankAccountCreate(suite.ctx).BankAccountWritable(suite.bankAccountWritable).Execute()
+	resp, _, err := suite.apiClient.BankAccountsApi.Create(suite.ctx).BankAccountWritable(suite.bankAccountWritable).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.NotNil(t, resp.Id)
@@ -49,7 +49,7 @@ func (suite *BankAccountTestSuite) TestBankAccountCreate() {
 
 func (suite *BankAccountTestSuite) TestBankAccountCreateBadApiKey() {
 	t := suite.T()
-	_, _, err := suite.apiClient.BankAccountsApi.BankAccountCreate(suite.badctx).BankAccountWritable(suite.bankAccountWritable).Execute()
+	_, _, err := suite.apiClient.BankAccountsApi.Create(suite.badctx).BankAccountWritable(suite.bankAccountWritable).Execute()
 	if assert.NotNil(t, err) {
 		assert.Equal(t, "401 Unauthorized", err.Error())
 	}
@@ -57,9 +57,9 @@ func (suite *BankAccountTestSuite) TestBankAccountCreateBadApiKey() {
 
 func (suite *BankAccountTestSuite) TestBankAccountRetrieve() {
 	t := suite.T()
-	createdBA, _, _ := suite.apiClient.BankAccountsApi.BankAccountCreate(suite.ctx).BankAccountWritable(suite.bankAccountWritable).Execute()
+	createdBA, _, _ := suite.apiClient.BankAccountsApi.Create(suite.ctx).BankAccountWritable(suite.bankAccountWritable).Execute()
 
-	resp, _, err := suite.apiClient.BankAccountsApi.BankAccountRetrieve(suite.ctx, createdBA.Id).Execute()
+	resp, _, err := suite.apiClient.BankAccountsApi.Get(suite.ctx, createdBA.Id).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, resp.Id, createdBA.Id)
@@ -68,9 +68,9 @@ func (suite *BankAccountTestSuite) TestBankAccountRetrieve() {
 
 func (suite *BankAccountTestSuite) TestBankAccountRetrieveBadApiKey() {
 	t := suite.T()
-	createdBA, _, _ := suite.apiClient.BankAccountsApi.BankAccountCreate(suite.ctx).BankAccountWritable(suite.bankAccountWritable).Execute()
+	createdBA, _, _ := suite.apiClient.BankAccountsApi.Create(suite.ctx).BankAccountWritable(suite.bankAccountWritable).Execute()
 
-	_, _, err := suite.apiClient.CardsApi.CardRetrieve(suite.badctx, createdBA.Id).Execute()
+	_, _, err := suite.apiClient.BankAccountsApi.Get(suite.badctx, createdBA.Id).Execute()
 	if assert.NotNil(t, err) {
 		assert.Equal(t, "401 Unauthorized", err.Error())
 	}
@@ -78,7 +78,7 @@ func (suite *BankAccountTestSuite) TestBankAccountRetrieveBadApiKey() {
 
 func (suite *BankAccountTestSuite) TestBankAccountList() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.BankAccountsApi.BankAccountsList(suite.ctx).Execute()
+	resp, _, err := suite.apiClient.BankAccountsApi.List(suite.ctx).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Greater(t, resp.GetCount(), int32(0))
@@ -87,7 +87,7 @@ func (suite *BankAccountTestSuite) TestBankAccountList() {
 
 func (suite *BankAccountTestSuite) TestBankAccountListWithIncludeParameter() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.BankAccountsApi.BankAccountsList(suite.ctx).Limit(3).Execute()
+	resp, _, err := suite.apiClient.BankAccountsApi.List(suite.ctx).Limit(3).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, resp.GetCount(), int32(3))
@@ -96,9 +96,9 @@ func (suite *BankAccountTestSuite) TestBankAccountListWithIncludeParameter() {
 
 func (suite *BankAccountTestSuite) TestBankAccountsListWithNextPageToken() {
 	t := suite.T()
-	firstResponse, _, firstErr := suite.apiClient.BankAccountsApi.BankAccountsList(suite.ctx).Limit(1).Execute()
+	firstResponse, _, firstErr := suite.apiClient.BankAccountsApi.List(suite.ctx).Limit(1).Execute()
 	assert.Nil(t, firstErr)
-	responeAfter, _, err := suite.apiClient.BankAccountsApi.BankAccountsList(suite.ctx).After(firstResponse.GetNextPageToken()).Execute()
+	responeAfter, _, err := suite.apiClient.BankAccountsApi.List(suite.ctx).After(firstResponse.GetNextPageToken()).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, responeAfter) {
 		assert.Greater(t, responeAfter.GetCount(), int32(0))
@@ -107,11 +107,11 @@ func (suite *BankAccountTestSuite) TestBankAccountsListWithNextPageToken() {
 
 func (suite *BankAccountTestSuite) TestBankAccountsListWithPrevPageToken() {
 	t := suite.T()
-	firstResponse, _, firstErr := suite.apiClient.BankAccountsApi.BankAccountsList(suite.ctx).Limit(1).Execute()
+	firstResponse, _, firstErr := suite.apiClient.BankAccountsApi.List(suite.ctx).Limit(1).Execute()
 	assert.Nil(t, firstErr)
-	responeAfter, _, errAfter := suite.apiClient.BankAccountsApi.BankAccountsList(suite.ctx).After(firstResponse.GetNextPageToken()).Execute()
+	responeAfter, _, errAfter := suite.apiClient.BankAccountsApi.List(suite.ctx).After(firstResponse.GetNextPageToken()).Execute()
 	assert.Nil(t, errAfter)
-	responseBefore, _, err := suite.apiClient.BankAccountsApi.BankAccountsList(suite.ctx).Before(responeAfter.GetPrevPageToken()).Execute()
+	responseBefore, _, err := suite.apiClient.BankAccountsApi.List(suite.ctx).Before(responeAfter.GetPrevPageToken()).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, responseBefore) {
 		assert.Greater(t, responseBefore.GetCount(), int32(0))
@@ -120,12 +120,12 @@ func (suite *BankAccountTestSuite) TestBankAccountsListWithPrevPageToken() {
 
 func (suite *BankAccountTestSuite) TestBankAccountVerify() {
 	t := suite.T()
-	createdBA, _, _ := suite.apiClient.BankAccountsApi.BankAccountCreate(suite.ctx).BankAccountWritable(suite.bankAccountWritable).Execute()
+	createdBA, _, _ := suite.apiClient.BankAccountsApi.Create(suite.ctx).BankAccountWritable(suite.bankAccountWritable).Execute()
 
 	verifyAmounts := []int32{11, 35}
 	mockVerify := *lob.NewBankAccountVerify(verifyAmounts)
 
-	resp, _, err := suite.apiClient.BankAccountsApi.BankAccountVerify(suite.ctx, createdBA.Id).BankAccountVerify(mockVerify).Execute()
+	resp, _, err := suite.apiClient.BankAccountsApi.Verify(suite.ctx, createdBA.Id).BankAccountVerify(mockVerify).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, resp.GetVerified(), true)
@@ -134,9 +134,9 @@ func (suite *BankAccountTestSuite) TestBankAccountVerify() {
 
 func (suite *BankAccountTestSuite) TestBankAccountDelete() {
 	t := suite.T()
-	createdBA, _, _ := suite.apiClient.BankAccountsApi.BankAccountCreate(suite.ctx).BankAccountWritable(suite.bankAccountWritable).Execute()
+	createdBA, _, _ := suite.apiClient.BankAccountsApi.Create(suite.ctx).BankAccountWritable(suite.bankAccountWritable).Execute()
 
-	resp, _, err := suite.apiClient.BankAccountsApi.BankAccountDelete(suite.ctx, createdBA.Id).Execute()
+	resp, _, err := suite.apiClient.BankAccountsApi.Delete(suite.ctx, createdBA.Id).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, resp.GetId(), createdBA.Id)
