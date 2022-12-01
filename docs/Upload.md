@@ -7,11 +7,10 @@ Name | Type | Description | Notes
 **Id** | **string** | Unique identifier prefixed with &#x60;upl_&#x60;. | 
 **AccountId** | **string** | Account ID that made the request | 
 **CampaignId** | **string** | Unique identifier prefixed with &#x60;cmp_&#x60;. | 
-**ColumnMapping** | **map[string]interface{}** | The mapping of column headers in your file to Lob-required fields for the resource created. See our &lt;a href&#x3D;\&quot;https://help.lob.com/best-practices/campaign-audience-guide\&quot; target&#x3D;\&quot;_blank\&quot;&gt;Campaign Audience Guide&lt;/a&gt; for additional details. | 
 **Mode** | **string** | The environment in which the mailpieces were created. Today, will only be &#x60;live&#x60;. | 
 **FailuresUrl** | Pointer to **string** | Url where your campaign mailpiece failures can be retrieved | [optional] 
 **OriginalFilename** | Pointer to **string** | Filename of the upload | [optional] 
-**State** | [**UploadState**](UploadState.md) |  | [default to DRAFT]
+**State** | [**UploadState**](UploadState.md) |  | [default to UPLOADSTATE_DRAFT]
 **TotalMailpieces** | **int32** | Total number of recipients for the campaign | 
 **FailedMailpieces** | **int32** | Number of mailpieces that failed to create | 
 **ValidatedMailpieces** | **int32** | Number of mailpieces that were successfully created | 
@@ -24,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewUpload
 
-`func NewUpload(id string, accountId string, campaignId string, columnMapping map[string]interface{}, mode string, state UploadState, totalMailpieces int32, failedMailpieces int32, validatedMailpieces int32, bytesProcessed int32, dateCreated time.Time, dateModified time.Time, ) *Upload`
+`func NewUpload(id string, accountId string, campaignId string, mode string, state UploadState, totalMailpieces int32, failedMailpieces int32, validatedMailpieces int32, bytesProcessed int32, dateCreated time.Time, dateModified time.Time, ) *Upload`
 
 NewUpload instantiates a new Upload object
 This constructor will assign default values to properties that have it defined,
@@ -97,26 +96,6 @@ and a boolean to check if the value has been set.
 `func (o *Upload) SetCampaignId(v string)`
 
 SetCampaignId sets CampaignId field to given value.
-
-
-### GetColumnMapping
-
-`func (o *Upload) GetColumnMapping() map[string]interface{}`
-
-GetColumnMapping returns the ColumnMapping field if non-nil, zero value otherwise.
-
-### GetColumnMappingOk
-
-`func (o *Upload) GetColumnMappingOk() (*map[string]interface{}, bool)`
-
-GetColumnMappingOk returns a tuple with the ColumnMapping field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetColumnMapping
-
-`func (o *Upload) SetColumnMapping(v map[string]interface{})`
-
-SetColumnMapping sets ColumnMapping field to given value.
 
 
 ### GetMode

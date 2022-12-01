@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MailType** | Pointer to [**MailType**](MailType.md) |  | [optional] [default to FIRST_CLASS]
-**Size** | Pointer to [**PostcardSize**](PostcardSize.md) |  | [optional] [default to _4X6]
+**MailType** | Pointer to [**MailType**](MailType.md) |  | [optional] [default to MAILTYPE_FIRST_CLASS]
+**Size** | Pointer to [**PostcardSize**](PostcardSize.md) |  | [optional] [default to POSTCARDSIZE__4X6]
 **Setting** | Pointer to **int32** |  | [optional] [default to 1001]
 **FrontOriginalUrl** | Pointer to **string** | The original URL of the front template. | [optional] 
 **BackOriginalUrl** | Pointer to **string** | The original URL of the back template. | [optional] 

@@ -4,13 +4,13 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ReverseGeocodeLookup**](ReverseGeocodeLookupsApi.md#ReverseGeocodeLookup) | **Post** /us_reverse_geocode_lookups | lookup
+[**lookup**](ReverseGeocodeLookupsApi.md#lookup) | **Post** /us_reverse_geocode_lookups | lookup
 
 
 
 ## ReverseGeocodeLookup
 
-> ReverseGeocode ReverseGeocodeLookup(ctx).Location(location).Size(size).Execute()
+> ReverseGeocode lookup(ctx).Location(location).Size(size).Execute()
 
 lookup
 
@@ -34,13 +34,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ReverseGeocodeLookupsApi.ReverseGeocodeLookup(context.Background()).Location(location).Size(size).Execute()
+    resp, r, err := apiClient.ReverseGeocodeLookupsApi.lookup(context.Background()).Location(location).Size(size).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ReverseGeocodeLookupsApi.ReverseGeocodeLookup``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ReverseGeocodeLookupsApi.lookup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ReverseGeocodeLookup`: ReverseGeocode
-    fmt.Fprintf(os.Stdout, "Response from `ReverseGeocodeLookupsApi.ReverseGeocodeLookup`: %v\n", resp)
+    // response from `lookup`: ReverseGeocode
+    fmt.Fprintf(os.Stdout, "Response from `ReverseGeocodeLookupsApi.lookup`: %v\n", resp)
 }
 ```
 

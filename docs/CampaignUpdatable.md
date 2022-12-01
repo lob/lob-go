@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **SendDate** | Pointer to **time.Time** | If &#x60;schedule_type&#x60; is &#x60;scheduled_send_date&#x60;, provide a date to send this campaign. | [optional] 
 **CancelWindowCampaignMinutes** | Pointer to **int32** | A window, in minutes, within which the campaign can be canceled. | [optional] 
 **Metadata** | Pointer to **map[string]string** | Use metadata to store custom information for tagging and labeling back to your internal systems. Must be an object with up to 20 key-value pairs. Keys must be at most 40 characters and values must be at most 500 characters. Neither can contain the characters &#x60;\&quot;&#x60; and &#x60;\\&#x60;. i.e. &#39;{\&quot;customer_id\&quot; : \&quot;NEWYORK2015\&quot;}&#39; Nested objects are not supported.  See [Metadata](#section/Metadata) for more information. | [optional] 
-**IsDraft** | Pointer to **bool** | Whether or not the campaign is still a draft. | [optional] [default to true]
+**IsDraft** | Pointer to **bool** | Whether or not the campaign is still a draft. | [optional] 
 **UseType** | Pointer to [**NullableCmpUseType**](CmpUseType.md) |  | [optional] 
 **AutoCancelIfNcoa** | Pointer to **bool** | Whether or not a mail piece should be automatically canceled and not sent if the address is updated via NCOA. | [optional] 
 

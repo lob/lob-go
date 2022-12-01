@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MailType** | Pointer to [**MailType**](MailType.md) |  | [optional] [default to FIRST_CLASS]
-**Size** | Pointer to [**PostcardSize**](PostcardSize.md) |  | [optional] [default to _4X6]
+**MailType** | Pointer to [**MailType**](MailType.md) |  | [optional] [default to MAILTYPE_FIRST_CLASS]
+**Size** | Pointer to [**PostcardSize**](PostcardSize.md) |  | [optional] [default to POSTCARDSIZE__4X6]
 
 ## Methods
 

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **CustomEnvelope** | Pointer to [**NullableCustomEnvelopeReturned**](CustomEnvelopeReturned.md) |  | [optional] 
 **DoubleSided** | Pointer to **bool** | Set this attribute to &#x60;true&#x60; for double sided printing,  &#x60;false&#x60; for for single sided printing. | [optional] [default to true]
 **ExtraService** | Pointer to **string** | Add an extra service to your letter. | [optional] 
-**MailType** | Pointer to [**MailType**](MailType.md) |  | [optional] [default to FIRST_CLASS]
+**MailType** | Pointer to [**MailType**](MailType.md) |  | [optional] [default to MAILTYPE_FIRST_CLASS]
 **ReturnEnvelope** | Pointer to **interface{}** |  | [optional] 
 **Bleed** | Pointer to **bool** | Allows for letter bleed. Enabled only with specific feature flags. | [optional] [default to false]
 **FileOriginalUrl** | Pointer to **NullableString** |  | [optional] 

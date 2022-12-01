@@ -24,8 +24,8 @@ Name | Type | Description | Notes
 **ExtraService** | Pointer to **string** | Add an extra service to your letter. See [pricing](https://www.lob.com/pricing/print-mail#compare) for extra costs incurred. | [optional] 
 **TrackingNumber** | Pointer to **NullableString** | The tracking number, if applicable, will appear here when it becomes available. Dummy tracking numbers are not created in test mode. | [optional] 
 **TrackingEvents** | Pointer to [**[]TrackingEventNormal**](TrackingEventNormal.md) | Tracking events are not populated for registered or regular (no extra service) letters. | [optional] 
-**ReturnAddress** | Pointer to **string** | Specifies the address the return envelope will be sent back to. This is an optional argument that is available if an account is signed up for the return envelope tracking beta, and has &#x60;return_envelope&#x60;, and &#x60;perforated_page&#x60; fields populated in the API request. | [optional] 
-**MailType** | Pointer to [**MailType**](MailType.md) |  | [optional] [default to FIRST_CLASS]
+**ReturnAddress** | Pointer to **interface{}** | Specifies the address the return envelope will be sent back to. This is an optional argument that is available if an account is signed up for the return envelope tracking beta, and has &#x60;return_envelope&#x60;, and &#x60;perforated_page&#x60; fields populated in the API request. | [optional] 
+**MailType** | Pointer to [**MailType**](MailType.md) |  | [optional] [default to MAILTYPE_FIRST_CLASS]
 **Color** | Pointer to **bool** | Set this key to &#x60;true&#x60; if you would like to print in color. Set to &#x60;false&#x60; if you would like to print in black and white. | [optional] 
 **DoubleSided** | Pointer to **bool** | Set this attribute to &#x60;true&#x60; for double sided printing, or &#x60;false&#x60; for for single sided printing. Defaults to &#x60;true&#x60;. | [optional] [default to true]
 **AddressPlacement** | Pointer to **string** | Specifies the location of the address information that will show through the double-window envelope.  | [optional] [default to "top_first_page"]
@@ -554,20 +554,20 @@ HasTrackingEvents returns a boolean if a field has been set.
 
 ### GetReturnAddress
 
-`func (o *Letter) GetReturnAddress() string`
+`func (o *Letter) GetReturnAddress() interface{}`
 
 GetReturnAddress returns the ReturnAddress field if non-nil, zero value otherwise.
 
 ### GetReturnAddressOk
 
-`func (o *Letter) GetReturnAddressOk() (*string, bool)`
+`func (o *Letter) GetReturnAddressOk() (*interface{}, bool)`
 
 GetReturnAddressOk returns a tuple with the ReturnAddress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReturnAddress
 
-`func (o *Letter) SetReturnAddress(v string)`
+`func (o *Letter) SetReturnAddress(v interface{})`
 
 SetReturnAddress sets ReturnAddress field to given value.
 
@@ -577,6 +577,16 @@ SetReturnAddress sets ReturnAddress field to given value.
 
 HasReturnAddress returns a boolean if a field has been set.
 
+### SetReturnAddressNil
+
+`func (o *Letter) SetReturnAddressNil(b bool)`
+
+ SetReturnAddressNil sets the value for ReturnAddress to be an explicit nil
+
+### UnsetReturnAddress
+`func (o *Letter) UnsetReturnAddress()`
+
+UnsetReturnAddress ensures that no value is present for ReturnAddress, not even an explicit nil
 ### GetMailType
 
 `func (o *Letter) GetMailType() MailType`

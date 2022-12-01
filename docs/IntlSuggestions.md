@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **PrimaryLine** | **string** | The primary delivery line (usually the street address) of the address. Combination of the following applicable &#x60;components&#x60; (primary number &amp; secondary information may be missing or inaccurate): * &#x60;primary_number&#x60; * &#x60;street_predirection&#x60; * &#x60;street_name&#x60; * &#x60;street_suffix&#x60; * &#x60;street_postdirection&#x60; * &#x60;secondary_designator&#x60; * &#x60;secondary_number&#x60; * &#x60;pmb_designator&#x60; * &#x60;pmb_number&#x60;  | 
 **City** | **string** |  | 
 **State** | **string** | The [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) two letter code for the state.  | 
-**Country** | [**CountryExtendedExpanded**](CountryExtendedExpanded.md) |  | 
+**Country** | [**CountryExtended**](CountryExtended.md) |  | 
 **ZipCode** | **string** | A 5-digit zip code. Left empty if a test key is used. | 
 **Object** | Pointer to **string** | Value is resource type. | [optional] [default to "intl_autocompletion"]
 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewIntlSuggestions
 
-`func NewIntlSuggestions(primaryNumberRange string, primaryLine string, city string, state string, country CountryExtendedExpanded, zipCode string, ) *IntlSuggestions`
+`func NewIntlSuggestions(primaryNumberRange string, primaryLine string, city string, state string, country CountryExtended, zipCode string, ) *IntlSuggestions`
 
 NewIntlSuggestions instantiates a new IntlSuggestions object
 This constructor will assign default values to properties that have it defined,
@@ -113,20 +113,20 @@ SetState sets State field to given value.
 
 ### GetCountry
 
-`func (o *IntlSuggestions) GetCountry() CountryExtendedExpanded`
+`func (o *IntlSuggestions) GetCountry() CountryExtended`
 
 GetCountry returns the Country field if non-nil, zero value otherwise.
 
 ### GetCountryOk
 
-`func (o *IntlSuggestions) GetCountryOk() (*CountryExtendedExpanded, bool)`
+`func (o *IntlSuggestions) GetCountryOk() (*CountryExtended, bool)`
 
 GetCountryOk returns a tuple with the Country field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCountry
 
-`func (o *IntlSuggestions) SetCountry(v CountryExtendedExpanded)`
+`func (o *IntlSuggestions) SetCountry(v CountryExtended)`
 
 SetCountry sets Country field to given value.
 

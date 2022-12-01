@@ -4,16 +4,16 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**LetterCancel**](LettersApi.md#LetterCancel) | **Delete** /letters/{ltr_id} | cancel
-[**LetterCreate**](LettersApi.md#LetterCreate) | **Post** /letters | create
-[**LetterRetrieve**](LettersApi.md#LetterRetrieve) | **Get** /letters/{ltr_id} | get
-[**LettersList**](LettersApi.md#LettersList) | **Get** /letters | list
+[**cancel**](LettersApi.md#cancel) | **Delete** /letters/{ltr_id} | cancel
+[**create**](LettersApi.md#create) | **Post** /letters | create
+[**get**](LettersApi.md#get) | **Get** /letters/{ltr_id} | get
+[**list**](LettersApi.md#list) | **Get** /letters | list
 
 
 
 ## LetterCancel
 
-> LetterDeletion LetterCancel(ctx, ltrId).Execute()
+> LetterDeletion cancel(ctx, ltrId).Execute()
 
 cancel
 
@@ -36,13 +36,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LettersApi.LetterCancel(context.Background(), ltrId).Execute()
+    resp, r, err := apiClient.LettersApi.cancel(context.Background(), ltrId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LettersApi.LetterCancel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LettersApi.cancel``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `LetterCancel`: LetterDeletion
-    fmt.Fprintf(os.Stdout, "Response from `LettersApi.LetterCancel`: %v\n", resp)
+    // response from `cancel`: LetterDeletion
+    fmt.Fprintf(os.Stdout, "Response from `LettersApi.cancel`: %v\n", resp)
 }
 ```
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## LetterCreate
 
-> Letter LetterCreate(ctx).LetterEditable(letterEditable).IdempotencyKey(idempotencyKey).Execute()
+> Letter create(ctx).LetterEditable(letterEditable).IdempotencyKey(idempotencyKey).Execute()
 
 create
 
@@ -102,18 +102,18 @@ import (
 )
 
 func main() {
-    letterEditable := *openapiclient.NewLetterEditable(false, "To_example", "From_example", "File_example") // LetterEditable | 
+    letterEditable := *openapiclient.NewLetterEditable(false, interface{}(123), interface{}(123), "File_example") // LetterEditable | 
     idempotencyKey := "idempotencyKey_example" // string | A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LettersApi.LetterCreate(context.Background()).LetterEditable(letterEditable).IdempotencyKey(idempotencyKey).Execute()
+    resp, r, err := apiClient.LettersApi.create(context.Background()).LetterEditable(letterEditable).IdempotencyKey(idempotencyKey).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LettersApi.LetterCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LettersApi.create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `LetterCreate`: Letter
-    fmt.Fprintf(os.Stdout, "Response from `LettersApi.LetterCreate`: %v\n", resp)
+    // response from `create`: Letter
+    fmt.Fprintf(os.Stdout, "Response from `LettersApi.create`: %v\n", resp)
 }
 ```
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## LetterRetrieve
 
-> Letter LetterRetrieve(ctx, ltrId).Execute()
+> Letter get(ctx, ltrId).Execute()
 
 get
 
@@ -174,13 +174,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LettersApi.LetterRetrieve(context.Background(), ltrId).Execute()
+    resp, r, err := apiClient.LettersApi.get(context.Background(), ltrId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LettersApi.LetterRetrieve``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LettersApi.get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `LetterRetrieve`: Letter
-    fmt.Fprintf(os.Stdout, "Response from `LettersApi.LetterRetrieve`: %v\n", resp)
+    // response from `get`: Letter
+    fmt.Fprintf(os.Stdout, "Response from `LettersApi.get`: %v\n", resp)
 }
 ```
 
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ## LettersList
 
-> LetterList LettersList(ctx).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Color(color).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
+> LetterList list(ctx).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Color(color).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
 
 list
 
@@ -255,13 +255,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LettersApi.LettersList(context.Background()).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Color(color).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
+    resp, r, err := apiClient.LettersApi.list(context.Background()).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Color(color).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LettersApi.LettersList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LettersApi.list``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `LettersList`: LetterList
-    fmt.Fprintf(os.Stdout, "Response from `LettersApi.LettersList`: %v\n", resp)
+    // response from `list`: LetterList
+    fmt.Fprintf(os.Stdout, "Response from `LettersApi.list`: %v\n", resp)
 }
 ```
 

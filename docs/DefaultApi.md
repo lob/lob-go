@@ -4,13 +4,13 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Placeholder**](DefaultApi.md#Placeholder) | **Get** /shared_dont_call | placeholder_no_call
+[**placeholder_no_call**](DefaultApi.md#placeholder_no_call) | **Get** /shared_dont_call | placeholder_no_call
 
 
 
 ## Placeholder
 
-> PlaceholderModel Placeholder(ctx).Execute()
+> PlaceholderModel placeholder_no_call(ctx).Execute()
 
 placeholder_no_call
 
@@ -32,13 +32,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.Placeholder(context.Background()).Execute()
+    resp, r, err := apiClient.DefaultApi.placeholder_no_call(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.Placeholder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.placeholder_no_call``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Placeholder`: PlaceholderModel
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.Placeholder`: %v\n", resp)
+    // response from `placeholder_no_call`: PlaceholderModel
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.placeholder_no_call`: %v\n", resp)
 }
 ```
 

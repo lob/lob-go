@@ -1,17 +1,17 @@
-# \CardOrdersApi
+# \BuckslipOrdersApi
 
 All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](CardOrdersApi.md#create) | **Post** /cards/{card_id}/orders | create
-[**get**](CardOrdersApi.md#get) | **Get** /cards/{card_id}/orders | get
+[**create**](BuckslipOrdersApi.md#create) | **Post** /buckslips/{buckslip_id}/orders | create
+[**get**](BuckslipOrdersApi.md#get) | **Get** /buckslips/{buckslip_id}/orders | get
 
 
 
-## CardOrderCreate
+## BuckslipOrderCreate
 
-> CardOrder create(ctx, cardId).CardOrderEditable(cardOrderEditable).Execute()
+> BuckslipOrder create(ctx, buckslipId).BuckslipOrderEditable(buckslipOrderEditable).Execute()
 
 create
 
@@ -30,18 +30,18 @@ import (
 )
 
 func main() {
-    cardId := "cardId_example" // string | The ID of the card to which the card orders belong.
-    cardOrderEditable := *openapiclient.NewCardOrderEditable(int32(123)) // CardOrderEditable | 
+    buckslipId := "buckslipId_example" // string | The ID of the buckslip to which the buckslip orders belong.
+    buckslipOrderEditable := *openapiclient.NewBuckslipOrderEditable(int32(123)) // BuckslipOrderEditable | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CardOrdersApi.create(context.Background(), cardId).CardOrderEditable(cardOrderEditable).Execute()
+    resp, r, err := apiClient.BuckslipOrdersApi.create(context.Background(), buckslipId).BuckslipOrderEditable(buckslipOrderEditable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CardOrdersApi.create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipOrdersApi.create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `create`: CardOrder
-    fmt.Fprintf(os.Stdout, "Response from `CardOrdersApi.create`: %v\n", resp)
+    // response from `create`: BuckslipOrder
+    fmt.Fprintf(os.Stdout, "Response from `BuckslipOrdersApi.create`: %v\n", resp)
 }
 ```
 
@@ -51,21 +51,21 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**cardId** | **string** | The ID of the card to which the card orders belong. | 
+**buckslipId** | **string** | The ID of the buckslip to which the buckslip orders belong. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCardOrderCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiBuckslipOrderCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **cardOrderEditable** | [**CardOrderEditable**](CardOrderEditable.md) |  | 
+ **buckslipOrderEditable** | [**BuckslipOrderEditable**](BuckslipOrderEditable.md) |  | 
 
 ### Return type
 
-[**CardOrder**](CardOrder.md)
+[**BuckslipOrder**](BuckslipOrder.md)
 
 ### Authorization
 
@@ -81,9 +81,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CardOrdersRetrieve
+## BuckslipOrdersRetrieve
 
-> CardOrderList get(ctx, cardId).Limit(limit).Offset(offset).Execute()
+> BuckslipOrdersList get(ctx, buckslipId).Limit(limit).Offset(offset).Execute()
 
 get
 
@@ -102,19 +102,19 @@ import (
 )
 
 func main() {
-    cardId := "cardId_example" // string | The ID of the card to which the card orders belong.
+    buckslipId := "buckslipId_example" // string | The ID of the buckslip to which the buckslip orders belong.
     limit := int32(56) // int32 | How many results to return. (optional) (default to 10)
     offset := int32(56) // int32 | An integer that designates the offset at which to begin returning results. Defaults to 0. (optional) (default to 0)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CardOrdersApi.get(context.Background(), cardId).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.BuckslipOrdersApi.get(context.Background(), buckslipId).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CardOrdersApi.get``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipOrdersApi.get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `get`: CardOrderList
-    fmt.Fprintf(os.Stdout, "Response from `CardOrdersApi.get`: %v\n", resp)
+    // response from `get`: BuckslipOrdersList
+    fmt.Fprintf(os.Stdout, "Response from `BuckslipOrdersApi.get`: %v\n", resp)
 }
 ```
 
@@ -124,11 +124,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**cardId** | **string** | The ID of the card to which the card orders belong. | 
+**buckslipId** | **string** | The ID of the buckslip to which the buckslip orders belong. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCardOrdersRetrieveRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiBuckslipOrdersRetrieveRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CardOrderList**](CardOrderList.md)
+[**BuckslipOrdersList**](BuckslipOrdersList.md)
 
 ### Authorization
 

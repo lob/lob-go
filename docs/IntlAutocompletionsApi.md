@@ -4,13 +4,13 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**IntlAutocompletion**](IntlAutocompletionsApi.md#IntlAutocompletion) | **Post** /intl_autocompletions | autocomplete
+[**autocomplete**](IntlAutocompletionsApi.md#autocomplete) | **Post** /intl_autocompletions | autocomplete
 
 
 
 ## IntlAutocompletion
 
-> IntlAutocompletions IntlAutocompletion(ctx).IntlAutocompletionsWritable(intlAutocompletionsWritable).XLangOutput(xLangOutput).Execute()
+> IntlAutocompletions autocomplete(ctx).IntlAutocompletionsWritable(intlAutocompletionsWritable).XLangOutput(xLangOutput).Execute()
 
 autocomplete
 
@@ -34,13 +34,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IntlAutocompletionsApi.IntlAutocompletion(context.Background()).IntlAutocompletionsWritable(intlAutocompletionsWritable).XLangOutput(xLangOutput).Execute()
+    resp, r, err := apiClient.IntlAutocompletionsApi.autocomplete(context.Background()).IntlAutocompletionsWritable(intlAutocompletionsWritable).XLangOutput(xLangOutput).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IntlAutocompletionsApi.IntlAutocompletion``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IntlAutocompletionsApi.autocomplete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `IntlAutocompletion`: IntlAutocompletions
-    fmt.Fprintf(os.Stdout, "Response from `IntlAutocompletionsApi.IntlAutocompletion`: %v\n", resp)
+    // response from `autocomplete`: IntlAutocompletions
+    fmt.Fprintf(os.Stdout, "Response from `IntlAutocompletionsApi.autocomplete`: %v\n", resp)
 }
 ```
 
