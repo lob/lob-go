@@ -4,16 +4,16 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**cancel**](ChecksApi.md#cancel) | **Delete** /checks/{chk_id} | cancel
-[**create**](ChecksApi.md#create) | **Post** /checks | create
-[**get**](ChecksApi.md#get) | **Get** /checks/{chk_id} | get
-[**list**](ChecksApi.md#list) | **Get** /checks | list
+[**Cancel**](ChecksApi.md#Cancel) | **Delete** /checks/{chk_id} | cancel
+[**Create**](ChecksApi.md#Create) | **Post** /checks | create
+[**Get**](ChecksApi.md#Get) | **Get** /checks/{chk_id} | get
+[**List**](ChecksApi.md#List) | **Get** /checks | list
 
 
 
 ## CheckCancel
 
-> CheckDeletion cancel(ctx, chkId).Execute()
+> CheckDeletion Cancel(ctx, chkId).Execute()
 
 cancel
 
@@ -36,13 +36,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ChecksApi.cancel(context.Background(), chkId).Execute()
+    resp, r, err := apiClient.ChecksApi.Cancel(context.Background(), chkId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ChecksApi.cancel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ChecksApi.Cancel``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `cancel`: CheckDeletion
-    fmt.Fprintf(os.Stdout, "Response from `ChecksApi.cancel`: %v\n", resp)
+    // response from `Cancel`: CheckDeletion
+    fmt.Fprintf(os.Stdout, "Response from `ChecksApi.Cancel`: %v\n", resp)
 }
 ```
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## CheckCreate
 
-> Check create(ctx).CheckEditable(checkEditable).IdempotencyKey(idempotencyKey).Execute()
+> Check Create(ctx).CheckEditable(checkEditable).IdempotencyKey(idempotencyKey).Execute()
 
 create
 
@@ -107,13 +107,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ChecksApi.create(context.Background()).CheckEditable(checkEditable).IdempotencyKey(idempotencyKey).Execute()
+    resp, r, err := apiClient.ChecksApi.Create(context.Background()).CheckEditable(checkEditable).IdempotencyKey(idempotencyKey).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ChecksApi.create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ChecksApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `create`: Check
-    fmt.Fprintf(os.Stdout, "Response from `ChecksApi.create`: %v\n", resp)
+    // response from `Create`: Check
+    fmt.Fprintf(os.Stdout, "Response from `ChecksApi.Create`: %v\n", resp)
 }
 ```
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## CheckRetrieve
 
-> Check get(ctx, chkId).Execute()
+> Check Get(ctx, chkId).Execute()
 
 get
 
@@ -174,13 +174,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ChecksApi.get(context.Background(), chkId).Execute()
+    resp, r, err := apiClient.ChecksApi.Get(context.Background(), chkId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ChecksApi.get``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ChecksApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `get`: Check
-    fmt.Fprintf(os.Stdout, "Response from `ChecksApi.get`: %v\n", resp)
+    // response from `Get`: Check
+    fmt.Fprintf(os.Stdout, "Response from `ChecksApi.Get`: %v\n", resp)
 }
 ```
 
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ## ChecksList
 
-> CheckList list(ctx).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
+> CheckList List(ctx).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
 
 list
 
@@ -254,13 +254,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ChecksApi.list(context.Background()).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
+    resp, r, err := apiClient.ChecksApi.List(context.Background()).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ChecksApi.list``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ChecksApi.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `list`: CheckList
-    fmt.Fprintf(os.Stdout, "Response from `ChecksApi.list`: %v\n", resp)
+    // response from `List`: CheckList
+    fmt.Fprintf(os.Stdout, "Response from `ChecksApi.List`: %v\n", resp)
 }
 ```
 

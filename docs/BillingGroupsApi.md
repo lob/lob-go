@@ -4,16 +4,16 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](BillingGroupsApi.md#create) | **Post** /billing_groups | create
-[**get**](BillingGroupsApi.md#get) | **Get** /billing_groups/{bg_id} | get
-[**update**](BillingGroupsApi.md#update) | **Post** /billing_groups/{bg_id} | update
-[**list**](BillingGroupsApi.md#list) | **Get** /billing_groups | list
+[**Create**](BillingGroupsApi.md#Create) | **Post** /billing_groups | create
+[**Get**](BillingGroupsApi.md#Get) | **Get** /billing_groups/{bg_id} | get
+[**Update**](BillingGroupsApi.md#Update) | **Post** /billing_groups/{bg_id} | update
+[**List**](BillingGroupsApi.md#List) | **Get** /billing_groups | list
 
 
 
 ## BillingGroupCreate
 
-> BillingGroup create(ctx).BillingGroupEditable(billingGroupEditable).Execute()
+> BillingGroup Create(ctx).BillingGroupEditable(billingGroupEditable).Execute()
 
 create
 
@@ -36,13 +36,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BillingGroupsApi.create(context.Background()).BillingGroupEditable(billingGroupEditable).Execute()
+    resp, r, err := apiClient.BillingGroupsApi.Create(context.Background()).BillingGroupEditable(billingGroupEditable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BillingGroupsApi.create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BillingGroupsApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `create`: BillingGroup
-    fmt.Fprintf(os.Stdout, "Response from `BillingGroupsApi.create`: %v\n", resp)
+    // response from `Create`: BillingGroup
+    fmt.Fprintf(os.Stdout, "Response from `BillingGroupsApi.Create`: %v\n", resp)
 }
 ```
 
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ## BillingGroupRetrieve
 
-> BillingGroup get(ctx, bgId).Execute()
+> BillingGroup Get(ctx, bgId).Execute()
 
 get
 
@@ -102,13 +102,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BillingGroupsApi.get(context.Background(), bgId).Execute()
+    resp, r, err := apiClient.BillingGroupsApi.Get(context.Background(), bgId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BillingGroupsApi.get``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BillingGroupsApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `get`: BillingGroup
-    fmt.Fprintf(os.Stdout, "Response from `BillingGroupsApi.get`: %v\n", resp)
+    // response from `Get`: BillingGroup
+    fmt.Fprintf(os.Stdout, "Response from `BillingGroupsApi.Get`: %v\n", resp)
 }
 ```
 
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ## BillingGroupUpdate
 
-> BillingGroup update(ctx, bgId).BillingGroupEditable(billingGroupEditable).Execute()
+> BillingGroup Update(ctx, bgId).BillingGroupEditable(billingGroupEditable).Execute()
 
 update
 
@@ -173,13 +173,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BillingGroupsApi.update(context.Background(), bgId).BillingGroupEditable(billingGroupEditable).Execute()
+    resp, r, err := apiClient.BillingGroupsApi.Update(context.Background(), bgId).BillingGroupEditable(billingGroupEditable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BillingGroupsApi.update``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BillingGroupsApi.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `update`: BillingGroup
-    fmt.Fprintf(os.Stdout, "Response from `BillingGroupsApi.update`: %v\n", resp)
+    // response from `Update`: BillingGroup
+    fmt.Fprintf(os.Stdout, "Response from `BillingGroupsApi.Update`: %v\n", resp)
 }
 ```
 
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ## BillingGroupsList
 
-> BillingGroupList list(ctx).Limit(limit).Offset(offset).Include(include).DateCreated(dateCreated).DateModified(dateModified).SortByDateModified(sortByDateModified).Execute()
+> BillingGroupList List(ctx).Limit(limit).Offset(offset).Include(include).DateCreated(dateCreated).DateModified(dateModified).SortByDateModified(sortByDateModified).Execute()
 
 list
 
@@ -250,13 +250,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BillingGroupsApi.list(context.Background()).Limit(limit).Offset(offset).Include(include).DateCreated(dateCreated).DateModified(dateModified).SortByDateModified(sortByDateModified).Execute()
+    resp, r, err := apiClient.BillingGroupsApi.List(context.Background()).Limit(limit).Offset(offset).Include(include).DateCreated(dateCreated).DateModified(dateModified).SortByDateModified(sortByDateModified).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BillingGroupsApi.list``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BillingGroupsApi.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `list`: BillingGroupList
-    fmt.Fprintf(os.Stdout, "Response from `BillingGroupsApi.list`: %v\n", resp)
+    // response from `List`: BillingGroupList
+    fmt.Fprintf(os.Stdout, "Response from `BillingGroupsApi.List`: %v\n", resp)
 }
 ```
 

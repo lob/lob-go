@@ -4,17 +4,17 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](CardsApi.md#create) | **Post** /cards | create
-[**delete**](CardsApi.md#delete) | **Delete** /cards/{card_id} | delete
-[**get**](CardsApi.md#get) | **Get** /cards/{card_id} | get
-[**update**](CardsApi.md#update) | **Post** /cards/{card_id} | update
-[**list**](CardsApi.md#list) | **Get** /cards | list
+[**Create**](CardsApi.md#Create) | **Post** /cards | create
+[**Delete**](CardsApi.md#Delete) | **Delete** /cards/{card_id} | delete
+[**Get**](CardsApi.md#Get) | **Get** /cards/{card_id} | get
+[**Update**](CardsApi.md#Update) | **Post** /cards/{card_id} | update
+[**List**](CardsApi.md#List) | **Get** /cards | list
 
 
 
 ## CardCreate
 
-> Card create(ctx).CardEditable(cardEditable).Execute()
+> Card Create(ctx).CardEditable(cardEditable).Execute()
 
 create
 
@@ -37,13 +37,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CardsApi.create(context.Background()).CardEditable(cardEditable).Execute()
+    resp, r, err := apiClient.CardsApi.Create(context.Background()).CardEditable(cardEditable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `create`: Card
-    fmt.Fprintf(os.Stdout, "Response from `CardsApi.create`: %v\n", resp)
+    // response from `Create`: Card
+    fmt.Fprintf(os.Stdout, "Response from `CardsApi.Create`: %v\n", resp)
 }
 ```
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## CardDelete
 
-> CardDeletion delete(ctx, cardId).Execute()
+> CardDeletion Delete(ctx, cardId).Execute()
 
 delete
 
@@ -103,13 +103,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CardsApi.delete(context.Background(), cardId).Execute()
+    resp, r, err := apiClient.CardsApi.Delete(context.Background(), cardId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.delete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `delete`: CardDeletion
-    fmt.Fprintf(os.Stdout, "Response from `CardsApi.delete`: %v\n", resp)
+    // response from `Delete`: CardDeletion
+    fmt.Fprintf(os.Stdout, "Response from `CardsApi.Delete`: %v\n", resp)
 }
 ```
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## CardRetrieve
 
-> Card get(ctx, cardId).Execute()
+> Card Get(ctx, cardId).Execute()
 
 get
 
@@ -173,13 +173,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CardsApi.get(context.Background(), cardId).Execute()
+    resp, r, err := apiClient.CardsApi.Get(context.Background(), cardId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.get``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `get`: Card
-    fmt.Fprintf(os.Stdout, "Response from `CardsApi.get`: %v\n", resp)
+    // response from `Get`: Card
+    fmt.Fprintf(os.Stdout, "Response from `CardsApi.Get`: %v\n", resp)
 }
 ```
 
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 ## CardUpdate
 
-> Card update(ctx, cardId).CardUpdatable(cardUpdatable).Execute()
+> Card Update(ctx, cardId).CardUpdatable(cardUpdatable).Execute()
 
 update
 
@@ -244,13 +244,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CardsApi.update(context.Background(), cardId).CardUpdatable(cardUpdatable).Execute()
+    resp, r, err := apiClient.CardsApi.Update(context.Background(), cardId).CardUpdatable(cardUpdatable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.update``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `update`: Card
-    fmt.Fprintf(os.Stdout, "Response from `CardsApi.update`: %v\n", resp)
+    // response from `Update`: Card
+    fmt.Fprintf(os.Stdout, "Response from `CardsApi.Update`: %v\n", resp)
 }
 ```
 
@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 
 ## CardsList
 
-> CardList list(ctx).Limit(limit).Before(before).After(after).Include(include).Execute()
+> CardList List(ctx).Limit(limit).Before(before).After(after).Include(include).Execute()
 
 list
 
@@ -318,13 +318,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CardsApi.list(context.Background()).Limit(limit).Before(before).After(after).Include(include).Execute()
+    resp, r, err := apiClient.CardsApi.List(context.Background()).Limit(limit).Before(before).After(after).Include(include).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.list``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `list`: CardList
-    fmt.Fprintf(os.Stdout, "Response from `CardsApi.list`: %v\n", resp)
+    // response from `List`: CardList
+    fmt.Fprintf(os.Stdout, "Response from `CardsApi.List`: %v\n", resp)
 }
 ```
 

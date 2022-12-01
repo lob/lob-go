@@ -4,13 +4,13 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**lookup**](ZipLookupsApi.md#lookup) | **Post** /us_zip_lookups | lookup
+[**Lookup**](ZipLookupsApi.md#Lookup) | **Post** /us_zip_lookups | lookup
 
 
 
 ## ZipLookup
 
-> Zip lookup(ctx).ZipEditable(zipEditable).Execute()
+> Zip Lookup(ctx).ZipEditable(zipEditable).Execute()
 
 lookup
 
@@ -33,13 +33,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ZipLookupsApi.lookup(context.Background()).ZipEditable(zipEditable).Execute()
+    resp, r, err := apiClient.ZipLookupsApi.Lookup(context.Background()).ZipEditable(zipEditable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ZipLookupsApi.lookup``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ZipLookupsApi.Lookup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `lookup`: Zip
-    fmt.Fprintf(os.Stdout, "Response from `ZipLookupsApi.lookup`: %v\n", resp)
+    // response from `Lookup`: Zip
+    fmt.Fprintf(os.Stdout, "Response from `ZipLookupsApi.Lookup`: %v\n", resp)
 }
 ```
 

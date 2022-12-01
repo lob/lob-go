@@ -4,16 +4,16 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](SelfMailersApi.md#create) | **Post** /self_mailers | create
-[**delete**](SelfMailersApi.md#delete) | **Delete** /self_mailers/{sfm_id} | delete
-[**get**](SelfMailersApi.md#get) | **Get** /self_mailers/{sfm_id} | get
-[**list**](SelfMailersApi.md#list) | **Get** /self_mailers | list
+[**Create**](SelfMailersApi.md#Create) | **Post** /self_mailers | create
+[**Delete**](SelfMailersApi.md#Delete) | **Delete** /self_mailers/{sfm_id} | delete
+[**Get**](SelfMailersApi.md#Get) | **Get** /self_mailers/{sfm_id} | get
+[**List**](SelfMailersApi.md#List) | **Get** /self_mailers | list
 
 
 
 ## SelfMailerCreate
 
-> SelfMailer create(ctx).SelfMailerEditable(selfMailerEditable).IdempotencyKey(idempotencyKey).Execute()
+> SelfMailer Create(ctx).SelfMailerEditable(selfMailerEditable).IdempotencyKey(idempotencyKey).Execute()
 
 create
 
@@ -37,13 +37,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SelfMailersApi.create(context.Background()).SelfMailerEditable(selfMailerEditable).IdempotencyKey(idempotencyKey).Execute()
+    resp, r, err := apiClient.SelfMailersApi.Create(context.Background()).SelfMailerEditable(selfMailerEditable).IdempotencyKey(idempotencyKey).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SelfMailersApi.create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SelfMailersApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `create`: SelfMailer
-    fmt.Fprintf(os.Stdout, "Response from `SelfMailersApi.create`: %v\n", resp)
+    // response from `Create`: SelfMailer
+    fmt.Fprintf(os.Stdout, "Response from `SelfMailersApi.Create`: %v\n", resp)
 }
 ```
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## SelfMailerDelete
 
-> SelfMailerDeletion delete(ctx, sfmId).Execute()
+> SelfMailerDeletion Delete(ctx, sfmId).Execute()
 
 delete
 
@@ -104,13 +104,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SelfMailersApi.delete(context.Background(), sfmId).Execute()
+    resp, r, err := apiClient.SelfMailersApi.Delete(context.Background(), sfmId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SelfMailersApi.delete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SelfMailersApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `delete`: SelfMailerDeletion
-    fmt.Fprintf(os.Stdout, "Response from `SelfMailersApi.delete`: %v\n", resp)
+    // response from `Delete`: SelfMailerDeletion
+    fmt.Fprintf(os.Stdout, "Response from `SelfMailersApi.Delete`: %v\n", resp)
 }
 ```
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## SelfMailerRetrieve
 
-> SelfMailer get(ctx, sfmId).Execute()
+> SelfMailer Get(ctx, sfmId).Execute()
 
 get
 
@@ -174,13 +174,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SelfMailersApi.get(context.Background(), sfmId).Execute()
+    resp, r, err := apiClient.SelfMailersApi.Get(context.Background(), sfmId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SelfMailersApi.get``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SelfMailersApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `get`: SelfMailer
-    fmt.Fprintf(os.Stdout, "Response from `SelfMailersApi.get`: %v\n", resp)
+    // response from `Get`: SelfMailer
+    fmt.Fprintf(os.Stdout, "Response from `SelfMailersApi.Get`: %v\n", resp)
 }
 ```
 
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ## SelfMailersList
 
-> SelfMailerList list(ctx).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Size(size).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
+> SelfMailerList List(ctx).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Size(size).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
 
 list
 
@@ -255,13 +255,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SelfMailersApi.list(context.Background()).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Size(size).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
+    resp, r, err := apiClient.SelfMailersApi.List(context.Background()).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Size(size).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SelfMailersApi.list``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SelfMailersApi.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `list`: SelfMailerList
-    fmt.Fprintf(os.Stdout, "Response from `SelfMailersApi.list`: %v\n", resp)
+    // response from `List`: SelfMailerList
+    fmt.Fprintf(os.Stdout, "Response from `SelfMailersApi.List`: %v\n", resp)
 }
 ```
 

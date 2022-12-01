@@ -4,16 +4,16 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](AddressesApi.md#create) | **Post** /addresses | create
-[**delete**](AddressesApi.md#delete) | **Delete** /addresses/{adr_id} | delete
-[**get**](AddressesApi.md#get) | **Get** /addresses/{adr_id} | get
-[**list**](AddressesApi.md#list) | **Get** /addresses | list
+[**Create**](AddressesApi.md#Create) | **Post** /addresses | create
+[**Delete**](AddressesApi.md#Delete) | **Delete** /addresses/{adr_id} | delete
+[**Get**](AddressesApi.md#Get) | **Get** /addresses/{adr_id} | get
+[**List**](AddressesApi.md#List) | **Get** /addresses | list
 
 
 
 ## AddressCreate
 
-> Address create(ctx).AddressEditable(addressEditable).Execute()
+> Address Create(ctx).AddressEditable(addressEditable).Execute()
 
 create
 
@@ -36,13 +36,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AddressesApi.create(context.Background()).AddressEditable(addressEditable).Execute()
+    resp, r, err := apiClient.AddressesApi.Create(context.Background()).AddressEditable(addressEditable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AddressesApi.create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AddressesApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `create`: Address
-    fmt.Fprintf(os.Stdout, "Response from `AddressesApi.create`: %v\n", resp)
+    // response from `Create`: Address
+    fmt.Fprintf(os.Stdout, "Response from `AddressesApi.Create`: %v\n", resp)
 }
 ```
 
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ## AddressDelete
 
-> AddressDeletion delete(ctx, adrId).Execute()
+> AddressDeletion Delete(ctx, adrId).Execute()
 
 delete
 
@@ -102,13 +102,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AddressesApi.delete(context.Background(), adrId).Execute()
+    resp, r, err := apiClient.AddressesApi.Delete(context.Background(), adrId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AddressesApi.delete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AddressesApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `delete`: AddressDeletion
-    fmt.Fprintf(os.Stdout, "Response from `AddressesApi.delete`: %v\n", resp)
+    // response from `Delete`: AddressDeletion
+    fmt.Fprintf(os.Stdout, "Response from `AddressesApi.Delete`: %v\n", resp)
 }
 ```
 
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ## AddressRetrieve
 
-> Address get(ctx, adrId).Execute()
+> Address Get(ctx, adrId).Execute()
 
 get
 
@@ -172,13 +172,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AddressesApi.get(context.Background(), adrId).Execute()
+    resp, r, err := apiClient.AddressesApi.Get(context.Background(), adrId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AddressesApi.get``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AddressesApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `get`: Address
-    fmt.Fprintf(os.Stdout, "Response from `AddressesApi.get`: %v\n", resp)
+    // response from `Get`: Address
+    fmt.Fprintf(os.Stdout, "Response from `AddressesApi.Get`: %v\n", resp)
 }
 ```
 
@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 ## AddressesList
 
-> AddressList list(ctx).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Execute()
+> AddressList List(ctx).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Execute()
 
 list
 
@@ -248,13 +248,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AddressesApi.list(context.Background()).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Execute()
+    resp, r, err := apiClient.AddressesApi.List(context.Background()).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AddressesApi.list``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AddressesApi.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `list`: AddressList
-    fmt.Fprintf(os.Stdout, "Response from `AddressesApi.list`: %v\n", resp)
+    // response from `List`: AddressList
+    fmt.Fprintf(os.Stdout, "Response from `AddressesApi.List`: %v\n", resp)
 }
 ```
 

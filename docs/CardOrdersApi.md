@@ -4,14 +4,14 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](CardOrdersApi.md#create) | **Post** /cards/{card_id}/orders | create
-[**get**](CardOrdersApi.md#get) | **Get** /cards/{card_id}/orders | get
+[**Create**](CardOrdersApi.md#Create) | **Post** /cards/{card_id}/orders | create
+[**Get**](CardOrdersApi.md#Get) | **Get** /cards/{card_id}/orders | get
 
 
 
 ## CardOrderCreate
 
-> CardOrder create(ctx, cardId).CardOrderEditable(cardOrderEditable).Execute()
+> CardOrder Create(ctx, cardId).CardOrderEditable(cardOrderEditable).Execute()
 
 create
 
@@ -35,13 +35,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CardOrdersApi.create(context.Background(), cardId).CardOrderEditable(cardOrderEditable).Execute()
+    resp, r, err := apiClient.CardOrdersApi.Create(context.Background(), cardId).CardOrderEditable(cardOrderEditable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CardOrdersApi.create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CardOrdersApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `create`: CardOrder
-    fmt.Fprintf(os.Stdout, "Response from `CardOrdersApi.create`: %v\n", resp)
+    // response from `Create`: CardOrder
+    fmt.Fprintf(os.Stdout, "Response from `CardOrdersApi.Create`: %v\n", resp)
 }
 ```
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## CardOrdersRetrieve
 
-> CardOrderList get(ctx, cardId).Limit(limit).Offset(offset).Execute()
+> CardOrderList Get(ctx, cardId).Limit(limit).Offset(offset).Execute()
 
 get
 
@@ -108,13 +108,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CardOrdersApi.get(context.Background(), cardId).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.CardOrdersApi.Get(context.Background(), cardId).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CardOrdersApi.get``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CardOrdersApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `get`: CardOrderList
-    fmt.Fprintf(os.Stdout, "Response from `CardOrdersApi.get`: %v\n", resp)
+    // response from `Get`: CardOrderList
+    fmt.Fprintf(os.Stdout, "Response from `CardOrdersApi.Get`: %v\n", resp)
 }
 ```
 

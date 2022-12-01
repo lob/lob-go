@@ -4,14 +4,14 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](BuckslipOrdersApi.md#create) | **Post** /buckslips/{buckslip_id}/orders | create
-[**get**](BuckslipOrdersApi.md#get) | **Get** /buckslips/{buckslip_id}/orders | get
+[**Create**](BuckslipOrdersApi.md#Create) | **Post** /buckslips/{buckslip_id}/orders | create
+[**Get**](BuckslipOrdersApi.md#Get) | **Get** /buckslips/{buckslip_id}/orders | get
 
 
 
 ## BuckslipOrderCreate
 
-> BuckslipOrder create(ctx, buckslipId).BuckslipOrderEditable(buckslipOrderEditable).Execute()
+> BuckslipOrder Create(ctx, buckslipId).BuckslipOrderEditable(buckslipOrderEditable).Execute()
 
 create
 
@@ -35,13 +35,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BuckslipOrdersApi.create(context.Background(), buckslipId).BuckslipOrderEditable(buckslipOrderEditable).Execute()
+    resp, r, err := apiClient.BuckslipOrdersApi.Create(context.Background(), buckslipId).BuckslipOrderEditable(buckslipOrderEditable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipOrdersApi.create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipOrdersApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `create`: BuckslipOrder
-    fmt.Fprintf(os.Stdout, "Response from `BuckslipOrdersApi.create`: %v\n", resp)
+    // response from `Create`: BuckslipOrder
+    fmt.Fprintf(os.Stdout, "Response from `BuckslipOrdersApi.Create`: %v\n", resp)
 }
 ```
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## BuckslipOrdersRetrieve
 
-> BuckslipOrdersList get(ctx, buckslipId).Limit(limit).Offset(offset).Execute()
+> BuckslipOrdersList Get(ctx, buckslipId).Limit(limit).Offset(offset).Execute()
 
 get
 
@@ -108,13 +108,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BuckslipOrdersApi.get(context.Background(), buckslipId).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.BuckslipOrdersApi.Get(context.Background(), buckslipId).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipOrdersApi.get``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipOrdersApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `get`: BuckslipOrdersList
-    fmt.Fprintf(os.Stdout, "Response from `BuckslipOrdersApi.get`: %v\n", resp)
+    // response from `Get`: BuckslipOrdersList
+    fmt.Fprintf(os.Stdout, "Response from `BuckslipOrdersApi.Get`: %v\n", resp)
 }
 ```
 
