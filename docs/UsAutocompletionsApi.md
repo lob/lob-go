@@ -4,13 +4,13 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**UsAutocompletion**](UsAutocompletionsApi.md#UsAutocompletion) | **Post** /us_autocompletions | autocomplete
+[**autocomplete**](UsAutocompletionsApi.md#autocomplete) | **Post** /us_autocompletions | autocomplete
 
 
 
 ## UsAutocompletion
 
-> UsAutocompletions UsAutocompletion(ctx).UsAutocompletionsWritable(usAutocompletionsWritable).Execute()
+> UsAutocompletions autocomplete(ctx).UsAutocompletionsWritable(usAutocompletionsWritable).Execute()
 
 autocomplete
 
@@ -33,13 +33,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsAutocompletionsApi.UsAutocompletion(context.Background()).UsAutocompletionsWritable(usAutocompletionsWritable).Execute()
+    resp, r, err := apiClient.UsAutocompletionsApi.autocomplete(context.Background()).UsAutocompletionsWritable(usAutocompletionsWritable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsAutocompletionsApi.UsAutocompletion``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsAutocompletionsApi.autocomplete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UsAutocompletion`: UsAutocompletions
-    fmt.Fprintf(os.Stdout, "Response from `UsAutocompletionsApi.UsAutocompletion`: %v\n", resp)
+    // response from `autocomplete`: UsAutocompletions
+    fmt.Fprintf(os.Stdout, "Response from `UsAutocompletionsApi.autocomplete`: %v\n", resp)
 }
 ```
 

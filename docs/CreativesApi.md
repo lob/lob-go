@@ -4,15 +4,15 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreativeCreate**](CreativesApi.md#CreativeCreate) | **Post** /creatives | create
-[**CreativeRetrieve**](CreativesApi.md#CreativeRetrieve) | **Get** /creatives/{crv_id} | get
-[**CreativeUpdate**](CreativesApi.md#CreativeUpdate) | **Patch** /creatives/{crv_id} | update
+[**create**](CreativesApi.md#create) | **Post** /creatives | create
+[**get**](CreativesApi.md#get) | **Get** /creatives/{crv_id} | get
+[**update**](CreativesApi.md#update) | **Patch** /creatives/{crv_id} | update
 
 
 
 ## CreativeCreate
 
-> CreativeResponse CreativeCreate(ctx).CreativeWritable(creativeWritable).XLangOutput(xLangOutput).Execute()
+> CreativeResponse create(ctx).CreativeWritable(creativeWritable).XLangOutput(xLangOutput).Execute()
 
 create
 
@@ -36,13 +36,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CreativesApi.CreativeCreate(context.Background()).CreativeWritable(creativeWritable).XLangOutput(xLangOutput).Execute()
+    resp, r, err := apiClient.CreativesApi.create(context.Background()).CreativeWritable(creativeWritable).XLangOutput(xLangOutput).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CreativesApi.CreativeCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CreativesApi.create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreativeCreate`: CreativeResponse
-    fmt.Fprintf(os.Stdout, "Response from `CreativesApi.CreativeCreate`: %v\n", resp)
+    // response from `create`: CreativeResponse
+    fmt.Fprintf(os.Stdout, "Response from `CreativesApi.create`: %v\n", resp)
 }
 ```
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## CreativeRetrieve
 
-> CreativeResponse CreativeRetrieve(ctx, crvId).Execute()
+> CreativeResponse get(ctx, crvId).Execute()
 
 get
 
@@ -103,13 +103,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CreativesApi.CreativeRetrieve(context.Background(), crvId).Execute()
+    resp, r, err := apiClient.CreativesApi.get(context.Background(), crvId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CreativesApi.CreativeRetrieve``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CreativesApi.get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreativeRetrieve`: CreativeResponse
-    fmt.Fprintf(os.Stdout, "Response from `CreativesApi.CreativeRetrieve`: %v\n", resp)
+    // response from `get`: CreativeResponse
+    fmt.Fprintf(os.Stdout, "Response from `CreativesApi.get`: %v\n", resp)
 }
 ```
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## CreativeUpdate
 
-> CreativeResponse CreativeUpdate(ctx, crvId).CreativePatch(creativePatch).Execute()
+> CreativeResponse update(ctx, crvId).CreativePatch(creativePatch).Execute()
 
 update
 
@@ -174,13 +174,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CreativesApi.CreativeUpdate(context.Background(), crvId).CreativePatch(creativePatch).Execute()
+    resp, r, err := apiClient.CreativesApi.update(context.Background(), crvId).CreativePatch(creativePatch).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CreativesApi.CreativeUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CreativesApi.update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreativeUpdate`: CreativeResponse
-    fmt.Fprintf(os.Stdout, "Response from `CreativesApi.CreativeUpdate`: %v\n", resp)
+    // response from `update`: CreativeResponse
+    fmt.Fprintf(os.Stdout, "Response from `CreativesApi.update`: %v\n", resp)
 }
 ```
 

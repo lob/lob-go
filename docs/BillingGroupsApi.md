@@ -4,16 +4,16 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**BillingGroupCreate**](BillingGroupsApi.md#BillingGroupCreate) | **Post** /billing_groups | create
-[**BillingGroupRetrieve**](BillingGroupsApi.md#BillingGroupRetrieve) | **Get** /billing_groups/{bg_id} | get
-[**BillingGroupUpdate**](BillingGroupsApi.md#BillingGroupUpdate) | **Post** /billing_groups/{bg_id} | update
-[**BillingGroupsList**](BillingGroupsApi.md#BillingGroupsList) | **Get** /billing_groups | list
+[**create**](BillingGroupsApi.md#create) | **Post** /billing_groups | create
+[**get**](BillingGroupsApi.md#get) | **Get** /billing_groups/{bg_id} | get
+[**update**](BillingGroupsApi.md#update) | **Post** /billing_groups/{bg_id} | update
+[**list**](BillingGroupsApi.md#list) | **Get** /billing_groups | list
 
 
 
 ## BillingGroupCreate
 
-> BillingGroup BillingGroupCreate(ctx).BillingGroupEditable(billingGroupEditable).Execute()
+> BillingGroup create(ctx).BillingGroupEditable(billingGroupEditable).Execute()
 
 create
 
@@ -36,13 +36,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BillingGroupsApi.BillingGroupCreate(context.Background()).BillingGroupEditable(billingGroupEditable).Execute()
+    resp, r, err := apiClient.BillingGroupsApi.create(context.Background()).BillingGroupEditable(billingGroupEditable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BillingGroupsApi.BillingGroupCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BillingGroupsApi.create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `BillingGroupCreate`: BillingGroup
-    fmt.Fprintf(os.Stdout, "Response from `BillingGroupsApi.BillingGroupCreate`: %v\n", resp)
+    // response from `create`: BillingGroup
+    fmt.Fprintf(os.Stdout, "Response from `BillingGroupsApi.create`: %v\n", resp)
 }
 ```
 
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ## BillingGroupRetrieve
 
-> BillingGroup BillingGroupRetrieve(ctx, bgId).Execute()
+> BillingGroup get(ctx, bgId).Execute()
 
 get
 
@@ -102,13 +102,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BillingGroupsApi.BillingGroupRetrieve(context.Background(), bgId).Execute()
+    resp, r, err := apiClient.BillingGroupsApi.get(context.Background(), bgId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BillingGroupsApi.BillingGroupRetrieve``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BillingGroupsApi.get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `BillingGroupRetrieve`: BillingGroup
-    fmt.Fprintf(os.Stdout, "Response from `BillingGroupsApi.BillingGroupRetrieve`: %v\n", resp)
+    // response from `get`: BillingGroup
+    fmt.Fprintf(os.Stdout, "Response from `BillingGroupsApi.get`: %v\n", resp)
 }
 ```
 
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ## BillingGroupUpdate
 
-> BillingGroup BillingGroupUpdate(ctx, bgId).BillingGroupEditable(billingGroupEditable).Execute()
+> BillingGroup update(ctx, bgId).BillingGroupEditable(billingGroupEditable).Execute()
 
 update
 
@@ -173,13 +173,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BillingGroupsApi.BillingGroupUpdate(context.Background(), bgId).BillingGroupEditable(billingGroupEditable).Execute()
+    resp, r, err := apiClient.BillingGroupsApi.update(context.Background(), bgId).BillingGroupEditable(billingGroupEditable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BillingGroupsApi.BillingGroupUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BillingGroupsApi.update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `BillingGroupUpdate`: BillingGroup
-    fmt.Fprintf(os.Stdout, "Response from `BillingGroupsApi.BillingGroupUpdate`: %v\n", resp)
+    // response from `update`: BillingGroup
+    fmt.Fprintf(os.Stdout, "Response from `BillingGroupsApi.update`: %v\n", resp)
 }
 ```
 
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ## BillingGroupsList
 
-> BillingGroupList BillingGroupsList(ctx).Limit(limit).Offset(offset).Include(include).DateCreated(dateCreated).DateModified(dateModified).SortByDateModified(sortByDateModified).Execute()
+> BillingGroupList list(ctx).Limit(limit).Offset(offset).Include(include).DateCreated(dateCreated).DateModified(dateModified).SortByDateModified(sortByDateModified).Execute()
 
 list
 
@@ -250,13 +250,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BillingGroupsApi.BillingGroupsList(context.Background()).Limit(limit).Offset(offset).Include(include).DateCreated(dateCreated).DateModified(dateModified).SortByDateModified(sortByDateModified).Execute()
+    resp, r, err := apiClient.BillingGroupsApi.list(context.Background()).Limit(limit).Offset(offset).Include(include).DateCreated(dateCreated).DateModified(dateModified).SortByDateModified(sortByDateModified).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BillingGroupsApi.BillingGroupsList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BillingGroupsApi.list``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `BillingGroupsList`: BillingGroupList
-    fmt.Fprintf(os.Stdout, "Response from `BillingGroupsApi.BillingGroupsList`: %v\n", resp)
+    // response from `list`: BillingGroupList
+    fmt.Fprintf(os.Stdout, "Response from `BillingGroupsApi.list`: %v\n", resp)
 }
 ```
 

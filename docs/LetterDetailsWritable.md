@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Color** | **bool** | Set this key to &#x60;true&#x60; if you would like to print in color. Set to &#x60;false&#x60; if you would like to print in black and white. | 
 **DoubleSided** | Pointer to **bool** | Set this attribute to &#x60;true&#x60; for double sided printing, or &#x60;false&#x60; for for single sided printing. Defaults to &#x60;true&#x60;. | [optional] [default to true]
 **ExtraService** | Pointer to **string** | Add an extra service to your letter. | [optional] 
-**MailType** | Pointer to [**MailType**](MailType.md) |  | [optional] [default to FIRST_CLASS]
+**MailType** | Pointer to [**MailType**](MailType.md) |  | [optional] [default to MAILTYPE_FIRST_CLASS]
 **ReturnEnvelope** | Pointer to **bool** |  | [optional] [default to false]
 **CustomEnvelope** | Pointer to **NullableString** | Accepts an envelope ID for any customized envelope with available inventory. | [optional] 
 

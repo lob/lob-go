@@ -4,16 +4,16 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PostcardCreate**](PostcardsApi.md#PostcardCreate) | **Post** /postcards | create
-[**PostcardDelete**](PostcardsApi.md#PostcardDelete) | **Delete** /postcards/{psc_id} | cancel
-[**PostcardRetrieve**](PostcardsApi.md#PostcardRetrieve) | **Get** /postcards/{psc_id} | get
-[**PostcardsList**](PostcardsApi.md#PostcardsList) | **Get** /postcards | list
+[**create**](PostcardsApi.md#create) | **Post** /postcards | create
+[**cancel**](PostcardsApi.md#cancel) | **Delete** /postcards/{psc_id} | cancel
+[**get**](PostcardsApi.md#get) | **Get** /postcards/{psc_id} | get
+[**list**](PostcardsApi.md#list) | **Get** /postcards | list
 
 
 
 ## PostcardCreate
 
-> Postcard PostcardCreate(ctx).PostcardEditable(postcardEditable).IdempotencyKey(idempotencyKey).Execute()
+> Postcard create(ctx).PostcardEditable(postcardEditable).IdempotencyKey(idempotencyKey).Execute()
 
 create
 
@@ -32,18 +32,18 @@ import (
 )
 
 func main() {
-    postcardEditable := *openapiclient.NewPostcardEditable("To_example", "Front_example", "Back_example") // PostcardEditable | 
+    postcardEditable := *openapiclient.NewPostcardEditable(interface{}(123), "Front_example", "Back_example") // PostcardEditable | 
     idempotencyKey := "idempotencyKey_example" // string | A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PostcardsApi.PostcardCreate(context.Background()).PostcardEditable(postcardEditable).IdempotencyKey(idempotencyKey).Execute()
+    resp, r, err := apiClient.PostcardsApi.create(context.Background()).PostcardEditable(postcardEditable).IdempotencyKey(idempotencyKey).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PostcardsApi.PostcardCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PostcardsApi.create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `PostcardCreate`: Postcard
-    fmt.Fprintf(os.Stdout, "Response from `PostcardsApi.PostcardCreate`: %v\n", resp)
+    // response from `create`: Postcard
+    fmt.Fprintf(os.Stdout, "Response from `PostcardsApi.create`: %v\n", resp)
 }
 ```
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## PostcardDelete
 
-> PostcardDeletion PostcardDelete(ctx, pscId).Execute()
+> PostcardDeletion cancel(ctx, pscId).Execute()
 
 cancel
 
@@ -104,13 +104,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PostcardsApi.PostcardDelete(context.Background(), pscId).Execute()
+    resp, r, err := apiClient.PostcardsApi.cancel(context.Background(), pscId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PostcardsApi.PostcardDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PostcardsApi.cancel``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `PostcardDelete`: PostcardDeletion
-    fmt.Fprintf(os.Stdout, "Response from `PostcardsApi.PostcardDelete`: %v\n", resp)
+    // response from `cancel`: PostcardDeletion
+    fmt.Fprintf(os.Stdout, "Response from `PostcardsApi.cancel`: %v\n", resp)
 }
 ```
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## PostcardRetrieve
 
-> Postcard PostcardRetrieve(ctx, pscId).Execute()
+> Postcard get(ctx, pscId).Execute()
 
 get
 
@@ -174,13 +174,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PostcardsApi.PostcardRetrieve(context.Background(), pscId).Execute()
+    resp, r, err := apiClient.PostcardsApi.get(context.Background(), pscId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PostcardsApi.PostcardRetrieve``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PostcardsApi.get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `PostcardRetrieve`: Postcard
-    fmt.Fprintf(os.Stdout, "Response from `PostcardsApi.PostcardRetrieve`: %v\n", resp)
+    // response from `get`: Postcard
+    fmt.Fprintf(os.Stdout, "Response from `PostcardsApi.get`: %v\n", resp)
 }
 ```
 
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ## PostcardsList
 
-> PostcardList PostcardsList(ctx).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Size(size).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
+> PostcardList list(ctx).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Size(size).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
 
 list
 
@@ -255,13 +255,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PostcardsApi.PostcardsList(context.Background()).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Size(size).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
+    resp, r, err := apiClient.PostcardsApi.list(context.Background()).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Size(size).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PostcardsApi.PostcardsList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PostcardsApi.list``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `PostcardsList`: PostcardList
-    fmt.Fprintf(os.Stdout, "Response from `PostcardsApi.PostcardsList`: %v\n", resp)
+    // response from `list`: PostcardList
+    fmt.Fprintf(os.Stdout, "Response from `PostcardsApi.list`: %v\n", resp)
 }
 ```
 

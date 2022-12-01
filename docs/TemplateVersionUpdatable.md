@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **NullableString** | An internal description that identifies this resource. Must be no longer than 255 characters.  | [optional] 
-**Engine** | Pointer to [**NullableEngineHtml**](EngineHtml.md) |  | [optional] [default to LEGACY]
+**Engine** | Pointer to [**NullableEngineHtml**](EngineHtml.md) |  | [optional] [default to ENGINEHTML_LEGACY]
 
 ## Methods
 

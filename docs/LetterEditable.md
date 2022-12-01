@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **NullableString** | An internal description that identifies this resource. Must be no longer than 255 characters.  | [optional] 
 **Metadata** | Pointer to **map[string]string** | Use metadata to store custom information for tagging and labeling back to your internal systems. Must be an object with up to 20 key-value pairs. Keys must be at most 40 characters and values must be at most 500 characters. Neither can contain the characters &#x60;\&quot;&#x60; and &#x60;\\&#x60;. i.e. &#39;{\&quot;customer_id\&quot; : \&quot;NEWYORK2015\&quot;}&#39; Nested objects are not supported.  See [Metadata](#section/Metadata) for more information. | [optional] 
-**MailType** | Pointer to [**MailType**](MailType.md) |  | [optional] [default to FIRST_CLASS]
+**MailType** | Pointer to [**MailType**](MailType.md) |  | [optional] [default to MAILTYPE_FIRST_CLASS]
 **MergeVariables** | Pointer to **map[string]interface{}** | You can input a merge variable payload object to your template to render dynamic content. For example, if you have a template like: &#x60;{{variable_name}}&#x60;, pass in &#x60;{\&quot;variable_name\&quot;: \&quot;Harry\&quot;}&#x60; to render &#x60;Harry&#x60;. &#x60;merge_variables&#x60; must be an object. Any type of value is accepted as long as the object is valid JSON; you can use &#x60;strings&#x60;, &#x60;numbers&#x60;, &#x60;booleans&#x60;, &#x60;arrays&#x60;, &#x60;objects&#x60;, or &#x60;null&#x60;. The max length of the object is 25,000 characters. If you call &#x60;JSON.stringify&#x60; on your object, it can be no longer than 25,000 characters. Your variable names cannot contain any whitespace or any of the following special characters: &#x60;!&#x60;, &#x60;\&quot;&#x60;, &#x60;#&#x60;, &#x60;%&#x60;, &#x60;&amp;&#x60;, &#x60;&#39;&#x60;, &#x60;(&#x60;, &#x60;)&#x60;, &#x60;*&#x60;, &#x60;+&#x60;, &#x60;,&#x60;, &#x60;/&#x60;, &#x60;;&#x60;, &#x60;&lt;&#x60;, &#x60;&#x3D;&#x60;, &#x60;&gt;&#x60;, &#x60;@&#x60;, &#x60;[&#x60;, &#x60;\\&#x60;, &#x60;]&#x60;, &#x60;^&#x60;, &#x60;&#x60; &#x60; &#x60;&#x60;, &#x60;{&#x60;, &#x60;|&#x60;, &#x60;}&#x60;, &#x60;~&#x60;. More instructions can be found in [our guide to using html and merge variables](https://lob.com/resources/guides/general/using-html-and-merge-variables). Depending on your [Merge Variable strictness](https://dashboard.lob.com/#/settings/account) setting, if you define variables in your HTML but do not pass them here, you will either receive an error or the variable will render as an empty string. | [optional] 
 **SendDate** | Pointer to **time.Time** | A timestamp in ISO 8601 format which specifies a date after the current time and up to 180 days in the future to send the letter off for production. Setting a send date overrides the default [cancellation window](#section/Cancellation-Windows) applied to the mailpiece. Until the &#x60;send_date&#x60; has passed, the mailpiece can be canceled. If a date in the format &#x60;2017-11-01&#x60; is passed, it will evaluate to midnight UTC of that date (&#x60;2017-11-01T00:00:00.000Z&#x60;). If a datetime is passed, that exact time will be used. A &#x60;send_date&#x60; passed with no time zone will default to UTC, while a &#x60;send_date&#x60; passed with a time zone will be converted to UTC. | [optional] 
 **Color** | **bool** | Set this key to &#x60;true&#x60; if you would like to print in color. Set to &#x60;false&#x60; if you would like to print in black and white. | 
@@ -15,18 +15,19 @@ Name | Type | Description | Notes
 **ReturnEnvelope** | Pointer to **interface{}** | indicates if a return envelope is requested for the letter. The value corresponding to this field is by default a boolean. But if the account is signed up for custom return envelopes, the value is of type string and is &#x60;no_9_single_window&#x60; for a standard return envelope and a custom &#x60;return_envelope_id&#x60; for non-standard return envelopes.  To include a return envelope with your letter, set to &#x60;true&#x60; and specify the &#x60;perforated_page&#x60;. See [pricing](https://www.lob.com/pricing/print-mail#compare) for extra costs incurred. | [optional] 
 **PerforatedPage** | Pointer to **NullableInt32** | Required if &#x60;return_envelope&#x60; is &#x60;true&#x60;. The number of the page that should be perforated for use with the return envelope. Must be greater than or equal to &#x60;1&#x60;. The blank page added by &#x60;address_placement&#x3D;insert_blank_page&#x60; will be ignored when considering the perforated page number. To see how perforation will impact your letter design, view our [perforation guide](https://s3-us-west-2.amazonaws.com/public.lob.com/assets/templates/letter_perf_template.pdf). | [optional] 
 **CustomEnvelope** | Pointer to **NullableString** |  | [optional] 
-**To** | **string** | Must either be an address ID or an inline object with correct address parameters. | 
-**From** | **string** | Must either be an address ID or an inline object with correct address parameters. | 
+**To** | **interface{}** | Must either be an address ID or an inline object with correct address parameters. | 
+**From** | **interface{}** | Must either be an address ID or an inline object with correct address parameters. | 
 **File** | **string** | PDF file containing the letter&#39;s formatting. | 
 **ExtraService** | Pointer to **NullableString** | Add an extra service to your letter:   * &#x60;certified&#x60; - track and confirm delivery for domestic destinations. An extra sheet (1 PDF page single-sided or 2 PDF pages double-sided) is added to the beginning of your letter for address and barcode information. See here for templates: [#10 envelope](https://s3-us-west-2.amazonaws.com/public.lob.com/assets/templates/letter_certified_template.pdf) and [flat envelope](https://s3-us-west-2.amazonaws.com/public.lob.com/assets/templates/letter_certified_flat_template.pdf) (used for letters over 6 pages single-sided or 12 pages double-sided). You will not be charged for this extra sheet.   * &#x60;certified_return_receipt&#x60; - request an electronic copy of the recipient&#39;s signature to prove delivery of your certified letter   * &#x60;registered&#x60; - provides tracking and confirmation for international addresses  | [optional] 
 **Cards** | Pointer to **[]string** | A single-element array containing an existing card id in a string format. See [cards](#tag/Cards) for more information. | [optional] 
 **BillingGroupId** | Pointer to **string** | An optional string with the billing group ID to tag your usage with. Is used for billing purposes. Requires special activation to use. See [Billing Group API](https://lob.github.io/lob-openapi/#tag/Billing-Groups) for more information. | [optional] 
+**QrCode** | Pointer to [**QrCode**](QrCode.md) |  | [optional] 
 
 ## Methods
 
 ### NewLetterEditable
 
-`func NewLetterEditable(color bool, to string, from string, file string, ) *LetterEditable`
+`func NewLetterEditable(color bool, to interface{}, from interface{}, file string, ) *LetterEditable`
 
 NewLetterEditable instantiates a new LetterEditable object
 This constructor will assign default values to properties that have it defined,
@@ -363,44 +364,64 @@ HasCustomEnvelope returns a boolean if a field has been set.
 UnsetCustomEnvelope ensures that no value is present for CustomEnvelope, not even an explicit nil
 ### GetTo
 
-`func (o *LetterEditable) GetTo() string`
+`func (o *LetterEditable) GetTo() interface{}`
 
 GetTo returns the To field if non-nil, zero value otherwise.
 
 ### GetToOk
 
-`func (o *LetterEditable) GetToOk() (*string, bool)`
+`func (o *LetterEditable) GetToOk() (*interface{}, bool)`
 
 GetToOk returns a tuple with the To field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTo
 
-`func (o *LetterEditable) SetTo(v string)`
+`func (o *LetterEditable) SetTo(v interface{})`
 
 SetTo sets To field to given value.
 
 
+### SetToNil
+
+`func (o *LetterEditable) SetToNil(b bool)`
+
+ SetToNil sets the value for To to be an explicit nil
+
+### UnsetTo
+`func (o *LetterEditable) UnsetTo()`
+
+UnsetTo ensures that no value is present for To, not even an explicit nil
 ### GetFrom
 
-`func (o *LetterEditable) GetFrom() string`
+`func (o *LetterEditable) GetFrom() interface{}`
 
 GetFrom returns the From field if non-nil, zero value otherwise.
 
 ### GetFromOk
 
-`func (o *LetterEditable) GetFromOk() (*string, bool)`
+`func (o *LetterEditable) GetFromOk() (*interface{}, bool)`
 
 GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFrom
 
-`func (o *LetterEditable) SetFrom(v string)`
+`func (o *LetterEditable) SetFrom(v interface{})`
 
 SetFrom sets From field to given value.
 
 
+### SetFromNil
+
+`func (o *LetterEditable) SetFromNil(b bool)`
+
+ SetFromNil sets the value for From to be an explicit nil
+
+### UnsetFrom
+`func (o *LetterEditable) UnsetFrom()`
+
+UnsetFrom ensures that no value is present for From, not even an explicit nil
 ### GetFile
 
 `func (o *LetterEditable) GetFile() string`
@@ -515,6 +536,31 @@ SetBillingGroupId sets BillingGroupId field to given value.
 `func (o *LetterEditable) HasBillingGroupId() bool`
 
 HasBillingGroupId returns a boolean if a field has been set.
+
+### GetQrCode
+
+`func (o *LetterEditable) GetQrCode() QrCode`
+
+GetQrCode returns the QrCode field if non-nil, zero value otherwise.
+
+### GetQrCodeOk
+
+`func (o *LetterEditable) GetQrCodeOk() (*QrCode, bool)`
+
+GetQrCodeOk returns a tuple with the QrCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQrCode
+
+`func (o *LetterEditable) SetQrCode(v QrCode)`
+
+SetQrCode sets QrCode field to given value.
+
+### HasQrCode
+
+`func (o *LetterEditable) HasQrCode() bool`
+
+HasQrCode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

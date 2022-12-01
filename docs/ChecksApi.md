@@ -4,16 +4,16 @@ All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CheckCancel**](ChecksApi.md#CheckCancel) | **Delete** /checks/{chk_id} | cancel
-[**CheckCreate**](ChecksApi.md#CheckCreate) | **Post** /checks | create
-[**CheckRetrieve**](ChecksApi.md#CheckRetrieve) | **Get** /checks/{chk_id} | get
-[**ChecksList**](ChecksApi.md#ChecksList) | **Get** /checks | list
+[**cancel**](ChecksApi.md#cancel) | **Delete** /checks/{chk_id} | cancel
+[**create**](ChecksApi.md#create) | **Post** /checks | create
+[**get**](ChecksApi.md#get) | **Get** /checks/{chk_id} | get
+[**list**](ChecksApi.md#list) | **Get** /checks | list
 
 
 
 ## CheckCancel
 
-> CheckDeletion CheckCancel(ctx, chkId).Execute()
+> CheckDeletion cancel(ctx, chkId).Execute()
 
 cancel
 
@@ -36,13 +36,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ChecksApi.CheckCancel(context.Background(), chkId).Execute()
+    resp, r, err := apiClient.ChecksApi.cancel(context.Background(), chkId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ChecksApi.CheckCancel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ChecksApi.cancel``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CheckCancel`: CheckDeletion
-    fmt.Fprintf(os.Stdout, "Response from `ChecksApi.CheckCancel`: %v\n", resp)
+    // response from `cancel`: CheckDeletion
+    fmt.Fprintf(os.Stdout, "Response from `ChecksApi.cancel`: %v\n", resp)
 }
 ```
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## CheckCreate
 
-> Check CheckCreate(ctx).CheckEditable(checkEditable).IdempotencyKey(idempotencyKey).Execute()
+> Check create(ctx).CheckEditable(checkEditable).IdempotencyKey(idempotencyKey).Execute()
 
 create
 
@@ -102,18 +102,18 @@ import (
 )
 
 func main() {
-    checkEditable := *openapiclient.NewCheckEditable("From_example", "To_example", "BankAccount_example", float32(123)) // CheckEditable | 
+    checkEditable := *openapiclient.NewCheckEditable(interface{}(123), interface{}(123), "BankAccount_example", float32(123)) // CheckEditable | 
     idempotencyKey := "idempotencyKey_example" // string | A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ChecksApi.CheckCreate(context.Background()).CheckEditable(checkEditable).IdempotencyKey(idempotencyKey).Execute()
+    resp, r, err := apiClient.ChecksApi.create(context.Background()).CheckEditable(checkEditable).IdempotencyKey(idempotencyKey).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ChecksApi.CheckCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ChecksApi.create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CheckCreate`: Check
-    fmt.Fprintf(os.Stdout, "Response from `ChecksApi.CheckCreate`: %v\n", resp)
+    // response from `create`: Check
+    fmt.Fprintf(os.Stdout, "Response from `ChecksApi.create`: %v\n", resp)
 }
 ```
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## CheckRetrieve
 
-> Check CheckRetrieve(ctx, chkId).Execute()
+> Check get(ctx, chkId).Execute()
 
 get
 
@@ -174,13 +174,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ChecksApi.CheckRetrieve(context.Background(), chkId).Execute()
+    resp, r, err := apiClient.ChecksApi.get(context.Background(), chkId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ChecksApi.CheckRetrieve``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ChecksApi.get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CheckRetrieve`: Check
-    fmt.Fprintf(os.Stdout, "Response from `ChecksApi.CheckRetrieve`: %v\n", resp)
+    // response from `get`: Check
+    fmt.Fprintf(os.Stdout, "Response from `ChecksApi.get`: %v\n", resp)
 }
 ```
 
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ## ChecksList
 
-> CheckList ChecksList(ctx).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
+> CheckList list(ctx).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
 
 list
 
@@ -254,13 +254,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ChecksApi.ChecksList(context.Background()).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
+    resp, r, err := apiClient.ChecksApi.list(context.Background()).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Scheduled(scheduled).SendDate(sendDate).MailType(mailType).SortBy(sortBy).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ChecksApi.ChecksList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ChecksApi.list``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ChecksList`: CheckList
-    fmt.Fprintf(os.Stdout, "Response from `ChecksApi.ChecksList`: %v\n", resp)
+    // response from `list`: CheckList
+    fmt.Fprintf(os.Stdout, "Response from `ChecksApi.list`: %v\n", resp)
 }
 ```
 

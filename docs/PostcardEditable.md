@@ -4,23 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**To** | **string** | Must either be an address ID or an inline object with correct address parameters. | 
-**From** | Pointer to **string** | Required if &#x60;to&#x60; address is international. Must either be an address ID or an inline object with correct address parameters. | [optional] 
-**Size** | Pointer to [**PostcardSize**](PostcardSize.md) |  | [optional] [default to _4X6]
+**To** | **interface{}** | Must either be an address ID or an inline object with correct address parameters. | 
+**From** | Pointer to **interface{}** | Required if &#x60;to&#x60; address is international. Must either be an address ID or an inline object with correct address parameters. | [optional] 
+**Size** | Pointer to [**PostcardSize**](PostcardSize.md) |  | [optional] [default to POSTCARDSIZE__4X6]
 **Description** | Pointer to **NullableString** | An internal description that identifies this resource. Must be no longer than 255 characters.  | [optional] 
 **Metadata** | Pointer to **map[string]string** | Use metadata to store custom information for tagging and labeling back to your internal systems. Must be an object with up to 20 key-value pairs. Keys must be at most 40 characters and values must be at most 500 characters. Neither can contain the characters &#x60;\&quot;&#x60; and &#x60;\\&#x60;. i.e. &#39;{\&quot;customer_id\&quot; : \&quot;NEWYORK2015\&quot;}&#39; Nested objects are not supported.  See [Metadata](#section/Metadata) for more information. | [optional] 
-**MailType** | Pointer to [**MailType**](MailType.md) |  | [optional] [default to FIRST_CLASS]
+**MailType** | Pointer to [**MailType**](MailType.md) |  | [optional] [default to MAILTYPE_FIRST_CLASS]
 **MergeVariables** | Pointer to **map[string]interface{}** | You can input a merge variable payload object to your template to render dynamic content. For example, if you have a template like: &#x60;{{variable_name}}&#x60;, pass in &#x60;{\&quot;variable_name\&quot;: \&quot;Harry\&quot;}&#x60; to render &#x60;Harry&#x60;. &#x60;merge_variables&#x60; must be an object. Any type of value is accepted as long as the object is valid JSON; you can use &#x60;strings&#x60;, &#x60;numbers&#x60;, &#x60;booleans&#x60;, &#x60;arrays&#x60;, &#x60;objects&#x60;, or &#x60;null&#x60;. The max length of the object is 25,000 characters. If you call &#x60;JSON.stringify&#x60; on your object, it can be no longer than 25,000 characters. Your variable names cannot contain any whitespace or any of the following special characters: &#x60;!&#x60;, &#x60;\&quot;&#x60;, &#x60;#&#x60;, &#x60;%&#x60;, &#x60;&amp;&#x60;, &#x60;&#39;&#x60;, &#x60;(&#x60;, &#x60;)&#x60;, &#x60;*&#x60;, &#x60;+&#x60;, &#x60;,&#x60;, &#x60;/&#x60;, &#x60;;&#x60;, &#x60;&lt;&#x60;, &#x60;&#x3D;&#x60;, &#x60;&gt;&#x60;, &#x60;@&#x60;, &#x60;[&#x60;, &#x60;\\&#x60;, &#x60;]&#x60;, &#x60;^&#x60;, &#x60;&#x60; &#x60; &#x60;&#x60;, &#x60;{&#x60;, &#x60;|&#x60;, &#x60;}&#x60;, &#x60;~&#x60;. More instructions can be found in [our guide to using html and merge variables](https://lob.com/resources/guides/general/using-html-and-merge-variables). Depending on your [Merge Variable strictness](https://dashboard.lob.com/#/settings/account) setting, if you define variables in your HTML but do not pass them here, you will either receive an error or the variable will render as an empty string. | [optional] 
 **SendDate** | Pointer to **time.Time** | A timestamp in ISO 8601 format which specifies a date after the current time and up to 180 days in the future to send the letter off for production. Setting a send date overrides the default [cancellation window](#section/Cancellation-Windows) applied to the mailpiece. Until the &#x60;send_date&#x60; has passed, the mailpiece can be canceled. If a date in the format &#x60;2017-11-01&#x60; is passed, it will evaluate to midnight UTC of that date (&#x60;2017-11-01T00:00:00.000Z&#x60;). If a datetime is passed, that exact time will be used. A &#x60;send_date&#x60; passed with no time zone will default to UTC, while a &#x60;send_date&#x60; passed with a time zone will be converted to UTC. | [optional] 
 **Front** | **string** | The artwork to use as the front of your postcard.  | 
 **Back** | **string** | The artwork to use as the back of your postcard.  | 
 **BillingGroupId** | Pointer to **string** | An optional string with the billing group ID to tag your usage with. Is used for billing purposes. Requires special activation to use. See [Billing Group API](https://lob.github.io/lob-openapi/#tag/Billing-Groups) for more information. | [optional] 
+**QrCode** | Pointer to [**QrCode**](QrCode.md) |  | [optional] 
 
 ## Methods
 
 ### NewPostcardEditable
 
-`func NewPostcardEditable(to string, front string, back string, ) *PostcardEditable`
+`func NewPostcardEditable(to interface{}, front string, back string, ) *PostcardEditable`
 
 NewPostcardEditable instantiates a new PostcardEditable object
 This constructor will assign default values to properties that have it defined,
@@ -37,40 +38,50 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTo
 
-`func (o *PostcardEditable) GetTo() string`
+`func (o *PostcardEditable) GetTo() interface{}`
 
 GetTo returns the To field if non-nil, zero value otherwise.
 
 ### GetToOk
 
-`func (o *PostcardEditable) GetToOk() (*string, bool)`
+`func (o *PostcardEditable) GetToOk() (*interface{}, bool)`
 
 GetToOk returns a tuple with the To field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTo
 
-`func (o *PostcardEditable) SetTo(v string)`
+`func (o *PostcardEditable) SetTo(v interface{})`
 
 SetTo sets To field to given value.
 
 
+### SetToNil
+
+`func (o *PostcardEditable) SetToNil(b bool)`
+
+ SetToNil sets the value for To to be an explicit nil
+
+### UnsetTo
+`func (o *PostcardEditable) UnsetTo()`
+
+UnsetTo ensures that no value is present for To, not even an explicit nil
 ### GetFrom
 
-`func (o *PostcardEditable) GetFrom() string`
+`func (o *PostcardEditable) GetFrom() interface{}`
 
 GetFrom returns the From field if non-nil, zero value otherwise.
 
 ### GetFromOk
 
-`func (o *PostcardEditable) GetFromOk() (*string, bool)`
+`func (o *PostcardEditable) GetFromOk() (*interface{}, bool)`
 
 GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFrom
 
-`func (o *PostcardEditable) SetFrom(v string)`
+`func (o *PostcardEditable) SetFrom(v interface{})`
 
 SetFrom sets From field to given value.
 
@@ -80,6 +91,16 @@ SetFrom sets From field to given value.
 
 HasFrom returns a boolean if a field has been set.
 
+### SetFromNil
+
+`func (o *PostcardEditable) SetFromNil(b bool)`
+
+ SetFromNil sets the value for From to be an explicit nil
+
+### UnsetFrom
+`func (o *PostcardEditable) UnsetFrom()`
+
+UnsetFrom ensures that no value is present for From, not even an explicit nil
 ### GetSize
 
 `func (o *PostcardEditable) GetSize() PostcardSize`
@@ -314,6 +335,31 @@ SetBillingGroupId sets BillingGroupId field to given value.
 `func (o *PostcardEditable) HasBillingGroupId() bool`
 
 HasBillingGroupId returns a boolean if a field has been set.
+
+### GetQrCode
+
+`func (o *PostcardEditable) GetQrCode() QrCode`
+
+GetQrCode returns the QrCode field if non-nil, zero value otherwise.
+
+### GetQrCodeOk
+
+`func (o *PostcardEditable) GetQrCodeOk() (*QrCode, bool)`
+
+GetQrCodeOk returns a tuple with the QrCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQrCode
+
+`func (o *PostcardEditable) SetQrCode(v QrCode)`
+
+SetQrCode sets QrCode field to given value.
+
+### HasQrCode
+
+`func (o *PostcardEditable) HasQrCode() bool`
+
+HasQrCode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

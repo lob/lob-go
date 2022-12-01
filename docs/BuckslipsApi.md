@@ -1,20 +1,20 @@
-# \TemplatesApi
+# \BuckslipsApi
 
 All URIs are relative to *https://api.lob.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](TemplatesApi.md#create) | **Post** /templates | create
-[**delete**](TemplatesApi.md#delete) | **Delete** /templates/{tmpl_id} | delete
-[**get**](TemplatesApi.md#get) | **Get** /templates/{tmpl_id} | get
-[**update**](TemplatesApi.md#update) | **Post** /templates/{tmpl_id} | update
-[**list**](TemplatesApi.md#list) | **Get** /templates | list
+[**create**](BuckslipsApi.md#create) | **Post** /buckslips | create
+[**delete**](BuckslipsApi.md#delete) | **Delete** /buckslips/{buckslip_id} | delete
+[**get**](BuckslipsApi.md#get) | **Get** /buckslips/{buckslip_id} | get
+[**update**](BuckslipsApi.md#update) | **Patch** /buckslips/{buckslip_id} | update
+[**List**](BuckslipsApi.md#List) | **Get** /buckslips | List
 
 
 
-## CreateTemplate
+## BuckslipCreate
 
-> Template create(ctx).TemplateWritable(templateWritable).Execute()
+> Buckslip create(ctx).BuckslipEditable(buckslipEditable).Execute()
 
 create
 
@@ -33,17 +33,17 @@ import (
 )
 
 func main() {
-    templateWritable := *openapiclient.NewTemplateWritable("Html_example") // TemplateWritable | 
+    buckslipEditable := *openapiclient.NewBuckslipEditable("Front_example") // BuckslipEditable | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplatesApi.create(context.Background()).TemplateWritable(templateWritable).Execute()
+    resp, r, err := apiClient.BuckslipsApi.create(context.Background()).BuckslipEditable(buckslipEditable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipsApi.create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `create`: Template
-    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.create`: %v\n", resp)
+    // response from `create`: Buckslip
+    fmt.Fprintf(os.Stdout, "Response from `BuckslipsApi.create`: %v\n", resp)
 }
 ```
 
@@ -53,16 +53,16 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateTemplateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiBuckslipCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **templateWritable** | [**TemplateWritable**](TemplateWritable.md) |  | 
+ **buckslipEditable** | [**BuckslipEditable**](BuckslipEditable.md) |  | 
 
 ### Return type
 
-[**Template**](Template.md)
+[**Buckslip**](Buckslip.md)
 
 ### Authorization
 
@@ -78,9 +78,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## TemplateDelete
+## BuckslipDelete
 
-> TemplateDeletion delete(ctx, tmplId).Execute()
+> BuckslipDeletion delete(ctx, buckslipId).Execute()
 
 delete
 
@@ -99,17 +99,17 @@ import (
 )
 
 func main() {
-    tmplId := "tmplId_example" // string | id of the template
+    buckslipId := "buckslipId_example" // string | id of the buckslip
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplatesApi.delete(context.Background(), tmplId).Execute()
+    resp, r, err := apiClient.BuckslipsApi.delete(context.Background(), buckslipId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.delete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipsApi.delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `delete`: TemplateDeletion
-    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.delete`: %v\n", resp)
+    // response from `delete`: BuckslipDeletion
+    fmt.Fprintf(os.Stdout, "Response from `BuckslipsApi.delete`: %v\n", resp)
 }
 ```
 
@@ -119,11 +119,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**tmplId** | **string** | id of the template | 
+**buckslipId** | **string** | id of the buckslip | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTemplateDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiBuckslipDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TemplateDeletion**](TemplateDeletion.md)
+[**BuckslipDeletion**](BuckslipDeletion.md)
 
 ### Authorization
 
@@ -148,9 +148,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## TemplateRetrieve
+## BuckslipRetrieve
 
-> Template get(ctx, tmplId).Execute()
+> Buckslip get(ctx, buckslipId).Execute()
 
 get
 
@@ -169,17 +169,17 @@ import (
 )
 
 func main() {
-    tmplId := "tmplId_example" // string | id of the template
+    buckslipId := "buckslipId_example" // string | id of the buckslip
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplatesApi.get(context.Background(), tmplId).Execute()
+    resp, r, err := apiClient.BuckslipsApi.get(context.Background(), buckslipId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.get``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipsApi.get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `get`: Template
-    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.get`: %v\n", resp)
+    // response from `get`: Buckslip
+    fmt.Fprintf(os.Stdout, "Response from `BuckslipsApi.get`: %v\n", resp)
 }
 ```
 
@@ -189,11 +189,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**tmplId** | **string** | id of the template | 
+**buckslipId** | **string** | id of the buckslip | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTemplateRetrieveRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiBuckslipRetrieveRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -202,7 +202,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Template**](Template.md)
+[**Buckslip**](Buckslip.md)
 
 ### Authorization
 
@@ -218,9 +218,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## TemplateUpdate
+## BuckslipUpdate
 
-> Template update(ctx, tmplId).TemplateUpdate(templateUpdate).Execute()
+> Buckslip update(ctx, buckslipId).BuckslipUpdatable(buckslipUpdatable).Execute()
 
 update
 
@@ -239,18 +239,18 @@ import (
 )
 
 func main() {
-    tmplId := "tmplId_example" // string | id of the template
-    templateUpdate := *openapiclient.NewTemplateUpdate() // TemplateUpdate | 
+    buckslipId := "buckslipId_example" // string | id of the buckslip
+    buckslipUpdatable := *openapiclient.NewBuckslipUpdatable() // BuckslipUpdatable | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplatesApi.update(context.Background(), tmplId).TemplateUpdate(templateUpdate).Execute()
+    resp, r, err := apiClient.BuckslipsApi.update(context.Background(), buckslipId).BuckslipUpdatable(buckslipUpdatable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.update``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipsApi.update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `update`: Template
-    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.update`: %v\n", resp)
+    // response from `update`: Buckslip
+    fmt.Fprintf(os.Stdout, "Response from `BuckslipsApi.update`: %v\n", resp)
 }
 ```
 
@@ -260,21 +260,21 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**tmplId** | **string** | id of the template | 
+**buckslipId** | **string** | id of the buckslip | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTemplateUpdateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiBuckslipUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **templateUpdate** | [**TemplateUpdate**](TemplateUpdate.md) |  | 
+ **buckslipUpdatable** | [**BuckslipUpdatable**](BuckslipUpdatable.md) |  | 
 
 ### Return type
 
-[**Template**](Template.md)
+[**Buckslip**](Buckslip.md)
 
 ### Authorization
 
@@ -290,11 +290,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## TemplatesList
+## BuckslipsList
 
-> TemplateList list(ctx).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Execute()
+> BuckslipsList List(ctx).Limit(limit).Before(before).After(after).Include(include).Execute()
 
-list
+List
 
 
 
@@ -307,7 +307,6 @@ import (
     "context"
     "fmt"
     "os"
-    "time"
     openapiclient "./openapi"
 )
 
@@ -316,18 +315,16 @@ func main() {
     before := "before_example" // string | A reference to a list entry used for paginating to the previous set of entries. This field is pre-populated in the `previous_url` field in the return response.  (optional)
     after := "after_example" // string | A reference to a list entry used for paginating to the next set of entries. This field is pre-populated in the `next_url` field in the return response.  (optional)
     include := []string{"Inner_example"} // []string | Request that the response include the total count by specifying `include[]=total_count`.  (optional)
-    dateCreated := map[string]time.Time{"key": time.Now()} // map[string]time.Time | Filter by date created. (optional)
-    metadata := map[string]string{"key": "Inner_example"} // map[string]string | Filter by metadata key-value pair`. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplatesApi.list(context.Background()).Limit(limit).Before(before).After(after).Include(include).DateCreated(dateCreated).Metadata(metadata).Execute()
+    resp, r, err := apiClient.BuckslipsApi.List(context.Background()).Limit(limit).Before(before).After(after).Include(include).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.list``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BuckslipsApi.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `list`: TemplateList
-    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.list`: %v\n", resp)
+    // response from `List`: BuckslipsList
+    fmt.Fprintf(os.Stdout, "Response from `BuckslipsApi.List`: %v\n", resp)
 }
 ```
 
@@ -337,7 +334,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTemplatesListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiBuckslipsListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -346,12 +343,10 @@ Name | Type | Description  | Notes
  **before** | **string** | A reference to a list entry used for paginating to the previous set of entries. This field is pre-populated in the &#x60;previous_url&#x60; field in the return response.  | 
  **after** | **string** | A reference to a list entry used for paginating to the next set of entries. This field is pre-populated in the &#x60;next_url&#x60; field in the return response.  | 
  **include** | **[]string** | Request that the response include the total count by specifying &#x60;include[]&#x3D;total_count&#x60;.  | 
- **dateCreated** | [**map[string]time.Time**](time.Time.md) | Filter by date created. | 
- **metadata** | **map[string]string** | Filter by metadata key-value pair&#x60;. | 
 
 ### Return type
 
-[**TemplateList**](TemplateList.md)
+[**BuckslipsList**](BuckslipsList.md)
 
 ### Authorization
 

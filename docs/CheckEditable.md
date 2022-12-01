@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**From** | **string** | Must either be an address ID or an inline object with correct address parameters. | 
-**To** | **string** | Must either be an address ID or an inline object with correct address parameters. | 
+**From** | **interface{}** | Must either be an address ID or an inline object with correct address parameters. | 
+**To** | **interface{}** | Must either be an address ID or an inline object with correct address parameters. | 
 **BankAccount** | **NullableString** |  | 
 **Amount** | **float32** | The payment amount to be sent in US dollars. | 
 **Logo** | Pointer to **string** | Accepts a remote URL or local file upload to an image to print (in grayscale) in the upper-left corner of your check. | [optional] 
@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 
 ### NewCheckEditable
 
-`func NewCheckEditable(from string, to string, bankAccount NullableString, amount float32, ) *CheckEditable`
+`func NewCheckEditable(from interface{}, to interface{}, bankAccount NullableString, amount float32, ) *CheckEditable`
 
 NewCheckEditable instantiates a new CheckEditable object
 This constructor will assign default values to properties that have it defined,
@@ -42,44 +42,64 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetFrom
 
-`func (o *CheckEditable) GetFrom() string`
+`func (o *CheckEditable) GetFrom() interface{}`
 
 GetFrom returns the From field if non-nil, zero value otherwise.
 
 ### GetFromOk
 
-`func (o *CheckEditable) GetFromOk() (*string, bool)`
+`func (o *CheckEditable) GetFromOk() (*interface{}, bool)`
 
 GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFrom
 
-`func (o *CheckEditable) SetFrom(v string)`
+`func (o *CheckEditable) SetFrom(v interface{})`
 
 SetFrom sets From field to given value.
 
 
+### SetFromNil
+
+`func (o *CheckEditable) SetFromNil(b bool)`
+
+ SetFromNil sets the value for From to be an explicit nil
+
+### UnsetFrom
+`func (o *CheckEditable) UnsetFrom()`
+
+UnsetFrom ensures that no value is present for From, not even an explicit nil
 ### GetTo
 
-`func (o *CheckEditable) GetTo() string`
+`func (o *CheckEditable) GetTo() interface{}`
 
 GetTo returns the To field if non-nil, zero value otherwise.
 
 ### GetToOk
 
-`func (o *CheckEditable) GetToOk() (*string, bool)`
+`func (o *CheckEditable) GetToOk() (*interface{}, bool)`
 
 GetToOk returns a tuple with the To field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTo
 
-`func (o *CheckEditable) SetTo(v string)`
+`func (o *CheckEditable) SetTo(v interface{})`
 
 SetTo sets To field to given value.
 
 
+### SetToNil
+
+`func (o *CheckEditable) SetToNil(b bool)`
+
+ SetToNil sets the value for To to be an explicit nil
+
+### UnsetTo
+`func (o *CheckEditable) UnsetTo()`
+
+UnsetTo ensures that no value is present for To, not even an explicit nil
 ### GetBankAccount
 
 `func (o *CheckEditable) GetBankAccount() string`
