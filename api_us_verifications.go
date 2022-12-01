@@ -53,7 +53,7 @@ Verify a list of US or US territory addresses with a live API key.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiBulkUsVerificationsRequest
 */
-func (a *UsVerificationsApiService) BulkUsVerifications(ctx context.Context) ApiBulkUsVerificationsRequest {
+func (a *UsVerificationsApiService) VerifyBulk(ctx context.Context) ApiBulkUsVerificationsRequest {
 	return ApiBulkUsVerificationsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -180,7 +180,7 @@ Verify a US or US territory address with a live API key.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiUsVerificationRequest
 */
-func (a *UsVerificationsApiService) UsVerification(ctx context.Context) ApiUsVerificationRequest {
+func (a *UsVerificationsApiService) VerifySingle(ctx context.Context) ApiUsVerificationRequest {
 	return ApiUsVerificationRequest{
 		ApiService: a,
 		ctx: ctx,

@@ -49,7 +49,7 @@ Creates a new billing_group with the provided properties.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiBillingGroupCreateRequest
 */
-func (a *BillingGroupsApiService) BillingGroupCreate(ctx context.Context) ApiBillingGroupCreateRequest {
+func (a *BillingGroupsApiService) Create(ctx context.Context) ApiBillingGroupCreateRequest {
 	return ApiBillingGroupCreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -162,7 +162,7 @@ Retrieves the details of an existing billing_group. You need only supply the uni
  @param bgId id of the billing_group
  @return ApiBillingGroupRetrieveRequest
 */
-func (a *BillingGroupsApiService) BillingGroupRetrieve(ctx context.Context, bgId string) ApiBillingGroupRetrieveRequest {
+func (a *BillingGroupsApiService) Get(ctx context.Context, bgId string) ApiBillingGroupRetrieveRequest {
 	return ApiBillingGroupRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -278,7 +278,7 @@ Updates all editable attributes of the billing_group with the given id.
  @param bgId id of the billing_group
  @return ApiBillingGroupUpdateRequest
 */
-func (a *BillingGroupsApiService) BillingGroupUpdate(ctx context.Context, bgId string) ApiBillingGroupUpdateRequest {
+func (a *BillingGroupsApiService) Update(ctx context.Context, bgId string) ApiBillingGroupUpdateRequest {
 	return ApiBillingGroupUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -433,7 +433,7 @@ Returns a list of your billing_groups. The billing_groups are returned sorted by
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiBillingGroupsListRequest
 */
-func (a *BillingGroupsApiService) BillingGroupsList(ctx context.Context) ApiBillingGroupsListRequest {
+func (a *BillingGroupsApiService) List(ctx context.Context) ApiBillingGroupsListRequest {
 	return ApiBillingGroupsListRequest{
 		ApiService: a,
 		ctx: ctx,

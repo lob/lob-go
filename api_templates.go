@@ -49,7 +49,7 @@ Creates a new template for use with the Print & Mail API. In Live mode, you can 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateTemplateRequest
 */
-func (a *TemplatesApiService) CreateTemplate(ctx context.Context) ApiCreateTemplateRequest {
+func (a *TemplatesApiService) Create(ctx context.Context) ApiCreateTemplateRequest {
 	return ApiCreateTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -162,7 +162,7 @@ Permanently deletes a template.
  @param tmplId id of the template
  @return ApiTemplateDeleteRequest
 */
-func (a *TemplatesApiService) TemplateDelete(ctx context.Context, tmplId string) ApiTemplateDeleteRequest {
+func (a *TemplatesApiService) Delete(ctx context.Context, tmplId string) ApiTemplateDeleteRequest {
 	return ApiTemplateDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -272,7 +272,7 @@ Retrieves the details of an existing template.
  @param tmplId id of the template
  @return ApiTemplateRetrieveRequest
 */
-func (a *TemplatesApiService) TemplateRetrieve(ctx context.Context, tmplId string) ApiTemplateRetrieveRequest {
+func (a *TemplatesApiService) Get(ctx context.Context, tmplId string) ApiTemplateRetrieveRequest {
 	return ApiTemplateRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -388,7 +388,7 @@ Updates the description and/or published version of the template with the given 
  @param tmplId id of the template
  @return ApiTemplateUpdateRequest
 */
-func (a *TemplatesApiService) TemplateUpdate(ctx context.Context, tmplId string) ApiTemplateUpdateRequest {
+func (a *TemplatesApiService) Update(ctx context.Context, tmplId string) ApiTemplateUpdateRequest {
 	return ApiTemplateUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -543,7 +543,7 @@ Returns a list of your templates. The templates are returned sorted by creation 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiTemplatesListRequest
 */
-func (a *TemplatesApiService) TemplatesList(ctx context.Context) ApiTemplatesListRequest {
+func (a *TemplatesApiService) List(ctx context.Context) ApiTemplatesListRequest {
 	return ApiTemplatesListRequest{
 		ApiService: a,
 		ctx: ctx,

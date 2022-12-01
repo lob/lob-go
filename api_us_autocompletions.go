@@ -46,7 +46,7 @@ Given an address prefix consisting of a partial primary line, as well as optiona
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiUsAutocompletionRequest
 */
-func (a *UsAutocompletionsApiService) UsAutocompletion(ctx context.Context) ApiUsAutocompletionRequest {
+func (a *UsAutocompletionsApiService) Autocomplete(ctx context.Context) ApiUsAutocompletionRequest {
 	return ApiUsAutocompletionRequest{
 		ApiService: a,
 		ctx: ctx,

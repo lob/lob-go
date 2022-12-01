@@ -45,7 +45,7 @@ Completely removes a letter from production. This can only be done if the letter
  @param ltrId id of the letter
  @return ApiLetterCancelRequest
 */
-func (a *LettersApiService) LetterCancel(ctx context.Context, ltrId string) ApiLetterCancelRequest {
+func (a *LettersApiService) Cancel(ctx context.Context, ltrId string) ApiLetterCancelRequest {
 	return ApiLetterCancelRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -166,7 +166,7 @@ Creates a new letter given information
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiLetterCreateRequest
 */
-func (a *LettersApiService) LetterCreate(ctx context.Context) ApiLetterCreateRequest {
+func (a *LettersApiService) Create(ctx context.Context) ApiLetterCreateRequest {
 	return ApiLetterCreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -282,7 +282,7 @@ Retrieves the details of an existing letter. You need only supply the unique let
  @param ltrId id of the letter
  @return ApiLetterRetrieveRequest
 */
-func (a *LettersApiService) LetterRetrieve(ctx context.Context, ltrId string) ApiLetterRetrieveRequest {
+func (a *LettersApiService) Get(ctx context.Context, ltrId string) ApiLetterRetrieveRequest {
 	return ApiLetterRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -467,7 +467,7 @@ Returns a list of your letters. The letters are returned sorted by creation date
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiLettersListRequest
 */
-func (a *LettersApiService) LettersList(ctx context.Context) ApiLettersListRequest {
+func (a *LettersApiService) List(ctx context.Context) ApiLettersListRequest {
 	return ApiLettersListRequest{
 		ApiService: a,
 		ctx: ctx,

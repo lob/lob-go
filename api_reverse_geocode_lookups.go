@@ -53,7 +53,7 @@ Reverse geocode a valid US location with a live API key.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiReverseGeocodeLookupRequest
 */
-func (a *ReverseGeocodeLookupsApiService) ReverseGeocodeLookup(ctx context.Context) ApiReverseGeocodeLookupRequest {
+func (a *ReverseGeocodeLookupsApiService) Lookup(ctx context.Context) ApiReverseGeocodeLookupRequest {
 	return ApiReverseGeocodeLookupRequest{
 		ApiService: a,
 		ctx: ctx,

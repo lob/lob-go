@@ -51,7 +51,7 @@ Creates a new template version attached to the specified template.
  @param tmplId The ID of the template the new version will be attached to
  @return ApiCreateTemplateVersionRequest
 */
-func (a *TemplateVersionsApiService) CreateTemplateVersion(ctx context.Context, tmplId string) ApiCreateTemplateVersionRequest {
+func (a *TemplateVersionsApiService) Create(ctx context.Context, tmplId string) ApiCreateTemplateVersionRequest {
 	return ApiCreateTemplateVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -168,7 +168,7 @@ Permanently deletes a template version. A template's `published_version` can not
  @param vrsnId id of the template_version
  @return ApiTemplateVersionDeleteRequest
 */
-func (a *TemplateVersionsApiService) TemplateVersionDelete(ctx context.Context, tmplId string, vrsnId string) ApiTemplateVersionDeleteRequest {
+func (a *TemplateVersionsApiService) Delete(ctx context.Context, tmplId string, vrsnId string) ApiTemplateVersionDeleteRequest {
 	return ApiTemplateVersionDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -282,7 +282,7 @@ Retrieves the template version with the given template and version ids.
  @param vrsnId id of the template_version
  @return ApiTemplateVersionRetrieveRequest
 */
-func (a *TemplateVersionsApiService) TemplateVersionRetrieve(ctx context.Context, tmplId string, vrsnId string) ApiTemplateVersionRetrieveRequest {
+func (a *TemplateVersionsApiService) Get(ctx context.Context, tmplId string, vrsnId string) ApiTemplateVersionRetrieveRequest {
 	return ApiTemplateVersionRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -402,7 +402,7 @@ Updates the template version with the given template and version ids.
  @param vrsnId id of the template_version
  @return ApiTemplateVersionUpdateRequest
 */
-func (a *TemplateVersionsApiService) TemplateVersionUpdate(ctx context.Context, tmplId string, vrsnId string) ApiTemplateVersionUpdateRequest {
+func (a *TemplateVersionsApiService) Update(ctx context.Context, tmplId string, vrsnId string) ApiTemplateVersionUpdateRequest {
 	return ApiTemplateVersionUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -555,7 +555,7 @@ Returns a list of template versions for the given template ID. The template vers
  @param tmplId The ID of the template associated with the retrieved versions
  @return ApiTemplateVersionsListRequest
 */
-func (a *TemplateVersionsApiService) TemplateVersionsList(ctx context.Context, tmplId string) ApiTemplateVersionsListRequest {
+func (a *TemplateVersionsApiService) List(ctx context.Context, tmplId string) ApiTemplateVersionsListRequest {
 	return ApiTemplateVersionsListRequest{
 		ApiService: a,
 		ctx: ctx,

@@ -35,9 +35,9 @@ func (suite *AddressTestSuite) SetupTest() {
 	suite.addressEditableList = CreateAddressesEditableList() // AddressEditable
 }
 
-func (suite *AddressTestSuite) TestAddressCreate() {
+func (suite *AddressTestSuite) Testcreate() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.AddressesApi.AddressCreate(suite.ctx).AddressEditable(suite.addressEditableList[0]).Execute()
+	resp, _, err := suite.apiClient.AddressesApi.Create(suite.ctx).AddressEditable(suite.addressEditableList[0]).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, suite.addressEditableList[0].AddressLine1, resp.AddressLine1)
@@ -45,17 +45,17 @@ func (suite *AddressTestSuite) TestAddressCreate() {
 	}
 }
 
-func (suite *AddressTestSuite) TestAddressCreateBadParameter() {
+func (suite *AddressTestSuite) TestcreateBadParameter() {
 	t := suite.T()
-	_, _, err := suite.apiClient.AddressesApi.AddressCreate(suite.ctx).AddressEditable(suite.addressEditableList[6]).Execute()
+	_, _, err := suite.apiClient.AddressesApi.Create(suite.ctx).AddressEditable(suite.addressEditableList[6]).Execute()
 	if assert.NotNil(t, err) {
 		assert.Equal(t, "422 Unprocessable Entity", err.Error())
 	}
 }
 
-func (suite *AddressTestSuite) TestAddressCreateBadApiKey() {
+func (suite *AddressTestSuite) TestcreateBadApiKey() {
 	t := suite.T()
-	_, _, err := suite.apiClient.AddressesApi.AddressCreate(suite.badctx).AddressEditable(suite.addressEditableList[0]).Execute()
+	_, _, err := suite.apiClient.AddressesApi.Create(suite.badctx).AddressEditable(suite.addressEditableList[0]).Execute()
 	if assert.NotNil(t, err) {
 		assert.Equal(t, "401 Unauthorized", err.Error())
 	}
@@ -63,7 +63,7 @@ func (suite *AddressTestSuite) TestAddressCreateBadApiKey() {
 
 func (suite *AddressTestSuite) TestAddressRetrieve() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.AddressesApi.AddressRetrieve(suite.ctx, *suite.createdAddress.Id).Execute()
+	resp, _, err := suite.apiClient.AddressesApi.Get(suite.ctx, *suite.createdAddress.Id).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, resp.Id, suite.createdAddress.Id)
@@ -72,7 +72,7 @@ func (suite *AddressTestSuite) TestAddressRetrieve() {
 
 func (suite *AddressTestSuite) TestAddressRetrieveBadApiKey() {
 	t := suite.T()
-	_, _, err := suite.apiClient.AddressesApi.AddressRetrieve(suite.badctx, *suite.createdAddress.Id).Execute()
+	_, _, err := suite.apiClient.AddressesApi.Get(suite.badctx, *suite.createdAddress.Id).Execute()
 	if assert.NotNil(t, err) {
 		assert.Equal(t, "401 Unauthorized", err.Error())
 	}
@@ -80,7 +80,7 @@ func (suite *AddressTestSuite) TestAddressRetrieveBadApiKey() {
 
 func (suite *AddressTestSuite) TestAddressList() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.AddressesApi.AddressesList(suite.ctx).Execute()
+	resp, _, err := suite.apiClient.AddressesApi.List(suite.ctx).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Greater(t, resp.GetCount(), int32(0))
@@ -89,7 +89,7 @@ func (suite *AddressTestSuite) TestAddressList() {
 
 func (suite *AddressTestSuite) TestAddressListWithIncludeParameter() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.AddressesApi.AddressesList(suite.ctx).Limit(3).Execute()
+	resp, _, err := suite.apiClient.AddressesApi.List(suite.ctx).Limit(3).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, resp.GetCount(), int32(3))
@@ -98,9 +98,9 @@ func (suite *AddressTestSuite) TestAddressListWithIncludeParameter() {
 
 func (suite *AddressTestSuite) TestAddressListWithNextPageToken() {
 	t := suite.T()
-	firstResponse, _, firstErr := suite.apiClient.AddressesApi.AddressesList(suite.ctx).Limit(1).Execute()
+	firstResponse, _, firstErr := suite.apiClient.AddressesApi.List(suite.ctx).Limit(1).Execute()
 	assert.Nil(t, firstErr)
-	responeAfter, _, err := suite.apiClient.AddressesApi.AddressesList(suite.ctx).After(firstResponse.GetNextPageToken()).Execute()
+	responeAfter, _, err := suite.apiClient.AddressesApi.List(suite.ctx).After(firstResponse.GetNextPageToken()).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, responeAfter) {
 		assert.Greater(t, responeAfter.GetCount(), int32(0))
@@ -109,11 +109,11 @@ func (suite *AddressTestSuite) TestAddressListWithNextPageToken() {
 
 func (suite *AddressTestSuite) TestAddressListWithPrevPageToken() {
 	t := suite.T()
-	firstResponse, _, firstErr := suite.apiClient.AddressesApi.AddressesList(suite.ctx).Limit(1).Execute()
+	firstResponse, _, firstErr := suite.apiClient.AddressesApi.List(suite.ctx).Limit(1).Execute()
 	assert.Nil(t, firstErr)
-	responeAfter, _, errAfter := suite.apiClient.AddressesApi.AddressesList(suite.ctx).After(firstResponse.GetNextPageToken()).Execute()
+	responeAfter, _, errAfter := suite.apiClient.AddressesApi.List(suite.ctx).After(firstResponse.GetNextPageToken()).Execute()
 	assert.Nil(t, errAfter)
-	responseBefore, _, err := suite.apiClient.AddressesApi.AddressesList(suite.ctx).Before(responeAfter.GetPrevPageToken()).Execute()
+	responseBefore, _, err := suite.apiClient.AddressesApi.List(suite.ctx).Before(responeAfter.GetPrevPageToken()).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, responseBefore) {
 		assert.Greater(t, responseBefore.GetCount(), int32(0))
@@ -122,7 +122,7 @@ func (suite *AddressTestSuite) TestAddressListWithPrevPageToken() {
 
 func (suite *AddressTestSuite) TestAddressDelete() {
 	t := suite.T()
-	resp, _, err := suite.apiClient.AddressesApi.AddressDelete(suite.ctx, *suite.createdAddress.Id).Execute()
+	resp, _, err := suite.apiClient.AddressesApi.Delete(suite.ctx, *suite.createdAddress.Id).Execute()
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.Equal(t, resp.Id, suite.createdAddress.Id)

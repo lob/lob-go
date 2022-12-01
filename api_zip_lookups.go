@@ -46,7 +46,7 @@ Returns information about a ZIP code
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiZipLookupRequest
 */
-func (a *ZipLookupsApiService) ZipLookup(ctx context.Context) ApiZipLookupRequest {
+func (a *ZipLookupsApiService) Lookup(ctx context.Context) ApiZipLookupRequest {
 	return ApiZipLookupRequest{
 		ApiService: a,
 		ctx: ctx,

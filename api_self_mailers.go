@@ -56,7 +56,7 @@ Creates a new self_mailer given information
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSelfMailerCreateRequest
 */
-func (a *SelfMailersApiService) SelfMailerCreate(ctx context.Context) ApiSelfMailerCreateRequest {
+func (a *SelfMailersApiService) Create(ctx context.Context) ApiSelfMailerCreateRequest {
 	return ApiSelfMailerCreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -172,7 +172,7 @@ Completely removes a self mailer from production. This can only be done if the s
  @param sfmId id of the self_mailer
  @return ApiSelfMailerDeleteRequest
 */
-func (a *SelfMailersApiService) SelfMailerDelete(ctx context.Context, sfmId string) ApiSelfMailerDeleteRequest {
+func (a *SelfMailersApiService) Delete(ctx context.Context, sfmId string) ApiSelfMailerDeleteRequest {
 	return ApiSelfMailerDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -282,7 +282,7 @@ Retrieves the details of an existing self_mailer. You need only supply the uniqu
  @param sfmId id of the self_mailer
  @return ApiSelfMailerRetrieveRequest
 */
-func (a *SelfMailersApiService) SelfMailerRetrieve(ctx context.Context, sfmId string) ApiSelfMailerRetrieveRequest {
+func (a *SelfMailersApiService) Get(ctx context.Context, sfmId string) ApiSelfMailerRetrieveRequest {
 	return ApiSelfMailerRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -467,7 +467,7 @@ Returns a list of your self_mailers. The self_mailers are returned sorted by cre
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSelfMailersListRequest
 */
-func (a *SelfMailersApiService) SelfMailersList(ctx context.Context) ApiSelfMailersListRequest {
+func (a *SelfMailersApiService) List(ctx context.Context) ApiSelfMailersListRequest {
 	return ApiSelfMailersListRequest{
 		ApiService: a,
 		ctx: ctx,
