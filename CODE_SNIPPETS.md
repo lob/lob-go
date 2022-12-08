@@ -26,6 +26,26 @@ if err != nil {
 
 
 
+### Delete
+```bash
+curl -X DELETE "https://api.lob.com/v1/addresses/adr_43769b47aed248c2" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+deletedAddress, _, err := apiClient.AddressesApi.Delete(context, "adr_43769b47aed248c2").Execute()
+
+if err != nil {
+    return err
+}
+```
+
+
 ### Create
 ```bash
 curl https://api.lob.com/v1/addresses \
@@ -106,6 +126,18 @@ if err != nil {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 ## Postcards Api
 
 
@@ -130,6 +162,26 @@ if err != nil {
 
 
 
+
+
+### Delete
+```bash
+curl -X DELETE "https://api.lob.com/v1/postcards/psc_5c002b86ce47537a" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+deletedPostcard, _, err := apiClient.PostcardsApi.Delete(context, "psc_5c002b86ce47537a").Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 ### Create
@@ -184,6 +236,8 @@ if err != nil {
 
 
 
+
+
 ## SelfMailers Api
 
 
@@ -208,6 +262,26 @@ if err != nil {
 
 
 
+
+
+### Delete
+```bash
+curl -X DELETE "https://api.lob.com/v1/self_mailers/sfm_8ffbe811dea49dcf" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+deletedSelfMailer, _, err := apiClient.SelfMailersApi.Delete(context, "sfm_8ffbe811dea49dcf").Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 ### Create
@@ -262,6 +336,8 @@ if err != nil {
 
 
 
+
+
 ## Letters Api
 
 
@@ -286,6 +362,26 @@ if err != nil {
 
 
 
+
+
+### Delete
+```bash
+curl -X DELETE "https://api.lob.com/v1/letters/ltr_4868c3b754655f90" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+deletedLetter, _, err := apiClient.LettersApi.Cancel(context, "ltr_4868c3b754655f90").Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 ### Create
@@ -341,6 +437,8 @@ if err != nil {
 
 
 
+
+
 ## Checks Api
 
 
@@ -365,6 +463,26 @@ if err != nil {
 
 
 
+
+
+### Delete
+```bash
+curl -X DELETE "https://api.lob.com/v1/checks/chk_534f10783683daa0" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+deletedCheck, _, err := apiClient.ChecksApi.Cancel(context, "chk_534f10783683daa0").Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 ### Create
@@ -425,6 +543,8 @@ if err != nil {
 
 
 
+
+
 ## BankAccounts Api
 
 
@@ -447,6 +567,28 @@ if err != nil {
 }
 ```
 
+
+
+
+
+### Delete
+```bash
+curl -X DELETE "https://api.lob.com/v1/bank_accounts/bank_3e64d9904356b20" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+deletedBankAccount, _, err := apiClient.BankAccountsApi.Delete(context, "bank_3e64d9904356b20").Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 
@@ -492,6 +634,7 @@ if err != nil {
 ```
 
 
+
 ## Templates Api
 
 
@@ -514,6 +657,28 @@ if err != nil {
 }
 ```
 
+
+
+
+
+### Delete
+```bash
+curl -X DELETE "https://api.lob.com/v1/templates/tmpl_df934eeda694203" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+deletedTemplate, _, err := apiClient.TemplatesApi.Delete(context, "tmpl_df934eeda694203").Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 
@@ -553,6 +718,7 @@ if err != nil {
 ```
 
 
+
 ## TemplateVersions Api
 
 
@@ -575,6 +741,28 @@ if err != nil {
 }
 ```
 
+
+
+
+
+### Delete
+```bash
+curl -X DELETE "https://api.lob.com/v1/templates/tmpl_4aa14648113e45b/versions/vrsn_534e339882d2282" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+deletedTemplateVersion, _, err := apiClient.TemplateVersionsApi.Delete(context, "tmpl_4aa14648113e45b", "vrsn_534e339882d2282").Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 
@@ -614,6 +802,7 @@ if err != nil {
 ```
 
 
+
 ## BillingGroups Api
 
 ### Retrieve
@@ -634,6 +823,7 @@ if err != nil {
     return err
 }
 ```
+
 
 
 
@@ -669,6 +859,8 @@ if err != nil {
 
 
 
+
+
 ## Cards Api
 
 ### Retrieve
@@ -693,6 +885,26 @@ if err != nil {
 
 
 
+
+
+### Delete
+```bash
+curl -X DELETE "https://api.lob.com/v1/cards/card_6afffd19045076c" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+deletedCard, _, err := apiClient.CardsApi.Delete(context, "card_6afffd19045076c").Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 
@@ -734,6 +946,9 @@ if err != nil {
 
 
 
+
+
+
 ## CardOrders Api
 
 ### Retrieve
@@ -754,6 +969,7 @@ if err != nil {
     return err
 }
 ```
+
 
 
 
@@ -783,4 +999,5 @@ if err != nil {
     return err
 }
 ```
+
 
