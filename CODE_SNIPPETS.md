@@ -3,6 +3,26 @@
 ## Address Api
 
 
+### Retrieve
+```bash
+curl https://api.lob.com/v1/addresses/adr_fa85158b26c3eb7c \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+fetchedAddress, _, err := apiClient.AddressesApi.Get(context,"adr_fa85158b26c3eb7c").Execute()
+
+if err != nil {
+    return err
+}
+```
+
+
 
 
 
@@ -74,7 +94,39 @@ if err != nil {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 ## Postcards Api
+
+
+### Retrieve
+```bash
+curl https://api.lob.com/v1/postcards/psc_5c002b86ce47537a \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+fetchedPostcard, _, err := apiClient.PostcardsApi.Get(context,"psc_5c002b86ce47537a").Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 
@@ -130,7 +182,29 @@ if err != nil {
 
 
 
+
+
 ## SelfMailers Api
+
+
+### Retrieve
+```bash
+curl https://api.lob.com/v1/self_mailers/sfm_8ffbe811dea49dcf \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+fetchedSelfMailer, _, err := apiClient.SelfMailersApi.Get(context,"sfm_8ffbe811dea49dcf").Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 
@@ -186,7 +260,29 @@ if err != nil {
 
 
 
+
+
 ## Letters Api
+
+
+### Retrieve
+```bash
+curl https://api.lob.com/v1/letters/ltr_4868c3b754655f90 \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+fetchedLetter, _, err := apiClient.LettersApi.Get(context,"ltr_4868c3b754655f90").Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 
@@ -243,7 +339,29 @@ if err != nil {
 
 
 
+
+
 ## Checks Api
+
+
+### Retrieve
+```bash
+curl https://api.lob.com/v1/checks/chk_534f10783683daa0 \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+fetchedCheck, _, err := apiClient.ChecksApi.Get(context,"chk_534f10783683daa0").Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 
@@ -305,7 +423,31 @@ if err != nil {
 
 
 
+
+
 ## BankAccounts Api
+
+
+### Retrieve
+```bash
+curl https://api.lob.com/v1/bank_accounts/bank_8cad8df5354d33f \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+fetchedBankAccount, _, err := apiClient.BankAccountsApi.Get(context,"bank_8cad8df5354d33f").Execute()
+
+if err != nil {
+    return err
+}
+```
+
+
 
 
 
@@ -349,7 +491,30 @@ if err != nil {
 }
 ```
 
+
 ## Templates Api
+
+
+### Retrieve
+```bash
+curl https://api.lob.com/v1/templates/tmpl_c94e83ca2cd5121 \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+fetchedTemplate, _, err := apiClient.TemplatesApi.Get(context,"tmpl_c94e83ca2cd5121").Execute()
+
+if err != nil {
+    return err
+}
+```
+
+
 
 
 
@@ -375,8 +540,8 @@ var apiClient = *lob.NewAPIClient(configuration)
 
 
 var templateCreate = *lob.NewTemplateWritable()
-templateCreate.Set("Test Template")
-templateCreate.Set("<html>HTML for {{name}}</html>")
+templateCreate.SetDescription("Test Template")
+templateCreate.SetHtml("<html>HTML for {{name}}</html>")
 
 
 
@@ -387,7 +552,30 @@ if err != nil {
 }
 ```
 
+
 ## TemplateVersions Api
+
+
+### Retrieve
+```bash
+curl https://api.lob.com/v1/templates/tmpl_c94e83ca2cd5121/versions/vrsn_534e339882d2282 \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+fetchedTemplateVersion, _, err := apiClient.TemplateVersionsApi.Get(context,"tmpl_c94e83ca2cd5121", "vrsn_534e339882d2282").Execute()
+
+if err != nil {
+    return err
+}
+```
+
+
 
 
 
@@ -413,12 +601,183 @@ var apiClient = *lob.NewAPIClient(configuration)
 
 
 var templateVersionCreate = *lob.NewTemplateVersionWritable()
-templateVersionCreate.Set("Second Version")
-templateVersionCreate.Set("<html>Second HTML for {{name}}</html>")
+templateVersionCreate.SetDescription("Second Version")
+templateVersionCreate.SetHtml("<html>Second HTML for {{name}}</html>")
 
 
 
 createdtemplateVersion, _, err := apiClient.TemplateVersionsApi.Create(context, "tmpl_4aa14648113e45b").TemplateVersionWritable(templateVersionCreate).Execute()
+
+if err != nil {
+    return err
+}
+```
+
+
+## BillingGroups Api
+
+### Retrieve
+```bash
+curl https://api.lob.com/v1/billing_groups/bg_4bb02b527a72667d0 \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+fetchedBillingGroup, _, err := apiClient.BillingGroupsApi.Get(context,"bg_4bb02b527a72667d0").Execute()
+
+if err != nil {
+    return err
+}
+```
+
+
+
+
+### Create
+```bash
+curl https://api.lob.com/v1/billing_groups \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "description=Usage group used for the Marketing Department's resource sends" \
+  -d "name=Marketing Department" \
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+
+var bgCreate = *lob.NewBillingGroupEditable()
+bgCreate.SetDescription("Usage group used for the Marketing Department's resource sends")
+bgCreate.SetName("Marketing Department")
+
+
+
+createdbg, _, err := apiClient.BillingGroupsApi.Create(context).BillingGroupEditable(bgCreate).Execute()
+
+if err != nil {
+    return err
+}
+```
+
+
+
+
+## Cards Api
+
+### Retrieve
+```bash
+curl https://api.lob.com/v1/cards/card_7a6d73c5c8457fc \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+fetchedCard, _, err := apiClient.CardsApi.Get(context,"card_7a6d73c5c8457fc").Execute()
+
+if err != nil {
+    return err
+}
+```
+
+
+
+
+
+
+
+### Create
+```bash
+curl https://api.lob.com/v1/cards \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "front=https://s3-us-west-2.amazonaws.com/public.lob.com/assets/card_horizontal.pdf" \
+  -d "back=https://s3-us-west-2.amazonaws.com/public.lob.com/assets/card_horizontal.pdf" \
+  -d "size=2.125x3.375" \
+  -d "description=Test Card" \
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+
+var cardCreate = *lob.NewCardEditable()
+cardCreate.SetFront("https://s3-us-west-2.amazonaws.com/public.lob.com/assets/card_horizontal.pdf")
+cardCreate.SetBack("https://s3-us-west-2.amazonaws.com/public.lob.com/assets/card_horizontal.pdf")
+cardCreate.SetSize("2.125x3.375")
+cardCreate.SetDescription("Test Card")
+
+
+
+createdcard, _, err := apiClient.CardsApi.Create(context).CardEditable(cardCreate).Execute()
+
+if err != nil {
+    return err
+}
+```
+
+
+
+
+
+
+
+## CardOrders Api
+
+### Retrieve
+```bash
+curl https://api.lob.com/v1/cards/card_6afffd19045076c/orders/ \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+fetchedCardOrderList, _, err := apiClient.CardOrdersApi.Get(context, "card_6afffd19045076c").Execute()
+
+if err != nil {
+    return err
+}
+```
+
+
+
+
+### Create
+```bash
+curl https://api.lob.com/v1/cards/card_6afffd19045076c/orders \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "quantity=10000" \
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+
+var cardOrderCreate = *lob.NewCardOrderEditable()
+cardOrderCreate.SetQuantity("10000")
+
+
+
+createdcardOrder, _, err := apiClient.CardOrdersApi.Create(context, "card_6afffd19045076c").CardOrderEditable(cardOrderCreate).Execute()
 
 if err != nil {
     return err
