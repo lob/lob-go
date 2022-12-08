@@ -26,6 +26,7 @@ if err != nil {
 
 
 
+
 ### Delete
 ```bash
 curl -X DELETE "https://api.lob.com/v1/addresses/adr_43769b47aed248c2" \
@@ -44,6 +45,7 @@ if err != nil {
     return err
 }
 ```
+
 
 
 ### Create
@@ -98,6 +100,22 @@ if err != nil {
 
 
 
+### List
+```bash
+curl -X GET "https://api.lob.com/v1/addresses?limit=2" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+AddressList = apiClient.AddressesApi.List(context).Execute()
+if err != nil {
+    return err
+}
+```
 
 
 
@@ -164,6 +182,7 @@ if err != nil {
 
 
 
+
 ### Delete
 ```bash
 curl -X DELETE "https://api.lob.com/v1/postcards/psc_5c002b86ce47537a" \
@@ -182,6 +201,7 @@ if err != nil {
     return err
 }
 ```
+
 
 
 ### Create
@@ -238,6 +258,23 @@ if err != nil {
 
 
 
+### List
+```bash
+curl -X GET "https://api.lob.com/v1/postcards?limit=2" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+PostcardList = apiClient.PostcardsApi.List(context).Execute()
+if err != nil {
+    return err
+}
+```
+
 ## SelfMailers Api
 
 
@@ -264,6 +301,7 @@ if err != nil {
 
 
 
+
 ### Delete
 ```bash
 curl -X DELETE "https://api.lob.com/v1/self_mailers/sfm_8ffbe811dea49dcf" \
@@ -282,6 +320,7 @@ if err != nil {
     return err
 }
 ```
+
 
 
 ### Create
@@ -338,6 +377,23 @@ if err != nil {
 
 
 
+### List
+```bash
+curl -X GET "https://api.lob.com/v1/self_mailers?limit=2" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+SelfMailerList = apiClient.SelfMailersApi.List(context).Execute()
+if err != nil {
+    return err
+}
+```
+
 ## Letters Api
 
 
@@ -364,6 +420,7 @@ if err != nil {
 
 
 
+
 ### Delete
 ```bash
 curl -X DELETE "https://api.lob.com/v1/letters/ltr_4868c3b754655f90" \
@@ -382,6 +439,7 @@ if err != nil {
     return err
 }
 ```
+
 
 
 ### Create
@@ -439,6 +497,23 @@ if err != nil {
 
 
 
+### List
+```bash
+curl -X GET "https://api.lob.com/v1/letters?limit=2" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+LetterList = apiClient.LettersApi.List(context).Execute()
+if err != nil {
+    return err
+}
+```
+
 ## Checks Api
 
 
@@ -465,6 +540,7 @@ if err != nil {
 
 
 
+
 ### Delete
 ```bash
 curl -X DELETE "https://api.lob.com/v1/checks/chk_534f10783683daa0" \
@@ -483,6 +559,7 @@ if err != nil {
     return err
 }
 ```
+
 
 
 ### Create
@@ -545,6 +622,23 @@ if err != nil {
 
 
 
+### List
+```bash
+curl -X GET "https://api.lob.com/v1/checks?limit=2" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+CheckList = apiClient.ChecksApi.List(context).Execute()
+if err != nil {
+    return err
+}
+```
+
 ## BankAccounts Api
 
 
@@ -566,6 +660,7 @@ if err != nil {
     return err
 }
 ```
+
 
 
 
@@ -593,6 +688,24 @@ if err != nil {
 
 
 
+
+
+### List
+```bash
+curl -X GET "https://api.lob.com/v1/bank_accounts?limit=2" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+BankAccountList = apiClient.BankAccountsApi.List(context).Execute()
+if err != nil {
+    return err
+}
+```
 
 
 
@@ -635,6 +748,7 @@ if err != nil {
 
 
 
+
 ## Templates Api
 
 
@@ -656,6 +770,7 @@ if err != nil {
     return err
 }
 ```
+
 
 
 
@@ -683,6 +798,24 @@ if err != nil {
 
 
 
+
+
+### List
+```bash
+curl -X GET "https://api.lob.com/v1/templates?limit=2" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+TemplateList = apiClient.TemplatesApi.List(context).Execute()
+if err != nil {
+    return err
+}
+```
 
 
 
@@ -719,6 +852,7 @@ if err != nil {
 
 
 
+
 ## TemplateVersions Api
 
 
@@ -740,6 +874,7 @@ if err != nil {
     return err
 }
 ```
+
 
 
 
@@ -767,6 +902,24 @@ if err != nil {
 
 
 
+
+
+### List
+```bash
+curl -X GET "https://api.lob.com/v1/templates/tmpl_dadaaf7b76c9f25/versions?limit=2" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+TemplateVersionList = apiClient.TemplateVersionsApi.List(context, "tmpl_4aa14648113e45b").Execute()
+if err != nil {
+    return err
+}
+```
 
 
 
@@ -803,6 +956,7 @@ if err != nil {
 
 
 
+
 ## BillingGroups Api
 
 ### Retrieve
@@ -823,6 +977,7 @@ if err != nil {
     return err
 }
 ```
+
 
 
 
@@ -861,6 +1016,23 @@ if err != nil {
 
 
 
+### List
+```bash
+curl -X GET "https://api.lob.com/v1/billing_groups?limit=2" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+BillingGroupList = apiClient.BillingGroupsApi.List(context).Execute()
+if err != nil {
+    return err
+}
+```
+
 ## Cards Api
 
 ### Retrieve
@@ -887,6 +1059,7 @@ if err != nil {
 
 
 
+
 ### Delete
 ```bash
 curl -X DELETE "https://api.lob.com/v1/cards/card_6afffd19045076c" \
@@ -905,6 +1078,7 @@ if err != nil {
     return err
 }
 ```
+
 
 
 
@@ -943,6 +1117,24 @@ if err != nil {
 
 
 
+
+
+### List
+```bash
+curl -X GET "https://api.lob.com/v1/cards?limit=2" \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc:
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+CardList = apiClient.CardsApi.List(context).Execute()
+if err != nil {
+    return err
+}
+```
 
 
 
