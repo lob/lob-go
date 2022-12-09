@@ -151,11 +151,6 @@ if err != nil {
 
 
 
-
-
-
-
-
 ## Postcards Api
 
 
@@ -711,6 +706,33 @@ if err != nil {
 
 
 
+### Verify
+```bash
+curl https://api.lob.com/v1/bank_accounts/bank_dfceb4a2a05b57e/verify \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \ 
+  -d "amounts[]=25" \ 
+  -d "amounts[]=63" \ 
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+var bankAccountWritable = *lob.NewBankAccountWritable("322271627", "123456789", lob.BANKTYPEENUM_INDIVIDUAL, "Sinead Connor")
+
+createdBankAccount, _, _ := apiClient.BankAccountsApi.Create(context).BankAccountWritable(bankAccountWritable).Execute()
+
+verifyAmounts := []int32{11, 35}
+verify := *lob.NewBankAccountVerify(verifyAmounts)
+
+verifiedAccount, _, err := apiClient.BankAccountsApi.Verify(context, createdBankAccount.Id).BankAccountVerify(verify).Execute()
+
+if err != nil {
+    return err
+}
+```
 
 ### Create
 ```bash
@@ -821,6 +843,30 @@ if err != nil {
 
 
 
+### Update
+```bash
+curl https://api.lob.com/v1/templates/tmpl_c94e83ca2cd5121 \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "description=Updated description" \
+  -d "published_version=vrsn_362184d96d9b0c9"
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+var templateWritable = *lob.NewTemplateWritable("<html>Updated HTML for Template 1/html>")
+createdTemplate, _, _ := apiClient.TemplatesApi.Create(context).TemplateWritable(templateWritable).Execute()
+
+templateWritable.SetDescription("Template updated")
+resp, _, err := apiClient.TemplatesApi.Update(context, createdTemplate.Id).TemplateWritable(templateWritable).Execute()
+
+if err != nil {
+    return err
+}
+```
 
 ### Create
 ```bash
@@ -877,6 +923,31 @@ if err != nil {
 
 
 
+### Update
+```bash
+curl https://api.lob.com/v1/templates/tmpl_c94e83ca2cd5121/versions/vrsn_534e339882d2282 \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "description=Updated description"
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+var templateWritable = *lob.NewTemplateWritable("<html>Updated HTML for Template 1/html>")
+var templateVersionWritable = *lob.NewTemplateVersionWritable("<html>Updated HTML for Template 1/html>")
+createdTemplate, _, _ := apiClient.TemplatesApi.Create(context).TemplateWritable(templateWritable).Execute()
+
+createdTemplateVersion, _, err := apiClient.TemplateVersionsApi.Create(context, createdTemplate.Id).TemplateVersionWritable(templateVersionWritable).Execute()
+createdTemplateVersion.SetDescription("New Template Version")
+resp, _, err := apiClient.TemplatesApi.Update(context, createdTemplate.Id, createdTemplateVersion.Id).TemplateVersionWritable(templateVersionWritable).Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 
@@ -900,6 +971,31 @@ if err != nil {
 ```
 
 
+### Update
+```bash
+curl https://api.lob.com/v1/templates/tmpl_4aa14648113e45b/versions/vrsn_534e339882d2282 \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "description=Updated description"
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+var templateWritable = *lob.NewTemplateWritable("<html>Updated HTML for Template 1/html>")
+var templateVersionWritable = *lob.NewTemplateVersionWritable("<html>Updated HTML for Template 1/html>")
+createdTemplate, _, _ := apiClient.TemplatesApi.Create(context).TemplateWritable(templateWritable).Execute()
+
+createdTemplateVersion, _, err := apiClient.TemplateVersionsApi.Create(context, createdTemplate.Id).TemplateVersionWritable(templateVersionWritable).Execute()
+createdTemplateVersion.SetDescription("New Template Version")
+resp, _, err := apiClient.TemplatesApi.Update(context, createdTemplate.Id, createdTemplateVersion.Id).TemplateVersionWritable(templateVersionWritable).Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 
@@ -920,11 +1016,61 @@ if err != nil {
     return err
 }
 ```
+### Update
+```bash
+curl https://api.lob.com/v1/templates/tmpl_dadaaf7b76c9f25/versions/ \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "description=Updated description"
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+var templateWritable = *lob.NewTemplateWritable("<html>Updated HTML for Template 1/html>")
+var templateVersionWritable = *lob.NewTemplateVersionWritable("<html>Updated HTML for Template 1/html>")
+createdTemplate, _, _ := apiClient.TemplatesApi.Create(context).TemplateWritable(templateWritable).Execute()
+
+createdTemplateVersion, _, err := apiClient.TemplateVersionsApi.Create(context, createdTemplate.Id).TemplateVersionWritable(templateVersionWritable).Execute()
+createdTemplateVersion.SetDescription("New Template Version")
+resp, _, err := apiClient.TemplatesApi.Update(context, createdTemplate.Id, createdTemplateVersion.Id).TemplateVersionWritable(templateVersionWritable).Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 
 
 
+### Update
+```bash
+curl https://api.lob.com/v1/templates/tmpl_c94e83ca2cd5121/versions/vrsn_534e339882d2282 \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "description=Updated description"
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+var templateWritable = *lob.NewTemplateWritable("<html>Updated HTML for Template 1/html>")
+var templateVersionWritable = *lob.NewTemplateVersionWritable("<html>Updated HTML for Template 1/html>")
+createdTemplate, _, _ := apiClient.TemplatesApi.Create(context).TemplateWritable(templateWritable).Execute()
+
+createdTemplateVersion, _, err := apiClient.TemplateVersionsApi.Create(context, createdTemplate.Id).TemplateVersionWritable(templateVersionWritable).Execute()
+createdTemplateVersion.SetDescription("New Template Version")
+resp, _, err := apiClient.TemplatesApi.Update(context, createdTemplate.Id, createdTemplateVersion.Id).TemplateVersionWritable(templateVersionWritable).Execute()
+
+if err != nil {
+    return err
+}
+```
 
 ### Create
 ```bash
@@ -956,6 +1102,31 @@ if err != nil {
 
 
 
+### Update
+```bash
+curl https://api.lob.com/v1/templates//versions/ \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "description=Updated description"
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+var templateWritable = *lob.NewTemplateWritable("<html>Updated HTML for Template 1/html>")
+var templateVersionWritable = *lob.NewTemplateVersionWritable("<html>Updated HTML for Template 1/html>")
+createdTemplate, _, _ := apiClient.TemplatesApi.Create(context).TemplateWritable(templateWritable).Execute()
+
+createdTemplateVersion, _, err := apiClient.TemplateVersionsApi.Create(context, createdTemplate.Id).TemplateVersionWritable(templateVersionWritable).Execute()
+createdTemplateVersion.SetDescription("New Template Version")
+resp, _, err := apiClient.TemplatesApi.Update(context, createdTemplate.Id, createdTemplateVersion.Id).TemplateVersionWritable(templateVersionWritable).Execute()
+
+if err != nil {
+    return err
+}
+```
 
 ## BillingGroups Api
 
@@ -981,6 +1152,29 @@ if err != nil {
 
 
 
+### Update
+```bash
+curl https://api.lob.com/v1/billing_groups/bg_4bb02b527a72667d0 \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "description=demo replacement" \
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+var bgEditable = *lob.NewBillingGroupEditable("Test Billing group")
+createdBillingGroup, _, _ := apiClient.BillingGroupsApi.Create(context).BillingGroupEditable(suite.bgEditable).Execute()
+
+bgEditable.SetDescription("BG updated")
+resp, _, err := suite.apiClient.BillingGroupsApi.Update(context, createdBillingGroup.Id).BillingGroupEditable(suite.bgEditable).Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 ### Create
@@ -1012,6 +1206,29 @@ if err != nil {
 ```
 
 
+### Update
+```bash
+curl https://api.lob.com/v1/billing_groups/bg_759954f540a1bfdb5 \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "description=demo replacement" \
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+var bgEditable = *lob.NewBillingGroupEditable("Test Billing group")
+createdBillingGroup, _, _ := apiClient.BillingGroupsApi.Create(context).BillingGroupEditable(suite.bgEditable).Execute()
+
+bgEditable.SetDescription("BG updated")
+resp, _, err := suite.apiClient.BillingGroupsApi.Update(context, createdBillingGroup.Id).BillingGroupEditable(suite.bgEditable).Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 
@@ -1028,6 +1245,29 @@ context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserN
 
 var apiClient = *lob.NewAPIClient(configuration)
 BillingGroupList = apiClient.BillingGroupsApi.List(context).Execute()
+if err != nil {
+    return err
+}
+```
+### Update
+```bash
+curl https://api.lob.com/v1/billing_groups/ \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "description=demo replacement" \
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+var bgEditable = *lob.NewBillingGroupEditable("Test Billing group")
+createdBillingGroup, _, _ := apiClient.BillingGroupsApi.Create(context).BillingGroupEditable(suite.bgEditable).Execute()
+
+bgEditable.SetDescription("BG updated")
+resp, _, err := suite.apiClient.BillingGroupsApi.Update(context, createdBillingGroup.Id).BillingGroupEditable(suite.bgEditable).Execute()
+
 if err != nil {
     return err
 }
@@ -1057,6 +1297,31 @@ if err != nil {
 
 
 
+### Update
+```bash
+curl -X POST https://api.lob.com/v1/cards/card_7a6d73c5c8457fc \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "description=Awesome card" \
+  -d "auto_reorder=true"
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+cardEditable = *lob.NewCardEditable("https://s3-us-west-2.amazonaws.com/public.lob.com/assets/card_horizontal.pdf()")
+createdCard, _, _ := apiClient.CardsApi.Create(context).CardEditable(suite.cardEditable).Execute()
+var updatedCard = *lob.NewCardUpdatable()
+updatedCard.SetDescription("Card was updated")
+
+resp, _, err := suite.apiClient.CardsApi.Update(context, createdCard.Id).CardUpdatable(updatedCard).Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 
@@ -1080,6 +1345,31 @@ if err != nil {
 ```
 
 
+### Update
+```bash
+curl -X POST https://api.lob.com/v1/cards/card_6afffd19045076c \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "description=Awesome card" \
+  -d "auto_reorder=true"
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+cardEditable = *lob.NewCardEditable("https://s3-us-west-2.amazonaws.com/public.lob.com/assets/card_horizontal.pdf()")
+createdCard, _, _ := apiClient.CardsApi.Create(context).CardEditable(suite.cardEditable).Execute()
+var updatedCard = *lob.NewCardUpdatable()
+updatedCard.SetDescription("Card was updated")
+
+resp, _, err := suite.apiClient.CardsApi.Update(context, createdCard.Id).CardUpdatable(updatedCard).Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 ### Create
@@ -1115,6 +1405,31 @@ if err != nil {
 ```
 
 
+### Update
+```bash
+curl -X POST https://api.lob.com/v1/cards/ \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "description=Awesome card" \
+  -d "auto_reorder=true"
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+cardEditable = *lob.NewCardEditable("https://s3-us-west-2.amazonaws.com/public.lob.com/assets/card_horizontal.pdf()")
+createdCard, _, _ := apiClient.CardsApi.Create(context).CardEditable(suite.cardEditable).Execute()
+var updatedCard = *lob.NewCardUpdatable()
+updatedCard.SetDescription("Card was updated")
+
+resp, _, err := suite.apiClient.CardsApi.Update(context, createdCard.Id).CardUpdatable(updatedCard).Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 
@@ -1135,11 +1450,61 @@ if err != nil {
     return err
 }
 ```
+### Update
+```bash
+curl -X POST https://api.lob.com/v1/cards/ \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "description=Awesome card" \
+  -d "auto_reorder=true"
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+cardEditable = *lob.NewCardEditable("https://s3-us-west-2.amazonaws.com/public.lob.com/assets/card_horizontal.pdf()")
+createdCard, _, _ := apiClient.CardsApi.Create(context).CardEditable(suite.cardEditable).Execute()
+var updatedCard = *lob.NewCardUpdatable()
+updatedCard.SetDescription("Card was updated")
+
+resp, _, err := suite.apiClient.CardsApi.Update(context, createdCard.Id).CardUpdatable(updatedCard).Execute()
+
+if err != nil {
+    return err
+}
+```
 
 
 
 
 
+### Update
+```bash
+curl -X POST https://api.lob.com/v1/cards/card_6afffd19045076c \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "description=Awesome card" \
+  -d "auto_reorder=true"
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+cardEditable = *lob.NewCardEditable("https://s3-us-west-2.amazonaws.com/public.lob.com/assets/card_horizontal.pdf()")
+createdCard, _, _ := apiClient.CardsApi.Create(context).CardEditable(suite.cardEditable).Execute()
+var updatedCard = *lob.NewCardUpdatable()
+updatedCard.SetDescription("Card was updated")
+
+resp, _, err := suite.apiClient.CardsApi.Update(context, createdCard.Id).CardUpdatable(updatedCard).Execute()
+
+if err != nil {
+    return err
+}
+```
 
 ## CardOrders Api
 
@@ -1193,3 +1558,107 @@ if err != nil {
 ```
 
 
+## ZipLookups Api
+
+### ZipLookup
+```bash
+curl https://api.lob.com/v1/us_zip_lookups \
+  -u test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc: \
+  -d "zip_code=94107"
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(context, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+var zipEditable = *lob.NewZipEditable()
+zipEditable.SetZipCode("94107")
+
+resp, _, err := apiClient.ZipLookupsApi.Lookup(context).ZipEditable(zipEditable).Execute()
+
+if err != nil {
+    return err
+}
+```
+
+## Reverse Geocode Lookups Api
+
+### Reverse Geocode Lookup
+```bash
+curl https://api.lob.com/v1/us_reverse_geocode_lookups \
+  -u <YOUR_LIVE_API_KEY>: \
+  -d "latitude=37.777456" \
+  -d "longitude=-122.393039" \
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(context, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+var location = *lob.NewLocationWithDefaults()
+location.SetLatitude(37.777456)
+location.SetLongitude(122.393039)
+
+resp, _, err := apiClient.ReverseGeocodeLookupsApi.Lookup(context).Location(location).Execute()
+
+if err != nil {
+    return err
+}
+```
+
+## USAutoCompletions Api
+
+### Autocomplete
+```bash
+curl https://api.lob.com/v1/us_autocompletions \
+  -u <YOUR_LIVE_API_KEY>: \
+  -d "address_prefix=185 B" \
+  -d "city=San Francisco" \
+  -d "state=CA" \
+  -d "zip_code=94017" \
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(context, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+var usAutocomplationsWritable = *lob.NewUsAutocompletionsWritable("340 Wat")
+
+resp, _, err := suite.apiClient.UsAutocompletionsApi.Autocomplete(suite.ctx).UsAutocompletionsWritable(suite.usAutocomplationsWritable).Execute()
+
+if err != nil {
+    return err
+}
+```
+
+## IntlAutocompletion Api
+
+### IntlAutocompletion
+```bash
+curl https://api.lob.com/v1/intl_autocompletions \
+  -u <YOUR_LIVE_API_KEY>: \
+  -d "address_prefix=340 Wat" \
+  -d "city=Summerside" \
+  -d "state=Prince Edward Island" \
+  -d "zip_code=C1N 1C4" \
+  -d "country=CA" \
+```
+
+```go
+var context = context.Background()
+context = context.WithValue(context, lob.ContextBasicAuth, lob.BasicAuth{UserName: os.Getenv("<YOUR_API_KEY>")})
+
+var apiClient = *lob.NewAPIClient(configuration)
+
+resp, _, err := suite.apiClient.IntlAutocompletionsApi.Autocomplete(context).IntlAutocompletionsWritable(suite.intlAutocomplationsWritable).Execute()
+
+if err != nil {
+    return err
+}
+```
