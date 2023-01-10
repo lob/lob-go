@@ -26,6 +26,7 @@ $ go install github.com/lob/lob-go@latest
 ```go
 import (
   "context"
+  "os"
   lob "github.com/lob/lob-go"
 )
 ctx := context.Background()
