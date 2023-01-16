@@ -50,13 +50,14 @@ type CheckEditable struct {
 	Message *string `json:"message,omitempty"`
 	// An optional string with the billing group ID to tag your usage with. Is used for billing purposes. Requires special activation to use. See [Billing Group API](https://lob.github.io/lob-openapi/#tag/Billing-Groups) for more information.
 	BillingGroupId *string `json:"billing_group_id,omitempty"`
+	UseType NullableChkUseType `json:"use_type"`
 }
 
 // NewCheckEditable instantiates a new CheckEditable object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCheckEditable(from interface{}, to interface{}, bankAccount NullableString, amount float32) *CheckEditable {
+func NewCheckEditable(from interface{}, to interface{}, bankAccount NullableString, amount float32, useType NullableChkUseType) *CheckEditable {
 	this := CheckEditable{}
 	this.From = from
 	this.To = to
@@ -64,6 +65,7 @@ func NewCheckEditable(from interface{}, to interface{}, bankAccount NullableStri
 	this.Amount = amount
 	var mailType string = "usps_first_class"
 	this.MailType = &mailType
+	this.UseType = useType
 	return &this
 }
 
@@ -584,6 +586,32 @@ func (o *CheckEditable) SetBillingGroupId(v string) {
 	o.BillingGroupId = &v
 }
 
+// GetUseType returns the UseType field value
+// If the value is explicit nil, the zero value for ChkUseType will be returned
+func (o *CheckEditable) GetUseType() ChkUseType {
+	if o == nil || o.UseType.Get() == nil {
+		var ret ChkUseType
+		return ret
+	}
+
+	return *o.UseType.Get()
+}
+
+// GetUseTypeOk returns a tuple with the UseType field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CheckEditable) GetUseTypeOk() (*ChkUseType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UseType.Get(), o.UseType.IsSet()
+}
+
+// SetUseType sets field value
+func (o *CheckEditable) SetUseType(v ChkUseType) {
+	o.UseType.Set(&v)
+}
+
 func (o CheckEditable) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.From != nil {
@@ -633,6 +661,9 @@ func (o CheckEditable) MarshalJSON() ([]byte, error) {
 	}
 	if o.BillingGroupId != nil {
 		toSerialize["billing_group_id"] = o.BillingGroupId
+	}
+	if true {
+		toSerialize["use_type"] = o.UseType.Get()
 	}
 	return json.Marshal(toSerialize)
 }

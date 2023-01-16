@@ -34,7 +34,8 @@ func (suite *PostcardsTestSuite) SetupTest() {
 
 	suite.addressEditableList = CreateAddressesEditableList() // AddressEditable
 
-	suite.postcardEditable = *lob.NewPostcardEditable(suite.addressEditableList[0], GetFileLocation4x6(), GetFileLocation4x6())
+	useType := *lob.NewNullablePscUseType(lob.PSCUSETYPE_MARKETING.Ptr())
+	suite.postcardEditable = *lob.NewPostcardEditable(suite.addressEditableList[0], GetFileLocation4x6(), GetFileLocation4x6(), useType)
 }
 
 func (suite *PostcardsTestSuite) TestPostcardsCreate() {

@@ -49,7 +49,8 @@ func (suite *LetterTestSuite) SetupTest() {
 	suite.apiClient.BankAccountsApi.Verify(suite.ctx, suite.mockAccount.Id).BankAccountVerify(suite.mockVerify).Execute()
 
 	suite.addressEditableList = CreateAddressesEditableList()
-	suite.letterEditable = *lob.NewLetterEditable(false, suite.addressEditableList[0], suite.addressEditableList[1], GetFileLocation8x11())
+	useType := *lob.NewNullableLtrUseType(lob.LTRUSETYPE_MARKETING.Ptr())
+	suite.letterEditable = *lob.NewLetterEditable(false, suite.addressEditableList[0], suite.addressEditableList[1], GetFileLocation8x11(), useType)
 }
 
 func (suite *LetterTestSuite) TestLetterCreate() {

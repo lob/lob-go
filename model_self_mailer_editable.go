@@ -39,13 +39,14 @@ type SelfMailerEditable struct {
 	Outside string `json:"outside"`
 	// An optional string with the billing group ID to tag your usage with. Is used for billing purposes. Requires special activation to use. See [Billing Group API](https://lob.github.io/lob-openapi/#tag/Billing-Groups) for more information.
 	BillingGroupId *string `json:"billing_group_id,omitempty"`
+	UseType NullableSfmUseType `json:"use_type"`
 }
 
 // NewSelfMailerEditable instantiates a new SelfMailerEditable object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSelfMailerEditable(to interface{}, inside string, outside string) *SelfMailerEditable {
+func NewSelfMailerEditable(to interface{}, inside string, outside string, useType NullableSfmUseType) *SelfMailerEditable {
 	this := SelfMailerEditable{}
 	this.To = to
 	var size SelfMailerSize = SELFMAILERSIZE__6X18_BIFOLD
@@ -54,6 +55,7 @@ func NewSelfMailerEditable(to interface{}, inside string, outside string) *SelfM
 	this.MailType = &mailType
 	this.Inside = inside
 	this.Outside = outside
+	this.UseType = useType
 	return &this
 }
 
@@ -411,6 +413,32 @@ func (o *SelfMailerEditable) SetBillingGroupId(v string) {
 	o.BillingGroupId = &v
 }
 
+// GetUseType returns the UseType field value
+// If the value is explicit nil, the zero value for SfmUseType will be returned
+func (o *SelfMailerEditable) GetUseType() SfmUseType {
+	if o == nil || o.UseType.Get() == nil {
+		var ret SfmUseType
+		return ret
+	}
+
+	return *o.UseType.Get()
+}
+
+// GetUseTypeOk returns a tuple with the UseType field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SelfMailerEditable) GetUseTypeOk() (*SfmUseType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UseType.Get(), o.UseType.IsSet()
+}
+
+// SetUseType sets field value
+func (o *SelfMailerEditable) SetUseType(v SfmUseType) {
+	o.UseType.Set(&v)
+}
+
 func (o SelfMailerEditable) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.To != nil {
@@ -445,6 +473,9 @@ func (o SelfMailerEditable) MarshalJSON() ([]byte, error) {
 	}
 	if o.BillingGroupId != nil {
 		toSerialize["billing_group_id"] = o.BillingGroupId
+	}
+	if true {
+		toSerialize["use_type"] = o.UseType.Get()
 	}
 	return json.Marshal(toSerialize)
 }

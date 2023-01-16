@@ -56,11 +56,19 @@ type APIClient struct {
 
 	BillingGroupsApi *BillingGroupsApiService
 
+	BuckslipOrdersApi *BuckslipOrdersApiService
+
+	BuckslipsApi *BuckslipsApiService
+
+	CampaignsApi *CampaignsApiService
+
 	CardOrdersApi *CardOrdersApiService
 
 	CardsApi *CardsApiService
 
 	ChecksApi *ChecksApiService
+
+	CreativesApi *CreativesApiService
 
 	DefaultApi *DefaultApiService
 
@@ -108,9 +116,13 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AddressesApi = (*AddressesApiService)(&c.common)
 	c.BankAccountsApi = (*BankAccountsApiService)(&c.common)
 	c.BillingGroupsApi = (*BillingGroupsApiService)(&c.common)
+	c.BuckslipOrdersApi = (*BuckslipOrdersApiService)(&c.common)
+	c.BuckslipsApi = (*BuckslipsApiService)(&c.common)
+	c.CampaignsApi = (*CampaignsApiService)(&c.common)
 	c.CardOrdersApi = (*CardOrdersApiService)(&c.common)
 	c.CardsApi = (*CardsApiService)(&c.common)
 	c.ChecksApi = (*ChecksApiService)(&c.common)
+	c.CreativesApi = (*CreativesApiService)(&c.common)
 	c.DefaultApi = (*DefaultApiService)(&c.common)
 	c.IdentityValidationApi = (*IdentityValidationApiService)(&c.common)
 	c.IntlAutocompletionsApi = (*IntlAutocompletionsApiService)(&c.common)

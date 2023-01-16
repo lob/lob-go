@@ -18,20 +18,21 @@ import (
 
 // UploadWritable struct for UploadWritable
 type UploadWritable struct {
-	// Unique identifier prefixed with `cmp_`.
 	CampaignId string `json:"campaignId"`
-	// The mapping of column headers in your file to Lob-required fields for the resource created. See our <a href=\"https://help.lob.com/best-practices/campaign-audience-guide\" target=\"_blank\">Campaign Audience Guide</a> for additional details.
-	ColumnMapping map[string]interface{} `json:"columnMapping"`
+	RequiredAddressColumnMapping *RequiredAddressColumnMapping `json:"requiredAddressColumnMapping,omitempty"`
+	OptionalAddressColumnMapping *OptionalAddressColumnMapping `json:"optionalAddressColumnMapping,omitempty"`
+	Metadata *UploadsMetadata `json:"metadata,omitempty"`
+	// The mapping of column headers in your file to the merge variables present in your creative. See our <a href=\"https://help.lob.com/print-and-mail/building-a-mail-strategy/campaign-or-triggered-sends/campaign-audience-guide#step-3-map-merge-variable-data-if-applicable-7\" target=\"_blank\">Campaign Audience Guide</a> for additional details. <br />If a merge variable has the same \"name\" as a \"key\" in the `requiredAddressColumnMapping` or `optionalAddressColumnMapping` objects, then they **CANNOT** have a different value in this object. If a different value is provided, then when the campaign is processing it will get overwritten with the mapped value present in the `requiredAddressColumnMapping` or `optionalAddressColumnMapping` objects.
+	MergeVariableColumnMapping map[string]interface{} `json:"mergeVariableColumnMapping,omitempty"`
 }
 
 // NewUploadWritable instantiates a new UploadWritable object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUploadWritable(campaignId string, columnMapping map[string]interface{}) *UploadWritable {
+func NewUploadWritable(campaignId string) *UploadWritable {
 	this := UploadWritable{}
 	this.CampaignId = campaignId
-	this.ColumnMapping = columnMapping
 	return &this
 }
 
@@ -67,28 +68,133 @@ func (o *UploadWritable) SetCampaignId(v string) {
 	o.CampaignId = v
 }
 
-// GetColumnMapping returns the ColumnMapping field value
-func (o *UploadWritable) GetColumnMapping() map[string]interface{} {
+// GetRequiredAddressColumnMapping returns the RequiredAddressColumnMapping field value if set, zero value otherwise.
+func (o *UploadWritable) GetRequiredAddressColumnMapping() RequiredAddressColumnMapping {
+	if o == nil || o.RequiredAddressColumnMapping == nil {
+		var ret RequiredAddressColumnMapping
+		return ret
+	}
+	return *o.RequiredAddressColumnMapping
+}
+
+// GetRequiredAddressColumnMappingOk returns a tuple with the RequiredAddressColumnMapping field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UploadWritable) GetRequiredAddressColumnMappingOk() (*RequiredAddressColumnMapping, bool) {
+	if o == nil || o.RequiredAddressColumnMapping == nil {
+		return nil, false
+	}
+	return o.RequiredAddressColumnMapping, true
+}
+
+// HasRequiredAddressColumnMapping returns a boolean if a field has been set.
+func (o *UploadWritable) HasRequiredAddressColumnMapping() bool {
+	if o != nil && o.RequiredAddressColumnMapping != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRequiredAddressColumnMapping gets a reference to the given RequiredAddressColumnMapping and assigns it to the RequiredAddressColumnMapping field.
+func (o *UploadWritable) SetRequiredAddressColumnMapping(v RequiredAddressColumnMapping) {
+	o.RequiredAddressColumnMapping = &v
+}
+
+// GetOptionalAddressColumnMapping returns the OptionalAddressColumnMapping field value if set, zero value otherwise.
+func (o *UploadWritable) GetOptionalAddressColumnMapping() OptionalAddressColumnMapping {
+	if o == nil || o.OptionalAddressColumnMapping == nil {
+		var ret OptionalAddressColumnMapping
+		return ret
+	}
+	return *o.OptionalAddressColumnMapping
+}
+
+// GetOptionalAddressColumnMappingOk returns a tuple with the OptionalAddressColumnMapping field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UploadWritable) GetOptionalAddressColumnMappingOk() (*OptionalAddressColumnMapping, bool) {
+	if o == nil || o.OptionalAddressColumnMapping == nil {
+		return nil, false
+	}
+	return o.OptionalAddressColumnMapping, true
+}
+
+// HasOptionalAddressColumnMapping returns a boolean if a field has been set.
+func (o *UploadWritable) HasOptionalAddressColumnMapping() bool {
+	if o != nil && o.OptionalAddressColumnMapping != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOptionalAddressColumnMapping gets a reference to the given OptionalAddressColumnMapping and assigns it to the OptionalAddressColumnMapping field.
+func (o *UploadWritable) SetOptionalAddressColumnMapping(v OptionalAddressColumnMapping) {
+	o.OptionalAddressColumnMapping = &v
+}
+
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *UploadWritable) GetMetadata() UploadsMetadata {
+	if o == nil || o.Metadata == nil {
+		var ret UploadsMetadata
+		return ret
+	}
+	return *o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UploadWritable) GetMetadataOk() (*UploadsMetadata, bool) {
+	if o == nil || o.Metadata == nil {
+		return nil, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *UploadWritable) HasMetadata() bool {
+	if o != nil && o.Metadata != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given UploadsMetadata and assigns it to the Metadata field.
+func (o *UploadWritable) SetMetadata(v UploadsMetadata) {
+	o.Metadata = &v
+}
+
+// GetMergeVariableColumnMapping returns the MergeVariableColumnMapping field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UploadWritable) GetMergeVariableColumnMapping() map[string]interface{} {
 	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
-
-	return o.ColumnMapping
+	return o.MergeVariableColumnMapping
 }
 
-// GetColumnMappingOk returns a tuple with the ColumnMapping field value
+// GetMergeVariableColumnMappingOk returns a tuple with the MergeVariableColumnMapping field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UploadWritable) GetColumnMappingOk() (map[string]interface{}, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UploadWritable) GetMergeVariableColumnMappingOk() (map[string]interface{}, bool) {
+	if o == nil || o.MergeVariableColumnMapping == nil {
 		return nil, false
 	}
-	return o.ColumnMapping, true
+	return o.MergeVariableColumnMapping, true
 }
 
-// SetColumnMapping sets field value
-func (o *UploadWritable) SetColumnMapping(v map[string]interface{}) {
-	o.ColumnMapping = v
+// HasMergeVariableColumnMapping returns a boolean if a field has been set.
+func (o *UploadWritable) HasMergeVariableColumnMapping() bool {
+	if o != nil && o.MergeVariableColumnMapping != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMergeVariableColumnMapping gets a reference to the given map[string]interface{} and assigns it to the MergeVariableColumnMapping field.
+func (o *UploadWritable) SetMergeVariableColumnMapping(v map[string]interface{}) {
+	o.MergeVariableColumnMapping = v
 }
 
 func (o UploadWritable) MarshalJSON() ([]byte, error) {
@@ -96,8 +202,17 @@ func (o UploadWritable) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["campaignId"] = o.CampaignId
 	}
-	if true {
-		toSerialize["columnMapping"] = o.ColumnMapping
+	if o.RequiredAddressColumnMapping != nil {
+		toSerialize["requiredAddressColumnMapping"] = o.RequiredAddressColumnMapping
+	}
+	if o.OptionalAddressColumnMapping != nil {
+		toSerialize["optionalAddressColumnMapping"] = o.OptionalAddressColumnMapping
+	}
+	if o.Metadata != nil {
+		toSerialize["metadata"] = o.Metadata
+	}
+	if o.MergeVariableColumnMapping != nil {
+		toSerialize["mergeVariableColumnMapping"] = o.MergeVariableColumnMapping
 	}
 	return json.Marshal(toSerialize)
 }

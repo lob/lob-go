@@ -44,8 +44,6 @@ type CampaignUpdatable struct {
 // will change when the set of required properties is changed
 func NewCampaignUpdatable() *CampaignUpdatable {
 	this := CampaignUpdatable{}
-	var isDraft bool = true
-	this.IsDraft = &isDraft
 	return &this
 }
 
@@ -54,8 +52,6 @@ func NewCampaignUpdatable() *CampaignUpdatable {
 // but it doesn't guarantee that properties required by API are set
 func NewCampaignUpdatableWithDefaults() *CampaignUpdatable {
 	this := CampaignUpdatable{}
-	var isDraft bool = true
-	this.IsDraft = &isDraft
 	return &this
 }
 

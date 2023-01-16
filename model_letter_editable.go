@@ -51,13 +51,15 @@ type LetterEditable struct {
 	Cards []string `json:"cards,omitempty"`
 	// An optional string with the billing group ID to tag your usage with. Is used for billing purposes. Requires special activation to use. See [Billing Group API](https://lob.github.io/lob-openapi/#tag/Billing-Groups) for more information.
 	BillingGroupId *string `json:"billing_group_id,omitempty"`
+	QrCode *QrCode `json:"qr_code,omitempty"`
+	UseType NullableLtrUseType `json:"use_type"`
 }
 
 // NewLetterEditable instantiates a new LetterEditable object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLetterEditable(color bool, to interface{}, from interface{}, file string) *LetterEditable {
+func NewLetterEditable(color bool, to interface{}, from interface{}, file string, useType NullableLtrUseType) *LetterEditable {
 	this := LetterEditable{}
 	var mailType MailType = MAILTYPE_FIRST_CLASS
 	this.MailType = &mailType
@@ -69,6 +71,7 @@ func NewLetterEditable(color bool, to interface{}, from interface{}, file string
 	this.To = to
 	this.From = from
 	this.File = file
+	this.UseType = useType
 	return &this
 }
 
@@ -645,6 +648,64 @@ func (o *LetterEditable) SetBillingGroupId(v string) {
 	o.BillingGroupId = &v
 }
 
+// GetQrCode returns the QrCode field value if set, zero value otherwise.
+func (o *LetterEditable) GetQrCode() QrCode {
+	if o == nil || o.QrCode == nil {
+		var ret QrCode
+		return ret
+	}
+	return *o.QrCode
+}
+
+// GetQrCodeOk returns a tuple with the QrCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LetterEditable) GetQrCodeOk() (*QrCode, bool) {
+	if o == nil || o.QrCode == nil {
+		return nil, false
+	}
+	return o.QrCode, true
+}
+
+// HasQrCode returns a boolean if a field has been set.
+func (o *LetterEditable) HasQrCode() bool {
+	if o != nil && o.QrCode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQrCode gets a reference to the given QrCode and assigns it to the QrCode field.
+func (o *LetterEditable) SetQrCode(v QrCode) {
+	o.QrCode = &v
+}
+
+// GetUseType returns the UseType field value
+// If the value is explicit nil, the zero value for LtrUseType will be returned
+func (o *LetterEditable) GetUseType() LtrUseType {
+	if o == nil || o.UseType.Get() == nil {
+		var ret LtrUseType
+		return ret
+	}
+
+	return *o.UseType.Get()
+}
+
+// GetUseTypeOk returns a tuple with the UseType field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LetterEditable) GetUseTypeOk() (*LtrUseType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UseType.Get(), o.UseType.IsSet()
+}
+
+// SetUseType sets field value
+func (o *LetterEditable) SetUseType(v LtrUseType) {
+	o.UseType.Set(&v)
+}
+
 func (o LetterEditable) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Description.IsSet() {
@@ -697,6 +758,12 @@ func (o LetterEditable) MarshalJSON() ([]byte, error) {
 	}
 	if o.BillingGroupId != nil {
 		toSerialize["billing_group_id"] = o.BillingGroupId
+	}
+	if o.QrCode != nil {
+		toSerialize["qr_code"] = o.QrCode
+	}
+	if true {
+		toSerialize["use_type"] = o.UseType.Get()
 	}
 	return json.Marshal(toSerialize)
 }

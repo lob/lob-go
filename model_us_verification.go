@@ -32,6 +32,8 @@ type UsVerification struct {
 	LastLine *string `json:"last_line,omitempty"`
 	// Summarizes the deliverability of the `us_verification` object. For full details, see the `deliverability_analysis` field. Possible values are: * `deliverable` – The address is deliverable by the USPS. * `deliverable_unnecessary_unit` – The address is deliverable, but the secondary unit information is unnecessary. * `deliverable_incorrect_unit` – The address is deliverable to the building's default address but the secondary unit provided may not exist. There is a chance the mail will not reach the intended recipient. * `deliverable_missing_unit` – The address is deliverable to the building's default address but is missing secondary unit information. There is a chance the mail will not reach the intended recipient. * `undeliverable` – The address is not deliverable according to the USPS. 
 	Deliverability *string `json:"deliverability,omitempty"`
+	// This field indicates whether an address was found in a more comprehensive address dataset that includes sources from the USPS, open source mapping data, and our proprietary mail delivery data. This field can be interpreted as a representation of whether an address is a real location or not. Additionally a valid address may contradict the deliverability field since an address can be a real valid location but the USPS may not deliver to that address. 
+	ValidAddress *bool `json:"valid_address,omitempty"`
 	Components *UsComponents `json:"components,omitempty"`
 	DeliverabilityAnalysis *DeliverabilityAnalysis `json:"deliverability_analysis,omitempty"`
 	LobConfidenceScore *LobConfidenceScore `json:"lob_confidence_score,omitempty"`
@@ -293,6 +295,38 @@ func (o *UsVerification) SetDeliverability(v string) {
 	o.Deliverability = &v
 }
 
+// GetValidAddress returns the ValidAddress field value if set, zero value otherwise.
+func (o *UsVerification) GetValidAddress() bool {
+	if o == nil || o.ValidAddress == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ValidAddress
+}
+
+// GetValidAddressOk returns a tuple with the ValidAddress field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsVerification) GetValidAddressOk() (*bool, bool) {
+	if o == nil || o.ValidAddress == nil {
+		return nil, false
+	}
+	return o.ValidAddress, true
+}
+
+// HasValidAddress returns a boolean if a field has been set.
+func (o *UsVerification) HasValidAddress() bool {
+	if o != nil && o.ValidAddress != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetValidAddress gets a reference to the given bool and assigns it to the ValidAddress field.
+func (o *UsVerification) SetValidAddress(v bool) {
+	o.ValidAddress = &v
+}
+
 // GetComponents returns the Components field value if set, zero value otherwise.
 func (o *UsVerification) GetComponents() UsComponents {
 	if o == nil || o.Components == nil {
@@ -443,6 +477,9 @@ func (o UsVerification) MarshalJSON() ([]byte, error) {
 	}
 	if o.Deliverability != nil {
 		toSerialize["deliverability"] = o.Deliverability
+	}
+	if o.ValidAddress != nil {
+		toSerialize["valid_address"] = o.ValidAddress
 	}
 	if o.Components != nil {
 		toSerialize["components"] = o.Components

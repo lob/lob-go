@@ -34,7 +34,7 @@ type Campaign struct {
 	CancelWindowCampaignMinutes NullableInt32 `json:"cancel_window_campaign_minutes,omitempty"`
 	// Use metadata to store custom information for tagging and labeling back to your internal systems. Must be an object with up to 20 key-value pairs. Keys must be at most 40 characters and values must be at most 500 characters. Neither can contain the characters `\"` and `\\`. i.e. '{\"customer_id\" : \"NEWYORK2015\"}' Nested objects are not supported.  See [Metadata](#section/Metadata) for more information.
 	Metadata *map[string]string `json:"metadata,omitempty"`
-	UseType NullableCmpUseType `json:"use_type,omitempty"`
+	UseType NullableCmpUseType `json:"use_type"`
 	// Whether or not a mail piece should be automatically canceled and not sent if the address is updated via NCOA.
 	AutoCancelIfNcoa bool `json:"auto_cancel_if_ncoa"`
 	// Unique identifier prefixed with `cmp_`.
@@ -59,10 +59,11 @@ type Campaign struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCampaign(name string, scheduleType CmpScheduleType, autoCancelIfNcoa bool, id string, isDraft bool, creatives []CampaignCreative, dateCreated time.Time, dateModified time.Time, object string) *Campaign {
+func NewCampaign(name string, scheduleType CmpScheduleType, useType NullableCmpUseType, autoCancelIfNcoa bool, id string, isDraft bool, creatives []CampaignCreative, dateCreated time.Time, dateModified time.Time, object string) *Campaign {
 	this := Campaign{}
 	this.Name = name
 	this.ScheduleType = scheduleType
+	this.UseType = useType
 	this.AutoCancelIfNcoa = autoCancelIfNcoa
 	this.Id = id
 	this.IsDraft = isDraft
@@ -375,16 +376,18 @@ func (o *Campaign) SetMetadata(v map[string]string) {
 	o.Metadata = &v
 }
 
-// GetUseType returns the UseType field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetUseType returns the UseType field value
+// If the value is explicit nil, the zero value for CmpUseType will be returned
 func (o *Campaign) GetUseType() CmpUseType {
 	if o == nil || o.UseType.Get() == nil {
 		var ret CmpUseType
 		return ret
 	}
+
 	return *o.UseType.Get()
 }
 
-// GetUseTypeOk returns a tuple with the UseType field value if set, nil otherwise
+// GetUseTypeOk returns a tuple with the UseType field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Campaign) GetUseTypeOk() (*CmpUseType, bool) {
@@ -394,27 +397,9 @@ func (o *Campaign) GetUseTypeOk() (*CmpUseType, bool) {
 	return o.UseType.Get(), o.UseType.IsSet()
 }
 
-// HasUseType returns a boolean if a field has been set.
-func (o *Campaign) HasUseType() bool {
-	if o != nil && o.UseType.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetUseType gets a reference to the given NullableCmpUseType and assigns it to the UseType field.
+// SetUseType sets field value
 func (o *Campaign) SetUseType(v CmpUseType) {
 	o.UseType.Set(&v)
-}
-// SetUseTypeNil sets the value for UseType to be an explicit nil
-func (o *Campaign) SetUseTypeNil() {
-	o.UseType.Set(nil)
-}
-
-// UnsetUseType ensures that no value is present for UseType, not even an explicit nil
-func (o *Campaign) UnsetUseType() {
-	o.UseType.Unset()
 }
 
 // GetAutoCancelIfNcoa returns the AutoCancelIfNcoa field value
@@ -675,7 +660,7 @@ func (o Campaign) MarshalJSON() ([]byte, error) {
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
-	if o.UseType.IsSet() {
+	if true {
 		toSerialize["use_type"] = o.UseType.Get()
 	}
 	if true {

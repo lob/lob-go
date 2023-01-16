@@ -47,13 +47,14 @@ type SelfMailer struct {
 	TrackingEvents []TrackingEventCertified `json:"tracking_events,omitempty"`
 	// A [signed link](#section/Asset-URLs) served over HTTPS. The link returned will expire in 30 days to prevent mis-sharing. Each time a GET request is initiated, a new signed URL will be generated.
 	Url string `json:"url"`
+	UseType NullableSfmUseType `json:"use_type"`
 }
 
 // NewSelfMailer instantiates a new SelfMailer object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSelfMailer(id string, to interface{}, url string) *SelfMailer {
+func NewSelfMailer(id string, to interface{}, url string, useType NullableSfmUseType) *SelfMailer {
 	this := SelfMailer{}
 	this.Id = id
 	this.To = to
@@ -64,6 +65,7 @@ func NewSelfMailer(id string, to interface{}, url string) *SelfMailer {
 	var object string = "self_mailer"
 	this.Object = &object
 	this.Url = url
+	this.UseType = useType
 	return &this
 }
 
@@ -623,6 +625,32 @@ func (o *SelfMailer) SetUrl(v string) {
 	o.Url = v
 }
 
+// GetUseType returns the UseType field value
+// If the value is explicit nil, the zero value for SfmUseType will be returned
+func (o *SelfMailer) GetUseType() SfmUseType {
+	if o == nil || o.UseType.Get() == nil {
+		var ret SfmUseType
+		return ret
+	}
+
+	return *o.UseType.Get()
+}
+
+// GetUseTypeOk returns a tuple with the UseType field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SelfMailer) GetUseTypeOk() (*SfmUseType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UseType.Get(), o.UseType.IsSet()
+}
+
+// SetUseType sets field value
+func (o *SelfMailer) SetUseType(v SfmUseType) {
+	o.UseType.Set(&v)
+}
+
 func (o SelfMailer) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -672,6 +700,9 @@ func (o SelfMailer) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["url"] = o.Url
+	}
+	if true {
+		toSerialize["use_type"] = o.UseType.Get()
 	}
 	return json.Marshal(toSerialize)
 }

@@ -65,13 +65,14 @@ type Check struct {
 	DateModified time.Time `json:"date_modified"`
 	// Only returned if the resource has been successfully deleted.
 	Deleted *bool `json:"deleted,omitempty"`
+	UseType NullableChkUseType `json:"use_type"`
 }
 
 // NewCheck instantiates a new Check object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCheck(id string, to Address, amount float32, bankAccount BankAccount, url string, carrier string, object string, dateCreated time.Time, dateModified time.Time) *Check {
+func NewCheck(id string, to Address, amount float32, bankAccount BankAccount, url string, carrier string, object string, dateCreated time.Time, dateModified time.Time, useType NullableChkUseType) *Check {
 	this := Check{}
 	this.Id = id
 	this.To = to
@@ -84,6 +85,7 @@ func NewCheck(id string, to Address, amount float32, bankAccount BankAccount, ur
 	this.Object = object
 	this.DateCreated = dateCreated
 	this.DateModified = dateModified
+	this.UseType = useType
 	return &this
 }
 
@@ -883,6 +885,32 @@ func (o *Check) SetDeleted(v bool) {
 	o.Deleted = &v
 }
 
+// GetUseType returns the UseType field value
+// If the value is explicit nil, the zero value for ChkUseType will be returned
+func (o *Check) GetUseType() ChkUseType {
+	if o == nil || o.UseType.Get() == nil {
+		var ret ChkUseType
+		return ret
+	}
+
+	return *o.UseType.Get()
+}
+
+// GetUseTypeOk returns a tuple with the UseType field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Check) GetUseTypeOk() (*ChkUseType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UseType.Get(), o.UseType.IsSet()
+}
+
+// SetUseType sets field value
+func (o *Check) SetUseType(v ChkUseType) {
+	o.UseType.Set(&v)
+}
+
 func (o Check) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -962,6 +990,9 @@ func (o Check) MarshalJSON() ([]byte, error) {
 	}
 	if o.Deleted != nil {
 		toSerialize["deleted"] = o.Deleted
+	}
+	if true {
+		toSerialize["use_type"] = o.UseType.Get()
 	}
 	return json.Marshal(toSerialize)
 }

@@ -23,10 +23,6 @@ type Upload struct {
 	Id string `json:"id"`
 	// Account ID that made the request
 	AccountId string `json:"accountId"`
-	// Unique identifier prefixed with `cmp_`.
-	CampaignId string `json:"campaignId"`
-	// The mapping of column headers in your file to Lob-required fields for the resource created. See our <a href=\"https://help.lob.com/best-practices/campaign-audience-guide\" target=\"_blank\">Campaign Audience Guide</a> for additional details.
-	ColumnMapping map[string]interface{} `json:"columnMapping"`
 	// The environment in which the mailpieces were created. Today, will only be `live`.
 	Mode string `json:"mode"`
 	// Url where your campaign mailpiece failures can be retrieved
@@ -46,20 +42,21 @@ type Upload struct {
 	DateCreated time.Time `json:"dateCreated"`
 	// A timestamp in ISO 8601 format of the date the upload was last modified
 	DateModified time.Time `json:"dateModified"`
-	// Only returned if the resource has been successfully deleted.
-	Deleted *bool `json:"deleted,omitempty"`
+	RequiredAddressColumnMapping RequiredAddressColumnMapping `json:"requiredAddressColumnMapping"`
+	OptionalAddressColumnMapping OptionalAddressColumnMapping `json:"optionalAddressColumnMapping"`
+	Metadata UploadsMetadata `json:"metadata"`
+	// The mapping of column headers in your file to the merge variables present in your creative. See our <a href=\"https://help.lob.com/print-and-mail/building-a-mail-strategy/campaign-or-triggered-sends/campaign-audience-guide#step-3-map-merge-variable-data-if-applicable-7\" target=\"_blank\">Campaign Audience Guide</a> for additional details. <br />If a merge variable has the same \"name\" as a \"key\" in the `requiredAddressColumnMapping` or `optionalAddressColumnMapping` objects, then they **CANNOT** have a different value in this object. If a different value is provided, then when the campaign is processing it will get overwritten with the mapped value present in the `requiredAddressColumnMapping` or `optionalAddressColumnMapping` objects.
+	MergeVariableColumnMapping map[string]interface{} `json:"mergeVariableColumnMapping"`
 }
 
 // NewUpload instantiates a new Upload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpload(id string, accountId string, campaignId string, columnMapping map[string]interface{}, mode string, state UploadState, totalMailpieces int32, failedMailpieces int32, validatedMailpieces int32, bytesProcessed int32, dateCreated time.Time, dateModified time.Time) *Upload {
+func NewUpload(id string, accountId string, mode string, state UploadState, totalMailpieces int32, failedMailpieces int32, validatedMailpieces int32, bytesProcessed int32, dateCreated time.Time, dateModified time.Time, requiredAddressColumnMapping RequiredAddressColumnMapping, optionalAddressColumnMapping OptionalAddressColumnMapping, metadata UploadsMetadata, mergeVariableColumnMapping map[string]interface{}) *Upload {
 	this := Upload{}
 	this.Id = id
 	this.AccountId = accountId
-	this.CampaignId = campaignId
-	this.ColumnMapping = columnMapping
 	this.Mode = mode
 	this.State = state
 	this.TotalMailpieces = totalMailpieces
@@ -68,6 +65,10 @@ func NewUpload(id string, accountId string, campaignId string, columnMapping map
 	this.BytesProcessed = bytesProcessed
 	this.DateCreated = dateCreated
 	this.DateModified = dateModified
+	this.RequiredAddressColumnMapping = requiredAddressColumnMapping
+	this.OptionalAddressColumnMapping = optionalAddressColumnMapping
+	this.Metadata = metadata
+	this.MergeVariableColumnMapping = mergeVariableColumnMapping
 	return &this
 }
 
@@ -127,54 +128,6 @@ func (o *Upload) GetAccountIdOk() (*string, bool) {
 // SetAccountId sets field value
 func (o *Upload) SetAccountId(v string) {
 	o.AccountId = v
-}
-
-// GetCampaignId returns the CampaignId field value
-func (o *Upload) GetCampaignId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CampaignId
-}
-
-// GetCampaignIdOk returns a tuple with the CampaignId field value
-// and a boolean to check if the value has been set.
-func (o *Upload) GetCampaignIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CampaignId, true
-}
-
-// SetCampaignId sets field value
-func (o *Upload) SetCampaignId(v string) {
-	o.CampaignId = v
-}
-
-// GetColumnMapping returns the ColumnMapping field value
-func (o *Upload) GetColumnMapping() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-
-	return o.ColumnMapping
-}
-
-// GetColumnMappingOk returns a tuple with the ColumnMapping field value
-// and a boolean to check if the value has been set.
-func (o *Upload) GetColumnMappingOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ColumnMapping, true
-}
-
-// SetColumnMapping sets field value
-func (o *Upload) SetColumnMapping(v map[string]interface{}) {
-	o.ColumnMapping = v
 }
 
 // GetMode returns the Mode field value
@@ -433,36 +386,102 @@ func (o *Upload) SetDateModified(v time.Time) {
 	o.DateModified = v
 }
 
-// GetDeleted returns the Deleted field value if set, zero value otherwise.
-func (o *Upload) GetDeleted() bool {
-	if o == nil || o.Deleted == nil {
-		var ret bool
+// GetRequiredAddressColumnMapping returns the RequiredAddressColumnMapping field value
+func (o *Upload) GetRequiredAddressColumnMapping() RequiredAddressColumnMapping {
+	if o == nil {
+		var ret RequiredAddressColumnMapping
 		return ret
 	}
-	return *o.Deleted
+
+	return o.RequiredAddressColumnMapping
 }
 
-// GetDeletedOk returns a tuple with the Deleted field value if set, nil otherwise
+// GetRequiredAddressColumnMappingOk returns a tuple with the RequiredAddressColumnMapping field value
 // and a boolean to check if the value has been set.
-func (o *Upload) GetDeletedOk() (*bool, bool) {
-	if o == nil || o.Deleted == nil {
+func (o *Upload) GetRequiredAddressColumnMappingOk() (*RequiredAddressColumnMapping, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Deleted, true
+	return &o.RequiredAddressColumnMapping, true
 }
 
-// HasDeleted returns a boolean if a field has been set.
-func (o *Upload) HasDeleted() bool {
-	if o != nil && o.Deleted != nil {
-		return true
+// SetRequiredAddressColumnMapping sets field value
+func (o *Upload) SetRequiredAddressColumnMapping(v RequiredAddressColumnMapping) {
+	o.RequiredAddressColumnMapping = v
+}
+
+// GetOptionalAddressColumnMapping returns the OptionalAddressColumnMapping field value
+func (o *Upload) GetOptionalAddressColumnMapping() OptionalAddressColumnMapping {
+	if o == nil {
+		var ret OptionalAddressColumnMapping
+		return ret
 	}
 
-	return false
+	return o.OptionalAddressColumnMapping
 }
 
-// SetDeleted gets a reference to the given bool and assigns it to the Deleted field.
-func (o *Upload) SetDeleted(v bool) {
-	o.Deleted = &v
+// GetOptionalAddressColumnMappingOk returns a tuple with the OptionalAddressColumnMapping field value
+// and a boolean to check if the value has been set.
+func (o *Upload) GetOptionalAddressColumnMappingOk() (*OptionalAddressColumnMapping, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.OptionalAddressColumnMapping, true
+}
+
+// SetOptionalAddressColumnMapping sets field value
+func (o *Upload) SetOptionalAddressColumnMapping(v OptionalAddressColumnMapping) {
+	o.OptionalAddressColumnMapping = v
+}
+
+// GetMetadata returns the Metadata field value
+func (o *Upload) GetMetadata() UploadsMetadata {
+	if o == nil {
+		var ret UploadsMetadata
+		return ret
+	}
+
+	return o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value
+// and a boolean to check if the value has been set.
+func (o *Upload) GetMetadataOk() (*UploadsMetadata, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Metadata, true
+}
+
+// SetMetadata sets field value
+func (o *Upload) SetMetadata(v UploadsMetadata) {
+	o.Metadata = v
+}
+
+// GetMergeVariableColumnMapping returns the MergeVariableColumnMapping field value
+// If the value is explicit nil, the zero value for map[string]interface{} will be returned
+func (o *Upload) GetMergeVariableColumnMapping() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.MergeVariableColumnMapping
+}
+
+// GetMergeVariableColumnMappingOk returns a tuple with the MergeVariableColumnMapping field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Upload) GetMergeVariableColumnMappingOk() (map[string]interface{}, bool) {
+	if o == nil || o.MergeVariableColumnMapping == nil {
+		return nil, false
+	}
+	return o.MergeVariableColumnMapping, true
+}
+
+// SetMergeVariableColumnMapping sets field value
+func (o *Upload) SetMergeVariableColumnMapping(v map[string]interface{}) {
+	o.MergeVariableColumnMapping = v
 }
 
 func (o Upload) MarshalJSON() ([]byte, error) {
@@ -472,12 +491,6 @@ func (o Upload) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["accountId"] = o.AccountId
-	}
-	if true {
-		toSerialize["campaignId"] = o.CampaignId
-	}
-	if true {
-		toSerialize["columnMapping"] = o.ColumnMapping
 	}
 	if true {
 		toSerialize["mode"] = o.Mode
@@ -509,8 +522,17 @@ func (o Upload) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["dateModified"] = o.DateModified
 	}
-	if o.Deleted != nil {
-		toSerialize["deleted"] = o.Deleted
+	if true {
+		toSerialize["requiredAddressColumnMapping"] = o.RequiredAddressColumnMapping
+	}
+	if true {
+		toSerialize["optionalAddressColumnMapping"] = o.OptionalAddressColumnMapping
+	}
+	if true {
+		toSerialize["metadata"] = o.Metadata
+	}
+	if o.MergeVariableColumnMapping != nil {
+		toSerialize["mergeVariableColumnMapping"] = o.MergeVariableColumnMapping
 	}
 	return json.Marshal(toSerialize)
 }

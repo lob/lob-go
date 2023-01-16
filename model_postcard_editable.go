@@ -39,13 +39,15 @@ type PostcardEditable struct {
 	Back string `json:"back"`
 	// An optional string with the billing group ID to tag your usage with. Is used for billing purposes. Requires special activation to use. See [Billing Group API](https://lob.github.io/lob-openapi/#tag/Billing-Groups) for more information.
 	BillingGroupId *string `json:"billing_group_id,omitempty"`
+	QrCode *QrCode `json:"qr_code,omitempty"`
+	UseType NullablePscUseType `json:"use_type"`
 }
 
 // NewPostcardEditable instantiates a new PostcardEditable object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostcardEditable(to interface{}, front string, back string) *PostcardEditable {
+func NewPostcardEditable(to interface{}, front string, back string, useType NullablePscUseType) *PostcardEditable {
 	this := PostcardEditable{}
 	this.To = to
 	var size PostcardSize = POSTCARDSIZE__4X6
@@ -54,6 +56,7 @@ func NewPostcardEditable(to interface{}, front string, back string) *PostcardEdi
 	this.MailType = &mailType
 	this.Front = front
 	this.Back = back
+	this.UseType = useType
 	return &this
 }
 
@@ -411,6 +414,64 @@ func (o *PostcardEditable) SetBillingGroupId(v string) {
 	o.BillingGroupId = &v
 }
 
+// GetQrCode returns the QrCode field value if set, zero value otherwise.
+func (o *PostcardEditable) GetQrCode() QrCode {
+	if o == nil || o.QrCode == nil {
+		var ret QrCode
+		return ret
+	}
+	return *o.QrCode
+}
+
+// GetQrCodeOk returns a tuple with the QrCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PostcardEditable) GetQrCodeOk() (*QrCode, bool) {
+	if o == nil || o.QrCode == nil {
+		return nil, false
+	}
+	return o.QrCode, true
+}
+
+// HasQrCode returns a boolean if a field has been set.
+func (o *PostcardEditable) HasQrCode() bool {
+	if o != nil && o.QrCode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQrCode gets a reference to the given QrCode and assigns it to the QrCode field.
+func (o *PostcardEditable) SetQrCode(v QrCode) {
+	o.QrCode = &v
+}
+
+// GetUseType returns the UseType field value
+// If the value is explicit nil, the zero value for PscUseType will be returned
+func (o *PostcardEditable) GetUseType() PscUseType {
+	if o == nil || o.UseType.Get() == nil {
+		var ret PscUseType
+		return ret
+	}
+
+	return *o.UseType.Get()
+}
+
+// GetUseTypeOk returns a tuple with the UseType field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PostcardEditable) GetUseTypeOk() (*PscUseType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UseType.Get(), o.UseType.IsSet()
+}
+
+// SetUseType sets field value
+func (o *PostcardEditable) SetUseType(v PscUseType) {
+	o.UseType.Set(&v)
+}
+
 func (o PostcardEditable) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.To != nil {
@@ -445,6 +506,12 @@ func (o PostcardEditable) MarshalJSON() ([]byte, error) {
 	}
 	if o.BillingGroupId != nil {
 		toSerialize["billing_group_id"] = o.BillingGroupId
+	}
+	if o.QrCode != nil {
+		toSerialize["qr_code"] = o.QrCode
+	}
+	if true {
+		toSerialize["use_type"] = o.UseType.Get()
 	}
 	return json.Marshal(toSerialize)
 }

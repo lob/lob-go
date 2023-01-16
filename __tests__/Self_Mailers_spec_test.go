@@ -34,7 +34,8 @@ func (suite *SelfMailersTestSuite) SetupTest() {
 
 	suite.addressEditableList = CreateAddressesEditableList() // AddressEditable
 
-	suite.selfMailerEditable = *lob.NewSelfMailerEditable(suite.addressEditableList[0], GetFileLocation6x18(), GetFileLocation6x18())
+	useType := *lob.NewNullableSfmUseType(lob.SFMUSETYPE_MARKETING.Ptr())
+	suite.selfMailerEditable = *lob.NewSelfMailerEditable(suite.addressEditableList[0], GetFileLocation6x18(), GetFileLocation6x18(), useType)
 }
 
 func (suite *SelfMailersTestSuite) TestSelfMailersCreate() {

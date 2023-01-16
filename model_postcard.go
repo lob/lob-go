@@ -56,6 +56,7 @@ type Postcard struct {
 	MergeVariables map[string]interface{} `json:"merge_variables,omitempty"`
 	// A timestamp in ISO 8601 format which specifies a date after the current time and up to 180 days in the future to send the letter off for production. Setting a send date overrides the default [cancellation window](#section/Cancellation-Windows) applied to the mailpiece. Until the `send_date` has passed, the mailpiece can be canceled. If a date in the format `2017-11-01` is passed, it will evaluate to midnight UTC of that date (`2017-11-01T00:00:00.000Z`). If a datetime is passed, that exact time will be used. A `send_date` passed with no time zone will default to UTC, while a `send_date` passed with a time zone will be converted to UTC.
 	SendDate *time.Time `json:"send_date,omitempty"`
+	UseType NullablePscUseType `json:"use_type,omitempty"`
 }
 
 // NewPostcard instantiates a new Postcard object
@@ -833,6 +834,48 @@ func (o *Postcard) SetSendDate(v time.Time) {
 	o.SendDate = &v
 }
 
+// GetUseType returns the UseType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Postcard) GetUseType() PscUseType {
+	if o == nil || o.UseType.Get() == nil {
+		var ret PscUseType
+		return ret
+	}
+	return *o.UseType.Get()
+}
+
+// GetUseTypeOk returns a tuple with the UseType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Postcard) GetUseTypeOk() (*PscUseType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UseType.Get(), o.UseType.IsSet()
+}
+
+// HasUseType returns a boolean if a field has been set.
+func (o *Postcard) HasUseType() bool {
+	if o != nil && o.UseType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUseType gets a reference to the given NullablePscUseType and assigns it to the UseType field.
+func (o *Postcard) SetUseType(v PscUseType) {
+	o.UseType.Set(&v)
+}
+// SetUseTypeNil sets the value for UseType to be an explicit nil
+func (o *Postcard) SetUseTypeNil() {
+	o.UseType.Set(nil)
+}
+
+// UnsetUseType ensures that no value is present for UseType, not even an explicit nil
+func (o *Postcard) UnsetUseType() {
+	o.UseType.Unset()
+}
+
 func (o Postcard) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -900,6 +943,9 @@ func (o Postcard) MarshalJSON() ([]byte, error) {
 	}
 	if o.SendDate != nil {
 		toSerialize["send_date"] = o.SendDate
+	}
+	if o.UseType.IsSet() {
+		toSerialize["use_type"] = o.UseType.Get()
 	}
 	return json.Marshal(toSerialize)
 }

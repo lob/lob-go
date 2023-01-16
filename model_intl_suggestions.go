@@ -25,7 +25,7 @@ type IntlSuggestions struct {
 	City string `json:"city"`
 	// The [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) two letter code for the state. 
 	State string `json:"state"`
-	Country CountryExtendedExpanded `json:"country"`
+	Country CountryExtended `json:"country"`
 	// A 5-digit zip code. Left empty if a test key is used.
 	ZipCode string `json:"zip_code"`
 	// Value is resource type.
@@ -36,7 +36,7 @@ type IntlSuggestions struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIntlSuggestions(primaryNumberRange string, primaryLine string, city string, state string, country CountryExtendedExpanded, zipCode string) *IntlSuggestions {
+func NewIntlSuggestions(primaryNumberRange string, primaryLine string, city string, state string, country CountryExtended, zipCode string) *IntlSuggestions {
 	this := IntlSuggestions{}
 	this.PrimaryNumberRange = primaryNumberRange
 	this.PrimaryLine = primaryLine
@@ -156,9 +156,9 @@ func (o *IntlSuggestions) SetState(v string) {
 }
 
 // GetCountry returns the Country field value
-func (o *IntlSuggestions) GetCountry() CountryExtendedExpanded {
+func (o *IntlSuggestions) GetCountry() CountryExtended {
 	if o == nil {
-		var ret CountryExtendedExpanded
+		var ret CountryExtended
 		return ret
 	}
 
@@ -167,7 +167,7 @@ func (o *IntlSuggestions) GetCountry() CountryExtendedExpanded {
 
 // GetCountryOk returns a tuple with the Country field value
 // and a boolean to check if the value has been set.
-func (o *IntlSuggestions) GetCountryOk() (*CountryExtendedExpanded, bool) {
+func (o *IntlSuggestions) GetCountryOk() (*CountryExtended, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -175,7 +175,7 @@ func (o *IntlSuggestions) GetCountryOk() (*CountryExtendedExpanded, bool) {
 }
 
 // SetCountry sets field value
-func (o *IntlSuggestions) SetCountry(v CountryExtendedExpanded) {
+func (o *IntlSuggestions) SetCountry(v CountryExtended) {
 	o.Country = v
 }
 

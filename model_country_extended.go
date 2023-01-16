@@ -22,6 +22,7 @@ type CountryExtended string
 
 // List of country_extended
 const (
+	COUNTRYEXTENDED_EMPTY CountryExtended = ""
 	COUNTRYEXTENDED_AD CountryExtended = "AD"
 	COUNTRYEXTENDED_AE CountryExtended = "AE"
 	COUNTRYEXTENDED_AF CountryExtended = "AF"
@@ -244,6 +245,7 @@ const (
 
 // All allowed values of CountryExtended enum
 var AllowedCountryExtendedEnumValues = []CountryExtended{
+	"",
 	"AD",
 	"AE",
 	"AF",

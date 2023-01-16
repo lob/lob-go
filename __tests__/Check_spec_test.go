@@ -48,8 +48,9 @@ func (suite *CheckTestSuite) SetupTest() {
 	suite.mockVerify = *lob.NewBankAccountVerify(verifyAmounts)
 	suite.apiClient.BankAccountsApi.Verify(suite.ctx, suite.mockAccount.Id).BankAccountVerify(suite.mockVerify).Execute()
 
+	useType := *lob.NewNullableChkUseType(lob.CHKUSETYPE_MARKETING.Ptr())
 	suite.addressEditableList = CreateAddressesEditableList()
-	suite.checkEditable = *lob.NewCheckEditable(suite.addressEditableList[0], suite.addressEditableList[1], *lob.NewNullableString(&suite.mockAccount.Id), 100)
+	suite.checkEditable = *lob.NewCheckEditable(suite.addressEditableList[0], suite.addressEditableList[1], *lob.NewNullableString(&suite.mockAccount.Id), 100, useType)
 }
 
 func (suite *CheckTestSuite) TestCheckCreate() {

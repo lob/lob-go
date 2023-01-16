@@ -67,13 +67,16 @@ type Letter struct {
 	// Required if `return_envelope` is `true`. The number of the page that should be perforated for use with the return envelope. Must be greater than or equal to `1`. The blank page added by `address_placement=insert_blank_page` will be ignored when considering the perforated page number. To see how perforation will impact your letter design, view our [perforation guide](https://s3-us-west-2.amazonaws.com/public.lob.com/assets/templates/letter_perf_template.pdf).
 	PerforatedPage NullableInt32 `json:"perforated_page,omitempty"`
 	CustomEnvelope NullableLetterCustomEnvelope `json:"custom_envelope,omitempty"`
+	// The unique ID of the associated campaign if the resource was generated from a campaign.
+	CampaignId NullableString `json:"campaign_id,omitempty"`
+	UseType NullableLtrUseType `json:"use_type"`
 }
 
 // NewLetter instantiates a new Letter object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLetter(to Address, from Address, dateCreated time.Time, dateModified time.Time, id string, object string, returnEnvelope interface{}) *Letter {
+func NewLetter(to Address, from Address, dateCreated time.Time, dateModified time.Time, id string, object string, returnEnvelope interface{}, useType NullableLtrUseType) *Letter {
 	this := Letter{}
 	this.To = to
 	this.From = from
@@ -90,6 +93,7 @@ func NewLetter(to Address, from Address, dateCreated time.Time, dateModified tim
 	var addressPlacement string = "top_first_page"
 	this.AddressPlacement = &addressPlacement
 	this.ReturnEnvelope = returnEnvelope
+	this.UseType = useType
 	return &this
 }
 
@@ -995,6 +999,74 @@ func (o *Letter) UnsetCustomEnvelope() {
 	o.CustomEnvelope.Unset()
 }
 
+// GetCampaignId returns the CampaignId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Letter) GetCampaignId() string {
+	if o == nil || o.CampaignId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.CampaignId.Get()
+}
+
+// GetCampaignIdOk returns a tuple with the CampaignId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Letter) GetCampaignIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CampaignId.Get(), o.CampaignId.IsSet()
+}
+
+// HasCampaignId returns a boolean if a field has been set.
+func (o *Letter) HasCampaignId() bool {
+	if o != nil && o.CampaignId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCampaignId gets a reference to the given NullableString and assigns it to the CampaignId field.
+func (o *Letter) SetCampaignId(v string) {
+	o.CampaignId.Set(&v)
+}
+// SetCampaignIdNil sets the value for CampaignId to be an explicit nil
+func (o *Letter) SetCampaignIdNil() {
+	o.CampaignId.Set(nil)
+}
+
+// UnsetCampaignId ensures that no value is present for CampaignId, not even an explicit nil
+func (o *Letter) UnsetCampaignId() {
+	o.CampaignId.Unset()
+}
+
+// GetUseType returns the UseType field value
+// If the value is explicit nil, the zero value for LtrUseType will be returned
+func (o *Letter) GetUseType() LtrUseType {
+	if o == nil || o.UseType.Get() == nil {
+		var ret LtrUseType
+		return ret
+	}
+
+	return *o.UseType.Get()
+}
+
+// GetUseTypeOk returns a tuple with the UseType field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Letter) GetUseTypeOk() (*LtrUseType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UseType.Get(), o.UseType.IsSet()
+}
+
+// SetUseType sets field value
+func (o *Letter) SetUseType(v LtrUseType) {
+	o.UseType.Set(&v)
+}
+
 func (o Letter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -1080,6 +1152,12 @@ func (o Letter) MarshalJSON() ([]byte, error) {
 	}
 	if o.CustomEnvelope.IsSet() {
 		toSerialize["custom_envelope"] = o.CustomEnvelope.Get()
+	}
+	if o.CampaignId.IsSet() {
+		toSerialize["campaign_id"] = o.CampaignId.Get()
+	}
+	if true {
+		toSerialize["use_type"] = o.UseType.Get()
 	}
 	return json.Marshal(toSerialize)
 }
