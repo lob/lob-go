@@ -5,13 +5,13 @@ All URIs are relative to *https://api.lob.com/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Get_export**](UploadsApi.md#Get_export) | **Get** /uploads/{upl_id}/exports/{ex_id} | get_export
-[**Create_upload**](UploadsApi.md#Create_upload) | **Post** /uploads | create_upload
-[**Delete_upload**](UploadsApi.md#Delete_upload) | **Delete** /uploads/{upl_id} | delete_upload
+[**Get**](UploadsApi.md#Get) | **Get** /uploads/{upl_id} | get
+[**Create**](UploadsApi.md#Create) | **Post** /uploads | create
+[**Delete**](UploadsApi.md#Delete) | **Delete** /uploads/{upl_id} | delete
 [**Create_export**](UploadsApi.md#Create_export) | **Post** /uploads/{upl_id}/exports | create_export
 [**Upload_file**](UploadsApi.md#Upload_file) | **Post** /uploads/{upl_id}/file | upload_file
-[**Get_upload**](UploadsApi.md#Get_upload) | **Get** /uploads/{upl_id} | get_upload
-[**Update_upload**](UploadsApi.md#Update_upload) | **Patch** /uploads/{upl_id} | update_upload
-[**List_upload**](UploadsApi.md#List_upload) | **Get** /uploads | list_upload
+[**Update**](UploadsApi.md#Update) | **Patch** /uploads/{upl_id} | update
+[**List**](UploadsApi.md#List) | **Get** /uploads | list
 
 
 
@@ -88,11 +88,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UploadCreate
+## Get
 
-> Upload Create_upload(ctx).UploadWritable(uploadWritable).Execute()
+> Upload Get(ctx, uplId).Execute()
 
-create_upload
+get
 
 
 
@@ -109,17 +109,87 @@ import (
 )
 
 func main() {
-    uploadWritable := *openapiclient.NewUploadWritable("CampaignId_example") // UploadWritable | 
+    uplId := "uplId_example" // string | id of the upload
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UploadsApi.Create_upload(context.Background()).UploadWritable(uploadWritable).Execute()
+    resp, r, err := apiClient.UploadsApi.Get(context.Background(), uplId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UploadsApi.Create_upload``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UploadsApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Create_upload`: Upload
-    fmt.Fprintf(os.Stdout, "Response from `UploadsApi.Create_upload`: %v\n", resp)
+    // response from `Get`: Upload
+    fmt.Fprintf(os.Stdout, "Response from `UploadsApi.Get`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**uplId** | **string** | id of the upload | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**Upload**](Upload.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UploadCreate
+
+> Upload Create(ctx).UploadWritable(uploadWritable).Execute()
+
+create
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    uploadWritable := *openapiclient.NewUploadWritable(string(123)) // UploadWritable | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UploadsApi.Create(context.Background()).UploadWritable(uploadWritable).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UploadsApi.Create``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `Create`: Upload
+    fmt.Fprintf(os.Stdout, "Response from `UploadsApi.Create`: %v\n", resp)
 }
 ```
 
@@ -156,9 +226,9 @@ Name | Type | Description  | Notes
 
 ## UploadDelete
 
-> Delete_upload(ctx, uplId).Execute()
+> Delete(ctx, uplId).Execute()
 
-delete_upload
+delete
 
 
 
@@ -179,9 +249,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UploadsApi.Delete_upload(context.Background(), uplId).Execute()
+    resp, r, err := apiClient.UploadsApi.Delete(context.Background(), uplId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UploadsApi.Delete_upload``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UploadsApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -366,81 +436,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UploadRetrieve
-
-> Upload Get_upload(ctx, uplId).Execute()
-
-get_upload
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    uplId := "uplId_example" // string | id of the upload
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UploadsApi.Get_upload(context.Background(), uplId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UploadsApi.Get_upload``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `Get_upload`: Upload
-    fmt.Fprintf(os.Stdout, "Response from `UploadsApi.Get_upload`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**uplId** | **string** | id of the upload | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUploadRetrieveRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**Upload**](Upload.md)
-
-### Authorization
-
-[basicAuth](../README.md#basicAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## UploadUpdate
 
-> Upload Update_upload(ctx, uplId).UploadUpdatable(uploadUpdatable).Execute()
+> Upload Update(ctx, uplId).UploadUpdatable(uploadUpdatable).Execute()
 
-update_upload
+update
 
 
 
@@ -462,13 +462,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UploadsApi.Update_upload(context.Background(), uplId).UploadUpdatable(uploadUpdatable).Execute()
+    resp, r, err := apiClient.UploadsApi.Update(context.Background(), uplId).UploadUpdatable(uploadUpdatable).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UploadsApi.Update_upload``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UploadsApi.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Update_upload`: Upload
-    fmt.Fprintf(os.Stdout, "Response from `UploadsApi.Update_upload`: %v\n", resp)
+    // response from `Update`: Upload
+    fmt.Fprintf(os.Stdout, "Response from `UploadsApi.Update`: %v\n", resp)
 }
 ```
 
@@ -510,9 +510,9 @@ Name | Type | Description  | Notes
 
 ## UploadsList
 
-> []Upload List_upload(ctx).CampaignId(campaignId).Execute()
+> []Upload List(ctx).CampaignId(campaignId).Execute()
 
-list_upload
+list
 
 
 
@@ -533,13 +533,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UploadsApi.List_upload(context.Background()).CampaignId(campaignId).Execute()
+    resp, r, err := apiClient.UploadsApi.List(context.Background()).CampaignId(campaignId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UploadsApi.List_upload``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UploadsApi.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `List_upload`: []Upload
-    fmt.Fprintf(os.Stdout, "Response from `UploadsApi.List_upload`: %v\n", resp)
+    // response from `List`: []Upload
+    fmt.Fprintf(os.Stdout, "Response from `UploadsApi.List`: %v\n", resp)
 }
 ```
 

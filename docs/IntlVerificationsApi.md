@@ -30,7 +30,7 @@ import (
 )
 
 func main() {
-    intlVerificationsPayload := *openapiclient.NewIntlVerificationsPayload([]openapiclient.MultipleComponentsIntl{*openapiclient.NewMultipleComponentsIntl("PrimaryLine_example", openapiclient.country_extended("AD"))}) // IntlVerificationsPayload | 
+    intlVerificationsPayload := *openapiclient.NewIntlVerificationsPayload([]openapiclient.MultipleComponentsIntl{*openapiclient.NewMultipleComponentsIntl("PrimaryLine_example", openapiclient.country_extended(""))}) // IntlVerificationsPayload | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

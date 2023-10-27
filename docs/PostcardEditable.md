@@ -16,12 +16,13 @@ Name | Type | Description | Notes
 **Back** | **string** | The artwork to use as the back of your postcard.  | 
 **BillingGroupId** | Pointer to **string** | An optional string with the billing group ID to tag your usage with. Is used for billing purposes. Requires special activation to use. See [Billing Group API](https://lob.github.io/lob-openapi/#tag/Billing-Groups) for more information. | [optional] 
 **QrCode** | Pointer to [**QrCode**](QrCode.md) |  | [optional] 
+**UseType** | [**NullablePscUseType**](PscUseType.md) |  | 
 
 ## Methods
 
 ### NewPostcardEditable
 
-`func NewPostcardEditable(to interface{}, front string, back string, ) *PostcardEditable`
+`func NewPostcardEditable(to interface{}, front string, back string, useType NullablePscUseType, ) *PostcardEditable`
 
 NewPostcardEditable instantiates a new PostcardEditable object
 This constructor will assign default values to properties that have it defined,
@@ -361,6 +362,36 @@ SetQrCode sets QrCode field to given value.
 
 HasQrCode returns a boolean if a field has been set.
 
+### GetUseType
+
+`func (o *PostcardEditable) GetUseType() PscUseType`
+
+GetUseType returns the UseType field if non-nil, zero value otherwise.
+
+### GetUseTypeOk
+
+`func (o *PostcardEditable) GetUseTypeOk() (*PscUseType, bool)`
+
+GetUseTypeOk returns a tuple with the UseType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseType
+
+`func (o *PostcardEditable) SetUseType(v PscUseType)`
+
+SetUseType sets UseType field to given value.
+
+
+### SetUseTypeNil
+
+`func (o *PostcardEditable) SetUseTypeNil(b bool)`
+
+ SetUseTypeNil sets the value for UseType to be an explicit nil
+
+### UnsetUseType
+`func (o *PostcardEditable) UnsetUseType()`
+
+UnsetUseType ensures that no value is present for UseType, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

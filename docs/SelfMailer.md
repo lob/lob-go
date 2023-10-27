@@ -20,12 +20,13 @@ Name | Type | Description | Notes
 **Object** | Pointer to **string** | Value is resource type. | [optional] [default to "self_mailer"]
 **TrackingEvents** | Pointer to [**[]TrackingEventCertified**](TrackingEventCertified.md) | An array of certified tracking events ordered by ascending &#x60;time&#x60;. Not populated in test mode. | [optional] 
 **Url** | **string** | A [signed link](#section/Asset-URLs) served over HTTPS. The link returned will expire in 30 days to prevent mis-sharing. Each time a GET request is initiated, a new signed URL will be generated. | 
+**UseType** | [**NullableSfmUseType**](SfmUseType.md) |  | 
 
 ## Methods
 
 ### NewSelfMailer
 
-`func NewSelfMailer(id string, to interface{}, url string, ) *SelfMailer`
+`func NewSelfMailer(id string, to interface{}, url string, useType NullableSfmUseType, ) *SelfMailer`
 
 NewSelfMailer instantiates a new SelfMailer object
 This constructor will assign default values to properties that have it defined,
@@ -505,6 +506,36 @@ and a boolean to check if the value has been set.
 SetUrl sets Url field to given value.
 
 
+### GetUseType
+
+`func (o *SelfMailer) GetUseType() SfmUseType`
+
+GetUseType returns the UseType field if non-nil, zero value otherwise.
+
+### GetUseTypeOk
+
+`func (o *SelfMailer) GetUseTypeOk() (*SfmUseType, bool)`
+
+GetUseTypeOk returns a tuple with the UseType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseType
+
+`func (o *SelfMailer) SetUseType(v SfmUseType)`
+
+SetUseType sets UseType field to given value.
+
+
+### SetUseTypeNil
+
+`func (o *SelfMailer) SetUseTypeNil(b bool)`
+
+ SetUseTypeNil sets the value for UseType to be an explicit nil
+
+### UnsetUseType
+`func (o *SelfMailer) UnsetUseType()`
+
+UnsetUseType ensures that no value is present for UseType, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

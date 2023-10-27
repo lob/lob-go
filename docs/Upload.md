@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Unique identifier prefixed with &#x60;upl_&#x60;. | 
 **AccountId** | **string** | Account ID that made the request | 
-**CampaignId** | **string** | Unique identifier prefixed with &#x60;cmp_&#x60;. | 
 **Mode** | **string** | The environment in which the mailpieces were created. Today, will only be &#x60;live&#x60;. | 
+**CampaignId** | **string** | Campaign ID associated with the upload | 
 **FailuresUrl** | Pointer to **string** | Url where your campaign mailpiece failures can be retrieved | [optional] 
 **OriginalFilename** | Pointer to **string** | Filename of the upload | [optional] 
 **State** | [**UploadState**](UploadState.md) |  | [default to UPLOADSTATE_DRAFT]
@@ -17,13 +17,16 @@ Name | Type | Description | Notes
 **BytesProcessed** | **int32** | Number of bytes processed in your CSV | 
 **DateCreated** | **time.Time** | A timestamp in ISO 8601 format of the date the upload was created | 
 **DateModified** | **time.Time** | A timestamp in ISO 8601 format of the date the upload was last modified | 
-**Deleted** | Pointer to **bool** | Only returned if the resource has been successfully deleted. | [optional] 
+**RequiredAddressColumnMapping** | [**RequiredAddressColumnMapping**](RequiredAddressColumnMapping.md) |  | 
+**OptionalAddressColumnMapping** | [**OptionalAddressColumnMapping**](OptionalAddressColumnMapping.md) |  | 
+**Metadata** | [**UploadsMetadata**](UploadsMetadata.md) |  | 
+**MergeVariableColumnMapping** | **map[string]interface{}** | The mapping of column headers in your file to the merge variables present in your creative. See our &lt;a href&#x3D;\&quot;https://help.lob.com/print-and-mail/building-a-mail-strategy/campaign-or-triggered-sends/campaign-audience-guide#step-3-map-merge-variable-data-if-applicable-7\&quot; target&#x3D;\&quot;_blank\&quot;&gt;Campaign Audience Guide&lt;/a&gt; for additional details. &lt;br /&gt;If a merge variable has the same \&quot;name\&quot; as a \&quot;key\&quot; in the &#x60;requiredAddressColumnMapping&#x60; or &#x60;optionalAddressColumnMapping&#x60; objects, then they **CANNOT** have a different value in this object. If a different value is provided, then when the campaign is processing it will get overwritten with the mapped value present in the &#x60;requiredAddressColumnMapping&#x60; or &#x60;optionalAddressColumnMapping&#x60; objects. | 
 
 ## Methods
 
 ### NewUpload
 
-`func NewUpload(id string, accountId string, campaignId string, mode string, state UploadState, totalMailpieces int32, failedMailpieces int32, validatedMailpieces int32, bytesProcessed int32, dateCreated time.Time, dateModified time.Time, ) *Upload`
+`func NewUpload(id string, accountId string, mode string, campaignId string, state UploadState, totalMailpieces int32, failedMailpieces int32, validatedMailpieces int32, bytesProcessed int32, dateCreated time.Time, dateModified time.Time, requiredAddressColumnMapping RequiredAddressColumnMapping, optionalAddressColumnMapping OptionalAddressColumnMapping, metadata UploadsMetadata, mergeVariableColumnMapping map[string]interface{}, ) *Upload`
 
 NewUpload instantiates a new Upload object
 This constructor will assign default values to properties that have it defined,
@@ -78,26 +81,6 @@ and a boolean to check if the value has been set.
 SetAccountId sets AccountId field to given value.
 
 
-### GetCampaignId
-
-`func (o *Upload) GetCampaignId() string`
-
-GetCampaignId returns the CampaignId field if non-nil, zero value otherwise.
-
-### GetCampaignIdOk
-
-`func (o *Upload) GetCampaignIdOk() (*string, bool)`
-
-GetCampaignIdOk returns a tuple with the CampaignId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCampaignId
-
-`func (o *Upload) SetCampaignId(v string)`
-
-SetCampaignId sets CampaignId field to given value.
-
-
 ### GetMode
 
 `func (o *Upload) GetMode() string`
@@ -116,6 +99,26 @@ and a boolean to check if the value has been set.
 `func (o *Upload) SetMode(v string)`
 
 SetMode sets Mode field to given value.
+
+
+### GetCampaignId
+
+`func (o *Upload) GetCampaignId() string`
+
+GetCampaignId returns the CampaignId field if non-nil, zero value otherwise.
+
+### GetCampaignIdOk
+
+`func (o *Upload) GetCampaignIdOk() (*string, bool)`
+
+GetCampaignIdOk returns a tuple with the CampaignId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCampaignId
+
+`func (o *Upload) SetCampaignId(v string)`
+
+SetCampaignId sets CampaignId field to given value.
 
 
 ### GetFailuresUrl
@@ -308,31 +311,96 @@ and a boolean to check if the value has been set.
 SetDateModified sets DateModified field to given value.
 
 
-### GetDeleted
+### GetRequiredAddressColumnMapping
 
-`func (o *Upload) GetDeleted() bool`
+`func (o *Upload) GetRequiredAddressColumnMapping() RequiredAddressColumnMapping`
 
-GetDeleted returns the Deleted field if non-nil, zero value otherwise.
+GetRequiredAddressColumnMapping returns the RequiredAddressColumnMapping field if non-nil, zero value otherwise.
 
-### GetDeletedOk
+### GetRequiredAddressColumnMappingOk
 
-`func (o *Upload) GetDeletedOk() (*bool, bool)`
+`func (o *Upload) GetRequiredAddressColumnMappingOk() (*RequiredAddressColumnMapping, bool)`
 
-GetDeletedOk returns a tuple with the Deleted field if it's non-nil, zero value otherwise
+GetRequiredAddressColumnMappingOk returns a tuple with the RequiredAddressColumnMapping field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeleted
+### SetRequiredAddressColumnMapping
 
-`func (o *Upload) SetDeleted(v bool)`
+`func (o *Upload) SetRequiredAddressColumnMapping(v RequiredAddressColumnMapping)`
 
-SetDeleted sets Deleted field to given value.
+SetRequiredAddressColumnMapping sets RequiredAddressColumnMapping field to given value.
 
-### HasDeleted
 
-`func (o *Upload) HasDeleted() bool`
+### GetOptionalAddressColumnMapping
 
-HasDeleted returns a boolean if a field has been set.
+`func (o *Upload) GetOptionalAddressColumnMapping() OptionalAddressColumnMapping`
 
+GetOptionalAddressColumnMapping returns the OptionalAddressColumnMapping field if non-nil, zero value otherwise.
+
+### GetOptionalAddressColumnMappingOk
+
+`func (o *Upload) GetOptionalAddressColumnMappingOk() (*OptionalAddressColumnMapping, bool)`
+
+GetOptionalAddressColumnMappingOk returns a tuple with the OptionalAddressColumnMapping field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOptionalAddressColumnMapping
+
+`func (o *Upload) SetOptionalAddressColumnMapping(v OptionalAddressColumnMapping)`
+
+SetOptionalAddressColumnMapping sets OptionalAddressColumnMapping field to given value.
+
+
+### GetMetadata
+
+`func (o *Upload) GetMetadata() UploadsMetadata`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *Upload) GetMetadataOk() (*UploadsMetadata, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *Upload) SetMetadata(v UploadsMetadata)`
+
+SetMetadata sets Metadata field to given value.
+
+
+### GetMergeVariableColumnMapping
+
+`func (o *Upload) GetMergeVariableColumnMapping() map[string]interface{}`
+
+GetMergeVariableColumnMapping returns the MergeVariableColumnMapping field if non-nil, zero value otherwise.
+
+### GetMergeVariableColumnMappingOk
+
+`func (o *Upload) GetMergeVariableColumnMappingOk() (*map[string]interface{}, bool)`
+
+GetMergeVariableColumnMappingOk returns a tuple with the MergeVariableColumnMapping field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMergeVariableColumnMapping
+
+`func (o *Upload) SetMergeVariableColumnMapping(v map[string]interface{})`
+
+SetMergeVariableColumnMapping sets MergeVariableColumnMapping field to given value.
+
+
+### SetMergeVariableColumnMappingNil
+
+`func (o *Upload) SetMergeVariableColumnMappingNil(b bool)`
+
+ SetMergeVariableColumnMappingNil sets the value for MergeVariableColumnMapping to be an explicit nil
+
+### UnsetMergeVariableColumnMapping
+`func (o *Upload) UnsetMergeVariableColumnMapping()`
+
+UnsetMergeVariableColumnMapping ensures that no value is present for MergeVariableColumnMapping, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

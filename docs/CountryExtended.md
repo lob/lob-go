@@ -3,6 +3,8 @@
 ## Enum
 
 
+* `EMPTY` (value: `""`)
+
 * `AD` (value: `"AD"`)
 
 * `AE` (value: `"AE"`)

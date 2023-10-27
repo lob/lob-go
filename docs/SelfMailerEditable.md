@@ -15,12 +15,13 @@ Name | Type | Description | Notes
 **Inside** | **string** | The artwork to use as the inside of your self mailer.  | 
 **Outside** | **string** | The artwork to use as the outside of your self mailer.  | 
 **BillingGroupId** | Pointer to **string** | An optional string with the billing group ID to tag your usage with. Is used for billing purposes. Requires special activation to use. See [Billing Group API](https://lob.github.io/lob-openapi/#tag/Billing-Groups) for more information. | [optional] 
+**UseType** | [**NullableSfmUseType**](SfmUseType.md) |  | 
 
 ## Methods
 
 ### NewSelfMailerEditable
 
-`func NewSelfMailerEditable(to interface{}, inside string, outside string, ) *SelfMailerEditable`
+`func NewSelfMailerEditable(to interface{}, inside string, outside string, useType NullableSfmUseType, ) *SelfMailerEditable`
 
 NewSelfMailerEditable instantiates a new SelfMailerEditable object
 This constructor will assign default values to properties that have it defined,
@@ -335,6 +336,36 @@ SetBillingGroupId sets BillingGroupId field to given value.
 
 HasBillingGroupId returns a boolean if a field has been set.
 
+### GetUseType
+
+`func (o *SelfMailerEditable) GetUseType() SfmUseType`
+
+GetUseType returns the UseType field if non-nil, zero value otherwise.
+
+### GetUseTypeOk
+
+`func (o *SelfMailerEditable) GetUseTypeOk() (*SfmUseType, bool)`
+
+GetUseTypeOk returns a tuple with the UseType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseType
+
+`func (o *SelfMailerEditable) SetUseType(v SfmUseType)`
+
+SetUseType sets UseType field to given value.
+
+
+### SetUseTypeNil
+
+`func (o *SelfMailerEditable) SetUseTypeNil(b bool)`
+
+ SetUseTypeNil sets the value for UseType to be an explicit nil
+
+### UnsetUseType
+`func (o *SelfMailerEditable) UnsetUseType()`
+
+UnsetUseType ensures that no value is present for UseType, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

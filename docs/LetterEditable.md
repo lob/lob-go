@@ -22,12 +22,13 @@ Name | Type | Description | Notes
 **Cards** | Pointer to **[]string** | A single-element array containing an existing card id in a string format. See [cards](#tag/Cards) for more information. | [optional] 
 **BillingGroupId** | Pointer to **string** | An optional string with the billing group ID to tag your usage with. Is used for billing purposes. Requires special activation to use. See [Billing Group API](https://lob.github.io/lob-openapi/#tag/Billing-Groups) for more information. | [optional] 
 **QrCode** | Pointer to [**QrCode**](QrCode.md) |  | [optional] 
+**UseType** | [**NullableLtrUseType**](LtrUseType.md) |  | 
 
 ## Methods
 
 ### NewLetterEditable
 
-`func NewLetterEditable(color bool, to interface{}, from interface{}, file string, ) *LetterEditable`
+`func NewLetterEditable(color bool, to interface{}, from interface{}, file string, useType NullableLtrUseType, ) *LetterEditable`
 
 NewLetterEditable instantiates a new LetterEditable object
 This constructor will assign default values to properties that have it defined,
@@ -562,6 +563,36 @@ SetQrCode sets QrCode field to given value.
 
 HasQrCode returns a boolean if a field has been set.
 
+### GetUseType
+
+`func (o *LetterEditable) GetUseType() LtrUseType`
+
+GetUseType returns the UseType field if non-nil, zero value otherwise.
+
+### GetUseTypeOk
+
+`func (o *LetterEditable) GetUseTypeOk() (*LtrUseType, bool)`
+
+GetUseTypeOk returns a tuple with the UseType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseType
+
+`func (o *LetterEditable) SetUseType(v LtrUseType)`
+
+SetUseType sets UseType field to given value.
+
+
+### SetUseTypeNil
+
+`func (o *LetterEditable) SetUseTypeNil(b bool)`
+
+ SetUseTypeNil sets the value for UseType to be an explicit nil
+
+### UnsetUseType
+`func (o *LetterEditable) UnsetUseType()`
+
+UnsetUseType ensures that no value is present for UseType, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

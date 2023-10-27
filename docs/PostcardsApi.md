@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-    postcardEditable := *openapiclient.NewPostcardEditable(interface{}(123), "Front_example", "Back_example") // PostcardEditable | 
+    postcardEditable := *openapiclient.NewPostcardEditable(interface{}(123), "Front_example", "Back_example", "TODO") // PostcardEditable | 
     idempotencyKey := "idempotencyKey_example" // string | A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).  (optional)
 
     configuration := openapiclient.NewConfiguration()

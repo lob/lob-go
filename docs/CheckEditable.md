@@ -20,12 +20,13 @@ Name | Type | Description | Notes
 **CheckNumber** | Pointer to **int32** | An integer that designates the check number. | [optional] 
 **Message** | Pointer to **string** | Max of 400 characters to be included at the bottom of the check page. | [optional] 
 **BillingGroupId** | Pointer to **string** | An optional string with the billing group ID to tag your usage with. Is used for billing purposes. Requires special activation to use. See [Billing Group API](https://lob.github.io/lob-openapi/#tag/Billing-Groups) for more information. | [optional] 
+**UseType** | [**NullableChkUseType**](ChkUseType.md) |  | 
 
 ## Methods
 
 ### NewCheckEditable
 
-`func NewCheckEditable(from interface{}, to interface{}, bankAccount NullableString, amount float32, ) *CheckEditable`
+`func NewCheckEditable(from interface{}, to interface{}, bankAccount NullableString, amount float32, useType NullableChkUseType, ) *CheckEditable`
 
 NewCheckEditable instantiates a new CheckEditable object
 This constructor will assign default values to properties that have it defined,
@@ -480,6 +481,36 @@ SetBillingGroupId sets BillingGroupId field to given value.
 
 HasBillingGroupId returns a boolean if a field has been set.
 
+### GetUseType
+
+`func (o *CheckEditable) GetUseType() ChkUseType`
+
+GetUseType returns the UseType field if non-nil, zero value otherwise.
+
+### GetUseTypeOk
+
+`func (o *CheckEditable) GetUseTypeOk() (*ChkUseType, bool)`
+
+GetUseTypeOk returns a tuple with the UseType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseType
+
+`func (o *CheckEditable) SetUseType(v ChkUseType)`
+
+SetUseType sets UseType field to given value.
+
+
+### SetUseTypeNil
+
+`func (o *CheckEditable) SetUseTypeNil(b bool)`
+
+ SetUseTypeNil sets the value for UseType to be an explicit nil
+
+### UnsetUseType
+`func (o *CheckEditable) UnsetUseType()`
+
+UnsetUseType ensures that no value is present for UseType, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

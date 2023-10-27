@@ -30,12 +30,13 @@ Name | Type | Description | Notes
 **DateCreated** | **time.Time** | A timestamp in ISO 8601 format of the date the resource was created. | 
 **DateModified** | **time.Time** | A timestamp in ISO 8601 format of the date the resource was last modified. | 
 **Deleted** | Pointer to **bool** | Only returned if the resource has been successfully deleted. | [optional] 
+**UseType** | [**NullableChkUseType**](ChkUseType.md) |  | 
 
 ## Methods
 
 ### NewCheck
 
-`func NewCheck(id string, to Address, amount float32, bankAccount BankAccount, url string, carrier string, object string, dateCreated time.Time, dateModified time.Time, ) *Check`
+`func NewCheck(id string, to Address, amount float32, bankAccount BankAccount, url string, carrier string, object string, dateCreated time.Time, dateModified time.Time, useType NullableChkUseType, ) *Check`
 
 NewCheck instantiates a new Check object
 This constructor will assign default values to properties that have it defined,
@@ -695,6 +696,36 @@ SetDeleted sets Deleted field to given value.
 
 HasDeleted returns a boolean if a field has been set.
 
+### GetUseType
+
+`func (o *Check) GetUseType() ChkUseType`
+
+GetUseType returns the UseType field if non-nil, zero value otherwise.
+
+### GetUseTypeOk
+
+`func (o *Check) GetUseTypeOk() (*ChkUseType, bool)`
+
+GetUseTypeOk returns a tuple with the UseType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseType
+
+`func (o *Check) SetUseType(v ChkUseType)`
+
+SetUseType sets UseType field to given value.
+
+
+### SetUseTypeNil
+
+`func (o *Check) SetUseTypeNil(b bool)`
+
+ SetUseTypeNil sets the value for UseType to be an explicit nil
+
+### UnsetUseType
+`func (o *Check) UnsetUseType()`
+
+UnsetUseType ensures that no value is present for UseType, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

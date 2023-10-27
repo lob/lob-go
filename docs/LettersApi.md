@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## LetterCreate
 
-> Letter Create(ctx).LetterEditable(letterEditable).IdempotencyKey(idempotencyKey).Execute()
+> Letter Create(ctx).LetterEditable(letterEditable).IdempotencyKey(idempotencyKey).File(file).Execute()
 
 create
 
@@ -102,12 +102,13 @@ import (
 )
 
 func main() {
-    letterEditable := *openapiclient.NewLetterEditable(false, interface{}(123), interface{}(123), "File_example") // LetterEditable | 
+    letterEditable := *openapiclient.NewLetterEditable(false, interface{}(123), interface{}(123), "File_example", "TODO") // LetterEditable | 
     idempotencyKey := "idempotencyKey_example" // string | A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).  (optional)
+    file := TODO // map[string]interface{} | An optional file upload as either a byte array or file type.  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LettersApi.Create(context.Background()).LetterEditable(letterEditable).IdempotencyKey(idempotencyKey).Execute()
+    resp, r, err := apiClient.LettersApi.Create(context.Background()).LetterEditable(letterEditable).IdempotencyKey(idempotencyKey).File(file).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LettersApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,6 +131,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **letterEditable** | [**LetterEditable**](LetterEditable.md) |  | 
  **idempotencyKey** | **string** | A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).  | 
+ **file** | [**map[string]interface{}**](map[string]interface{}.md) | An optional file upload as either a byte array or file type.  | 
 
 ### Return type
 

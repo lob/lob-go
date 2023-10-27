@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-    campaignWritable := *openapiclient.NewCampaignWritable("Name_example", openapiclient.cmp_schedule_type("immediate")) // CampaignWritable | 
+    campaignWritable := *openapiclient.NewCampaignWritable("Name_example", openapiclient.cmp_schedule_type("immediate"), "TODO") // CampaignWritable | 
     xLangOutput := "xLangOutput_example" // string | * `native` - Translate response to the native language of the country in the request * `match` - match the response to the language in the request  Default response is in English.  (optional)
 
     configuration := openapiclient.NewConfiguration()

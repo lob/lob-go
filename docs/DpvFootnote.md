@@ -11,17 +11,21 @@
 
 * `CC` (value: `"CC"`)
 
-* `N1` (value: `"N1"`)
+* `C1` (value: `"C1"`)
 
 * `F1` (value: `"F1"`)
 
 * `G1` (value: `"G1"`)
 
-* `U1` (value: `"U1"`)
+* `IA` (value: `"IA"`)
 
 * `M1` (value: `"M1"`)
 
 * `M3` (value: `"M3"`)
+
+* `N1` (value: `"N1"`)
+
+* `PB` (value: `"PB"`)
 
 * `P1` (value: `"P1"`)
 
@@ -32,6 +36,10 @@
 * `R7` (value: `"R7"`)
 
 * `RR` (value: `"RR"`)
+
+* `TA` (value: `"TA"`)
+
+* `U1` (value: `"U1"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

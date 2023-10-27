@@ -102,7 +102,7 @@ import (
 )
 
 func main() {
-    checkEditable := *openapiclient.NewCheckEditable(interface{}(123), interface{}(123), "BankAccount_example", float32(123)) // CheckEditable | 
+    checkEditable := *openapiclient.NewCheckEditable(interface{}(123), interface{}(123), "BankAccount_example", float32(123), "TODO") // CheckEditable | 
     idempotencyKey := "idempotencyKey_example" // string | A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).  (optional)
 
     configuration := openapiclient.NewConfiguration()

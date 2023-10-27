@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **CountyFips** | **string** | A 5-digit [FIPS county code](https://en.wikipedia.org/wiki/FIPS_county_code) which uniquely identifies &#x60;components[county]&#x60;. It consists of a 2-digit state code and a 3-digit county code.  | 
 **CarrierRoute** | **string** | A 4-character code assigned to a mail delivery route within a ZIP code.  | 
 **CarrierRouteType** | **string** | The type of &#x60;components[carrier_route]&#x60;. For more detailed information about each carrier route type, see [US Verification Details](#tag/US-Verification-Types).  | 
+**PoBoxOnlyFlag** | **string** | Indicates the mailing facility for an address only supports PO Box deliveries and other forms of mail delivery are not available.  | 
 **Latitude** | Pointer to **NullableFloat32** | A positive or negative decimal indicating the geographic latitude of the address, specifying the north-to-south position of a location. This should be used with &#x60;longitude&#x60; to pinpoint locations on a map. Will not be returned for undeliverable addresses or military addresses (state is &#x60;AA&#x60;, &#x60;AE&#x60;, or &#x60;AP&#x60;).  | [optional] 
 **Longitude** | Pointer to **NullableFloat32** | A positive or negative decimal indicating the geographic longitude of the address, specifying the north-to-south position of a location. This should be used with &#x60;latitude&#x60; to pinpoint locations on a map. Will not be returned for undeliverable addresses or military addresses (state is &#x60;AA&#x60;, &#x60;AE&#x60;, or &#x60;AP&#x60;).  | [optional] 
 
@@ -35,7 +36,7 @@ Name | Type | Description | Notes
 
 ### NewUsComponents
 
-`func NewUsComponents(primaryNumber string, streetPredirection string, streetName string, streetSuffix string, streetPostdirection string, secondaryDesignator string, secondaryNumber string, pmbDesignator string, pmbNumber string, extraSecondaryDesignator string, extraSecondaryNumber string, city string, state string, zipCode string, zipCodePlus4 string, zipCodeType ZipCodeType, deliveryPointBarcode string, addressType string, recordType string, defaultBuildingAddress bool, county string, countyFips string, carrierRoute string, carrierRouteType string, ) *UsComponents`
+`func NewUsComponents(primaryNumber string, streetPredirection string, streetName string, streetSuffix string, streetPostdirection string, secondaryDesignator string, secondaryNumber string, pmbDesignator string, pmbNumber string, extraSecondaryDesignator string, extraSecondaryNumber string, city string, state string, zipCode string, zipCodePlus4 string, zipCodeType ZipCodeType, deliveryPointBarcode string, addressType string, recordType string, defaultBuildingAddress bool, county string, countyFips string, carrierRoute string, carrierRouteType string, poBoxOnlyFlag string, ) *UsComponents`
 
 NewUsComponents instantiates a new UsComponents object
 This constructor will assign default values to properties that have it defined,
@@ -528,6 +529,26 @@ and a boolean to check if the value has been set.
 `func (o *UsComponents) SetCarrierRouteType(v string)`
 
 SetCarrierRouteType sets CarrierRouteType field to given value.
+
+
+### GetPoBoxOnlyFlag
+
+`func (o *UsComponents) GetPoBoxOnlyFlag() string`
+
+GetPoBoxOnlyFlag returns the PoBoxOnlyFlag field if non-nil, zero value otherwise.
+
+### GetPoBoxOnlyFlagOk
+
+`func (o *UsComponents) GetPoBoxOnlyFlagOk() (*string, bool)`
+
+GetPoBoxOnlyFlagOk returns a tuple with the PoBoxOnlyFlag field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPoBoxOnlyFlag
+
+`func (o *UsComponents) SetPoBoxOnlyFlag(v string)`
+
+SetPoBoxOnlyFlag sets PoBoxOnlyFlag field to given value.
 
 
 ### GetLatitude

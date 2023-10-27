@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-    selfMailerEditable := *openapiclient.NewSelfMailerEditable(interface{}(123), "Inside_example", "Outside_example") // SelfMailerEditable | 
+    selfMailerEditable := *openapiclient.NewSelfMailerEditable(interface{}(123), "Inside_example", "Outside_example", "TODO") // SelfMailerEditable | 
     idempotencyKey := "idempotencyKey_example" // string | A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).  (optional)
 
     configuration := openapiclient.NewConfiguration()

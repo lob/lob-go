@@ -32,12 +32,14 @@ Name | Type | Description | Notes
 **ReturnEnvelope** | **interface{}** |  | 
 **PerforatedPage** | Pointer to **NullableInt32** | Required if &#x60;return_envelope&#x60; is &#x60;true&#x60;. The number of the page that should be perforated for use with the return envelope. Must be greater than or equal to &#x60;1&#x60;. The blank page added by &#x60;address_placement&#x3D;insert_blank_page&#x60; will be ignored when considering the perforated page number. To see how perforation will impact your letter design, view our [perforation guide](https://s3-us-west-2.amazonaws.com/public.lob.com/assets/templates/letter_perf_template.pdf). | [optional] 
 **CustomEnvelope** | Pointer to [**NullableLetterCustomEnvelope**](LetterCustomEnvelope.md) |  | [optional] 
+**CampaignId** | Pointer to **NullableString** | The unique ID of the associated campaign if the resource was generated from a campaign. | [optional] 
+**UseType** | [**NullableLtrUseType**](LtrUseType.md) |  | 
 
 ## Methods
 
 ### NewLetter
 
-`func NewLetter(to Address, from Address, dateCreated time.Time, dateModified time.Time, id string, object string, returnEnvelope interface{}, ) *Letter`
+`func NewLetter(to Address, from Address, dateCreated time.Time, dateModified time.Time, id string, object string, returnEnvelope interface{}, useType NullableLtrUseType, ) *Letter`
 
 NewLetter instantiates a new Letter object
 This constructor will assign default values to properties that have it defined,
@@ -787,6 +789,71 @@ HasCustomEnvelope returns a boolean if a field has been set.
 `func (o *Letter) UnsetCustomEnvelope()`
 
 UnsetCustomEnvelope ensures that no value is present for CustomEnvelope, not even an explicit nil
+### GetCampaignId
+
+`func (o *Letter) GetCampaignId() string`
+
+GetCampaignId returns the CampaignId field if non-nil, zero value otherwise.
+
+### GetCampaignIdOk
+
+`func (o *Letter) GetCampaignIdOk() (*string, bool)`
+
+GetCampaignIdOk returns a tuple with the CampaignId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCampaignId
+
+`func (o *Letter) SetCampaignId(v string)`
+
+SetCampaignId sets CampaignId field to given value.
+
+### HasCampaignId
+
+`func (o *Letter) HasCampaignId() bool`
+
+HasCampaignId returns a boolean if a field has been set.
+
+### SetCampaignIdNil
+
+`func (o *Letter) SetCampaignIdNil(b bool)`
+
+ SetCampaignIdNil sets the value for CampaignId to be an explicit nil
+
+### UnsetCampaignId
+`func (o *Letter) UnsetCampaignId()`
+
+UnsetCampaignId ensures that no value is present for CampaignId, not even an explicit nil
+### GetUseType
+
+`func (o *Letter) GetUseType() LtrUseType`
+
+GetUseType returns the UseType field if non-nil, zero value otherwise.
+
+### GetUseTypeOk
+
+`func (o *Letter) GetUseTypeOk() (*LtrUseType, bool)`
+
+GetUseTypeOk returns a tuple with the UseType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseType
+
+`func (o *Letter) SetUseType(v LtrUseType)`
+
+SetUseType sets UseType field to given value.
+
+
+### SetUseTypeNil
+
+`func (o *Letter) SetUseTypeNil(b bool)`
+
+ SetUseTypeNil sets the value for UseType to be an explicit nil
+
+### UnsetUseType
+`func (o *Letter) UnsetUseType()`
+
+UnsetUseType ensures that no value is present for UseType, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

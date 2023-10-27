@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## BuckslipCreate
 
-> Buckslip Create(ctx).BuckslipEditable(buckslipEditable).Execute()
+> Buckslip Create(ctx).BuckslipEditable(buckslipEditable).Front(front).Execute()
 
 create
 
@@ -34,10 +34,11 @@ import (
 
 func main() {
     buckslipEditable := *openapiclient.NewBuckslipEditable("Front_example") // BuckslipEditable | 
+    front := TODO // map[string]interface{} | An optional file upload as either a byte array or file type.  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BuckslipsApi.Create(context.Background()).BuckslipEditable(buckslipEditable).Execute()
+    resp, r, err := apiClient.BuckslipsApi.Create(context.Background()).BuckslipEditable(buckslipEditable).Front(front).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BuckslipsApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,6 +60,7 @@ Other parameters are passed through a pointer to a apiBuckslipCreateRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **buckslipEditable** | [**BuckslipEditable**](BuckslipEditable.md) |  | 
+ **front** | [**map[string]interface{}**](map[string]interface{}.md) | An optional file upload as either a byte array or file type.  | 
 
 ### Return type
 
