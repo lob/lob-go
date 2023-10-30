@@ -8,6 +8,12 @@ Name | Type | Description | Notes
 **DpvCmra** | **string** | indicates whether or not the address is [CMRA-authorized](https://en.wikipedia.org/wiki/Commercial_mail_receiving_agency). Possible values are: * &#x60;Y&#x60; –– Address is CMRA-authorized. * &#x60;N&#x60; –– Address is not CMRA-authorized. * &#x60;&#39;&#39;&#x60; –– A DPV match is not made (&#x60;deliverability_analysis[dpv_confirmation]&#x60; is &#x60;N&#x60; or an empty string).  | 
 **DpvVacant** | **string** | indicates that an address was once deliverable, but has become vacant and is no longer receiving deliveries. Possible values are: * &#x60;Y&#x60; –– Address is vacant. * &#x60;N&#x60; –– Address is not vacant. * &#x60;&#39;&#39;&#x60; –– A DPV match is not made (&#x60;deliverability_analysis[dpv_confirmation]&#x60; is &#x60;N&#x60; or an empty string).  | 
 **DpvActive** | **string** | Corresponds to the USPS field &#x60;dpv_no_stat&#x60;. Indicates that an address has been vacated in the recent past, and is no longer receiving deliveries. If it&#39;s been unoccupied for 90+ days, or temporarily vacant, this will be flagged. Possible values are: * &#x60;Y&#x60; –– Address is active. * &#x60;N&#x60; –– Address is not active. * &#x60;&#39;&#39;&#x60; –– A DPV match is not made (&#x60;deliverability_analysis[dpv_confirmation]&#x60; is &#x60;N&#x60; or an empty string).  | 
+**DpvInactiveReason** | **string** | Indicates the reason why an address is vacant or no longer receiving deliveries. Possible values are: * &#x60;01&#x60; –– Address does not receive mail from the USPS directly, but is serviced by a drop address. * &#x60;02&#x60; –– Address not yet deliverable. * &#x60;03&#x60; –– A DPV match is not made (&#x60;deliverability_analysis[dpv_confirmation]&#x60; is &#x60;N&#x60; or an empty string). * &#x60;04&#x60; –– Address is a College, Military Zone, or other type. * &#x60;05&#x60; –– Address no longer receives deliveries. * &#x60;06&#x60; –– Address is missing required secondary information. * &#x60;&#39;&#39;&#x60; –– A DPV match is not made or the address is active.  | 
+**DpvThrowback** | **string** | Indicates a street address for which mail is delivered to a PO Box. Possible values are: * &#x60;Y&#x60; –– Address is a PO Box throwback delivery point. * &#x60;N&#x60; –– Address is not a PO Box throwback delivery point. * &#x60;&#39;&#39;&#x60; –– A DPV match is not made (&#x60;deliverability_analysis[dpv_confirmation]&#x60; is &#x60;N&#x60; or an empty string).  | 
+**DpvNonDeliveryDayFlag** | **string** | Indicates whether deliveries are not performed on one or more days of the week at an address. Possible values are: * &#x60;Y&#x60; –– Mail delivery does not occur on some days of the week. * &#x60;N&#x60; –– Mail delivery occurs every day of the week. * &#x60;&#39;&#39;&#x60; –– A DPV match is not made (&#x60;deliverability_analysis[dpv_confirmation]&#x60; is &#x60;N&#x60; or an empty string).  | 
+**DpvNonDeliveryDayValues** | **string** | Indicates days of the week (starting on Sunday) deliveries are not performed at an address. For example: * &#x60;YNNNNNN&#x60; –– Mail delivery does not occur on Sunday&#39;s. * &#x60;NYNNNYN&#x60; –– Mail delivery does not occur on Monday&#39;s or Friday&#39;s. * &#x60;&#39;&#39;&#x60; –– A DPV match is not made (&#x60;deliverability_analysis[dpv_confirmation]&#x60; is &#x60;N&#x60; or an empty string) or address receives mail every day of the week (&#x60;deliverability_analysis[dpv_non_delivery_day_flag]&#x60; is &#x60;N&#x60; or an empty string).  | 
+**DpvNoSecureLocation** | **string** | Indicates packages to this address will not be left due to security concerns. Possible values are: * &#x60;Y&#x60; –– Address does not have a secure mailbox. * &#x60;N&#x60; –– Address has a secure mailbox. * &#x60;&#39;&#39;&#x60; –– A DPV match is not made (&#x60;deliverability_analysis[dpv_confirmation]&#x60; is &#x60;N&#x60; or an empty string).  | 
+**DpvDoorNotAccessible** | **string** | Indicates the door of the address is not accessible for mail delivery. Possible values are: * &#x60;Y&#x60; –– Door is not accessible. * &#x60;N&#x60; –– Door is accessible. * &#x60;&#39;&#39;&#x60; –– A DPV match is not made (&#x60;deliverability_analysis[dpv_confirmation]&#x60; is &#x60;N&#x60; or an empty string).  | 
 **DpvFootnotes** | [**[]DpvFootnote**](DpvFootnote.md) | An array of 2-character strings that gives more insight into how &#x60;deliverability_analysis[dpv_confirmation]&#x60; was determined. Will always include at least 1 string, and can include up to 3. For details, see [US Verification Details](#tag/US-Verification-Types).  | 
 **EwsMatch** | **bool** | indicates whether or not an address has been flagged in the [Early Warning System](https://docs.informatica.com/data-engineering/data-engineering-quality/10-4-0/address-validator-port-reference/postal-carrier-certification-data-ports/early-warning-system-return-code.html), meaning the address is under development and not yet ready to receive mail. However, it should become available in a few months.  | 
 **LacsIndicator** | **string** | indicates whether this address has been converted by [LACS&lt;sup&gt;Link&lt;/sup&gt;](https://postalpro.usps.com/address-quality/lacslink). LACS&lt;sup&gt;Link&lt;/sup&gt; corrects outdated addresses into their modern counterparts. Possible values are: * &#x60;Y&#x60; –– New address produced with a matching record in LACS&lt;sup&gt;Link&lt;/sup&gt;. * &#x60;N&#x60; –– New address could not be produced with a matching record in LACS&lt;sup&gt;Link&lt;/sup&gt;. * &#x60;&#39;&#39;&#x60; –– A DPV match is not made (&#x60;deliverability_analysis[dpv_confirmation]&#x60; is &#x60;N&#x60; or an empty string).  | 
@@ -18,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewDeliverabilityAnalysis
 
-`func NewDeliverabilityAnalysis(dpvConfirmation string, dpvCmra string, dpvVacant string, dpvActive string, dpvFootnotes []DpvFootnote, ewsMatch bool, lacsIndicator string, lacsReturnCode string, suiteReturnCode string, ) *DeliverabilityAnalysis`
+`func NewDeliverabilityAnalysis(dpvConfirmation string, dpvCmra string, dpvVacant string, dpvActive string, dpvInactiveReason string, dpvThrowback string, dpvNonDeliveryDayFlag string, dpvNonDeliveryDayValues string, dpvNoSecureLocation string, dpvDoorNotAccessible string, dpvFootnotes []DpvFootnote, ewsMatch bool, lacsIndicator string, lacsReturnCode string, suiteReturnCode string, ) *DeliverabilityAnalysis`
 
 NewDeliverabilityAnalysis instantiates a new DeliverabilityAnalysis object
 This constructor will assign default values to properties that have it defined,
@@ -111,6 +117,126 @@ and a boolean to check if the value has been set.
 `func (o *DeliverabilityAnalysis) SetDpvActive(v string)`
 
 SetDpvActive sets DpvActive field to given value.
+
+
+### GetDpvInactiveReason
+
+`func (o *DeliverabilityAnalysis) GetDpvInactiveReason() string`
+
+GetDpvInactiveReason returns the DpvInactiveReason field if non-nil, zero value otherwise.
+
+### GetDpvInactiveReasonOk
+
+`func (o *DeliverabilityAnalysis) GetDpvInactiveReasonOk() (*string, bool)`
+
+GetDpvInactiveReasonOk returns a tuple with the DpvInactiveReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDpvInactiveReason
+
+`func (o *DeliverabilityAnalysis) SetDpvInactiveReason(v string)`
+
+SetDpvInactiveReason sets DpvInactiveReason field to given value.
+
+
+### GetDpvThrowback
+
+`func (o *DeliverabilityAnalysis) GetDpvThrowback() string`
+
+GetDpvThrowback returns the DpvThrowback field if non-nil, zero value otherwise.
+
+### GetDpvThrowbackOk
+
+`func (o *DeliverabilityAnalysis) GetDpvThrowbackOk() (*string, bool)`
+
+GetDpvThrowbackOk returns a tuple with the DpvThrowback field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDpvThrowback
+
+`func (o *DeliverabilityAnalysis) SetDpvThrowback(v string)`
+
+SetDpvThrowback sets DpvThrowback field to given value.
+
+
+### GetDpvNonDeliveryDayFlag
+
+`func (o *DeliverabilityAnalysis) GetDpvNonDeliveryDayFlag() string`
+
+GetDpvNonDeliveryDayFlag returns the DpvNonDeliveryDayFlag field if non-nil, zero value otherwise.
+
+### GetDpvNonDeliveryDayFlagOk
+
+`func (o *DeliverabilityAnalysis) GetDpvNonDeliveryDayFlagOk() (*string, bool)`
+
+GetDpvNonDeliveryDayFlagOk returns a tuple with the DpvNonDeliveryDayFlag field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDpvNonDeliveryDayFlag
+
+`func (o *DeliverabilityAnalysis) SetDpvNonDeliveryDayFlag(v string)`
+
+SetDpvNonDeliveryDayFlag sets DpvNonDeliveryDayFlag field to given value.
+
+
+### GetDpvNonDeliveryDayValues
+
+`func (o *DeliverabilityAnalysis) GetDpvNonDeliveryDayValues() string`
+
+GetDpvNonDeliveryDayValues returns the DpvNonDeliveryDayValues field if non-nil, zero value otherwise.
+
+### GetDpvNonDeliveryDayValuesOk
+
+`func (o *DeliverabilityAnalysis) GetDpvNonDeliveryDayValuesOk() (*string, bool)`
+
+GetDpvNonDeliveryDayValuesOk returns a tuple with the DpvNonDeliveryDayValues field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDpvNonDeliveryDayValues
+
+`func (o *DeliverabilityAnalysis) SetDpvNonDeliveryDayValues(v string)`
+
+SetDpvNonDeliveryDayValues sets DpvNonDeliveryDayValues field to given value.
+
+
+### GetDpvNoSecureLocation
+
+`func (o *DeliverabilityAnalysis) GetDpvNoSecureLocation() string`
+
+GetDpvNoSecureLocation returns the DpvNoSecureLocation field if non-nil, zero value otherwise.
+
+### GetDpvNoSecureLocationOk
+
+`func (o *DeliverabilityAnalysis) GetDpvNoSecureLocationOk() (*string, bool)`
+
+GetDpvNoSecureLocationOk returns a tuple with the DpvNoSecureLocation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDpvNoSecureLocation
+
+`func (o *DeliverabilityAnalysis) SetDpvNoSecureLocation(v string)`
+
+SetDpvNoSecureLocation sets DpvNoSecureLocation field to given value.
+
+
+### GetDpvDoorNotAccessible
+
+`func (o *DeliverabilityAnalysis) GetDpvDoorNotAccessible() string`
+
+GetDpvDoorNotAccessible returns the DpvDoorNotAccessible field if non-nil, zero value otherwise.
+
+### GetDpvDoorNotAccessibleOk
+
+`func (o *DeliverabilityAnalysis) GetDpvDoorNotAccessibleOk() (*string, bool)`
+
+GetDpvDoorNotAccessibleOk returns a tuple with the DpvDoorNotAccessible field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDpvDoorNotAccessible
+
+`func (o *DeliverabilityAnalysis) SetDpvDoorNotAccessible(v string)`
+
+SetDpvDoorNotAccessible sets DpvDoorNotAccessible field to given value.
 
 
 ### GetDpvFootnotes

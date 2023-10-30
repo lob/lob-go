@@ -26,6 +26,18 @@ type DeliverabilityAnalysis struct {
 	DpvVacant string `json:"dpv_vacant"`
 	// Corresponds to the USPS field `dpv_no_stat`. Indicates that an address has been vacated in the recent past, and is no longer receiving deliveries. If it's been unoccupied for 90+ days, or temporarily vacant, this will be flagged. Possible values are: * `Y` –– Address is active. * `N` –– Address is not active. * `''` –– A DPV match is not made (`deliverability_analysis[dpv_confirmation]` is `N` or an empty string). 
 	DpvActive string `json:"dpv_active"`
+	// Indicates the reason why an address is vacant or no longer receiving deliveries. Possible values are: * `01` –– Address does not receive mail from the USPS directly, but is serviced by a drop address. * `02` –– Address not yet deliverable. * `03` –– A DPV match is not made (`deliverability_analysis[dpv_confirmation]` is `N` or an empty string). * `04` –– Address is a College, Military Zone, or other type. * `05` –– Address no longer receives deliveries. * `06` –– Address is missing required secondary information. * `''` –– A DPV match is not made or the address is active. 
+	DpvInactiveReason string `json:"dpv_inactive_reason"`
+	// Indicates a street address for which mail is delivered to a PO Box. Possible values are: * `Y` –– Address is a PO Box throwback delivery point. * `N` –– Address is not a PO Box throwback delivery point. * `''` –– A DPV match is not made (`deliverability_analysis[dpv_confirmation]` is `N` or an empty string). 
+	DpvThrowback string `json:"dpv_throwback"`
+	// Indicates whether deliveries are not performed on one or more days of the week at an address. Possible values are: * `Y` –– Mail delivery does not occur on some days of the week. * `N` –– Mail delivery occurs every day of the week. * `''` –– A DPV match is not made (`deliverability_analysis[dpv_confirmation]` is `N` or an empty string). 
+	DpvNonDeliveryDayFlag string `json:"dpv_non_delivery_day_flag"`
+	// Indicates days of the week (starting on Sunday) deliveries are not performed at an address. For example: * `YNNNNNN` –– Mail delivery does not occur on Sunday's. * `NYNNNYN` –– Mail delivery does not occur on Monday's or Friday's. * `''` –– A DPV match is not made (`deliverability_analysis[dpv_confirmation]` is `N` or an empty string) or address receives mail every day of the week (`deliverability_analysis[dpv_non_delivery_day_flag]` is `N` or an empty string). 
+	DpvNonDeliveryDayValues string `json:"dpv_non_delivery_day_values"`
+	// Indicates packages to this address will not be left due to security concerns. Possible values are: * `Y` –– Address does not have a secure mailbox. * `N` –– Address has a secure mailbox. * `''` –– A DPV match is not made (`deliverability_analysis[dpv_confirmation]` is `N` or an empty string). 
+	DpvNoSecureLocation string `json:"dpv_no_secure_location"`
+	// Indicates the door of the address is not accessible for mail delivery. Possible values are: * `Y` –– Door is not accessible. * `N` –– Door is accessible. * `''` –– A DPV match is not made (`deliverability_analysis[dpv_confirmation]` is `N` or an empty string). 
+	DpvDoorNotAccessible string `json:"dpv_door_not_accessible"`
 	// An array of 2-character strings that gives more insight into how `deliverability_analysis[dpv_confirmation]` was determined. Will always include at least 1 string, and can include up to 3. For details, see [US Verification Details](#tag/US-Verification-Types). 
 	DpvFootnotes []DpvFootnote `json:"dpv_footnotes"`
 	// indicates whether or not an address has been flagged in the [Early Warning System](https://docs.informatica.com/data-engineering/data-engineering-quality/10-4-0/address-validator-port-reference/postal-carrier-certification-data-ports/early-warning-system-return-code.html), meaning the address is under development and not yet ready to receive mail. However, it should become available in a few months. 
@@ -42,12 +54,18 @@ type DeliverabilityAnalysis struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeliverabilityAnalysis(dpvConfirmation string, dpvCmra string, dpvVacant string, dpvActive string, dpvFootnotes []DpvFootnote, ewsMatch bool, lacsIndicator string, lacsReturnCode string, suiteReturnCode string) *DeliverabilityAnalysis {
+func NewDeliverabilityAnalysis(dpvConfirmation string, dpvCmra string, dpvVacant string, dpvActive string, dpvInactiveReason string, dpvThrowback string, dpvNonDeliveryDayFlag string, dpvNonDeliveryDayValues string, dpvNoSecureLocation string, dpvDoorNotAccessible string, dpvFootnotes []DpvFootnote, ewsMatch bool, lacsIndicator string, lacsReturnCode string, suiteReturnCode string) *DeliverabilityAnalysis {
 	this := DeliverabilityAnalysis{}
 	this.DpvConfirmation = dpvConfirmation
 	this.DpvCmra = dpvCmra
 	this.DpvVacant = dpvVacant
 	this.DpvActive = dpvActive
+	this.DpvInactiveReason = dpvInactiveReason
+	this.DpvThrowback = dpvThrowback
+	this.DpvNonDeliveryDayFlag = dpvNonDeliveryDayFlag
+	this.DpvNonDeliveryDayValues = dpvNonDeliveryDayValues
+	this.DpvNoSecureLocation = dpvNoSecureLocation
+	this.DpvDoorNotAccessible = dpvDoorNotAccessible
 	this.DpvFootnotes = dpvFootnotes
 	this.EwsMatch = ewsMatch
 	this.LacsIndicator = lacsIndicator
@@ -158,6 +176,150 @@ func (o *DeliverabilityAnalysis) GetDpvActiveOk() (*string, bool) {
 // SetDpvActive sets field value
 func (o *DeliverabilityAnalysis) SetDpvActive(v string) {
 	o.DpvActive = v
+}
+
+// GetDpvInactiveReason returns the DpvInactiveReason field value
+func (o *DeliverabilityAnalysis) GetDpvInactiveReason() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DpvInactiveReason
+}
+
+// GetDpvInactiveReasonOk returns a tuple with the DpvInactiveReason field value
+// and a boolean to check if the value has been set.
+func (o *DeliverabilityAnalysis) GetDpvInactiveReasonOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DpvInactiveReason, true
+}
+
+// SetDpvInactiveReason sets field value
+func (o *DeliverabilityAnalysis) SetDpvInactiveReason(v string) {
+	o.DpvInactiveReason = v
+}
+
+// GetDpvThrowback returns the DpvThrowback field value
+func (o *DeliverabilityAnalysis) GetDpvThrowback() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DpvThrowback
+}
+
+// GetDpvThrowbackOk returns a tuple with the DpvThrowback field value
+// and a boolean to check if the value has been set.
+func (o *DeliverabilityAnalysis) GetDpvThrowbackOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DpvThrowback, true
+}
+
+// SetDpvThrowback sets field value
+func (o *DeliverabilityAnalysis) SetDpvThrowback(v string) {
+	o.DpvThrowback = v
+}
+
+// GetDpvNonDeliveryDayFlag returns the DpvNonDeliveryDayFlag field value
+func (o *DeliverabilityAnalysis) GetDpvNonDeliveryDayFlag() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DpvNonDeliveryDayFlag
+}
+
+// GetDpvNonDeliveryDayFlagOk returns a tuple with the DpvNonDeliveryDayFlag field value
+// and a boolean to check if the value has been set.
+func (o *DeliverabilityAnalysis) GetDpvNonDeliveryDayFlagOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DpvNonDeliveryDayFlag, true
+}
+
+// SetDpvNonDeliveryDayFlag sets field value
+func (o *DeliverabilityAnalysis) SetDpvNonDeliveryDayFlag(v string) {
+	o.DpvNonDeliveryDayFlag = v
+}
+
+// GetDpvNonDeliveryDayValues returns the DpvNonDeliveryDayValues field value
+func (o *DeliverabilityAnalysis) GetDpvNonDeliveryDayValues() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DpvNonDeliveryDayValues
+}
+
+// GetDpvNonDeliveryDayValuesOk returns a tuple with the DpvNonDeliveryDayValues field value
+// and a boolean to check if the value has been set.
+func (o *DeliverabilityAnalysis) GetDpvNonDeliveryDayValuesOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DpvNonDeliveryDayValues, true
+}
+
+// SetDpvNonDeliveryDayValues sets field value
+func (o *DeliverabilityAnalysis) SetDpvNonDeliveryDayValues(v string) {
+	o.DpvNonDeliveryDayValues = v
+}
+
+// GetDpvNoSecureLocation returns the DpvNoSecureLocation field value
+func (o *DeliverabilityAnalysis) GetDpvNoSecureLocation() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DpvNoSecureLocation
+}
+
+// GetDpvNoSecureLocationOk returns a tuple with the DpvNoSecureLocation field value
+// and a boolean to check if the value has been set.
+func (o *DeliverabilityAnalysis) GetDpvNoSecureLocationOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DpvNoSecureLocation, true
+}
+
+// SetDpvNoSecureLocation sets field value
+func (o *DeliverabilityAnalysis) SetDpvNoSecureLocation(v string) {
+	o.DpvNoSecureLocation = v
+}
+
+// GetDpvDoorNotAccessible returns the DpvDoorNotAccessible field value
+func (o *DeliverabilityAnalysis) GetDpvDoorNotAccessible() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DpvDoorNotAccessible
+}
+
+// GetDpvDoorNotAccessibleOk returns a tuple with the DpvDoorNotAccessible field value
+// and a boolean to check if the value has been set.
+func (o *DeliverabilityAnalysis) GetDpvDoorNotAccessibleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DpvDoorNotAccessible, true
+}
+
+// SetDpvDoorNotAccessible sets field value
+func (o *DeliverabilityAnalysis) SetDpvDoorNotAccessible(v string) {
+	o.DpvDoorNotAccessible = v
 }
 
 // GetDpvFootnotes returns the DpvFootnotes field value
@@ -293,6 +455,24 @@ func (o DeliverabilityAnalysis) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["dpv_active"] = o.DpvActive
+	}
+	if true {
+		toSerialize["dpv_inactive_reason"] = o.DpvInactiveReason
+	}
+	if true {
+		toSerialize["dpv_throwback"] = o.DpvThrowback
+	}
+	if true {
+		toSerialize["dpv_non_delivery_day_flag"] = o.DpvNonDeliveryDayFlag
+	}
+	if true {
+		toSerialize["dpv_non_delivery_day_values"] = o.DpvNonDeliveryDayValues
+	}
+	if true {
+		toSerialize["dpv_no_secure_location"] = o.DpvNoSecureLocation
+	}
+	if true {
+		toSerialize["dpv_door_not_accessible"] = o.DpvDoorNotAccessible
 	}
 	if true {
 		toSerialize["dpv_footnotes"] = o.DpvFootnotes

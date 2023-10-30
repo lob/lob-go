@@ -63,6 +63,8 @@ type UsComponents struct {
 	CarrierRoute string `json:"carrier_route"`
 	// The type of `components[carrier_route]`. For more detailed information about each carrier route type, see [US Verification Details](#tag/US-Verification-Types). 
 	CarrierRouteType string `json:"carrier_route_type"`
+	// Indicates the mailing facility for an address only supports PO Box deliveries and other forms of mail delivery are not available. 
+	PoBoxOnlyFlag string `json:"po_box_only_flag"`
 	// A positive or negative decimal indicating the geographic latitude of the address, specifying the north-to-south position of a location. This should be used with `longitude` to pinpoint locations on a map. Will not be returned for undeliverable addresses or military addresses (state is `AA`, `AE`, or `AP`). 
 	Latitude NullableFloat32 `json:"latitude,omitempty"`
 	// A positive or negative decimal indicating the geographic longitude of the address, specifying the north-to-south position of a location. This should be used with `latitude` to pinpoint locations on a map. Will not be returned for undeliverable addresses or military addresses (state is `AA`, `AE`, or `AP`). 
@@ -73,7 +75,7 @@ type UsComponents struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUsComponents(primaryNumber string, streetPredirection string, streetName string, streetSuffix string, streetPostdirection string, secondaryDesignator string, secondaryNumber string, pmbDesignator string, pmbNumber string, extraSecondaryDesignator string, extraSecondaryNumber string, city string, state string, zipCode string, zipCodePlus4 string, zipCodeType ZipCodeType, deliveryPointBarcode string, addressType string, recordType string, defaultBuildingAddress bool, county string, countyFips string, carrierRoute string, carrierRouteType string) *UsComponents {
+func NewUsComponents(primaryNumber string, streetPredirection string, streetName string, streetSuffix string, streetPostdirection string, secondaryDesignator string, secondaryNumber string, pmbDesignator string, pmbNumber string, extraSecondaryDesignator string, extraSecondaryNumber string, city string, state string, zipCode string, zipCodePlus4 string, zipCodeType ZipCodeType, deliveryPointBarcode string, addressType string, recordType string, defaultBuildingAddress bool, county string, countyFips string, carrierRoute string, carrierRouteType string, poBoxOnlyFlag string) *UsComponents {
 	this := UsComponents{}
 	this.PrimaryNumber = primaryNumber
 	this.StreetPredirection = streetPredirection
@@ -99,6 +101,7 @@ func NewUsComponents(primaryNumber string, streetPredirection string, streetName
 	this.CountyFips = countyFips
 	this.CarrierRoute = carrierRoute
 	this.CarrierRouteType = carrierRouteType
+	this.PoBoxOnlyFlag = poBoxOnlyFlag
 	return &this
 }
 
@@ -686,6 +689,30 @@ func (o *UsComponents) SetCarrierRouteType(v string) {
 	o.CarrierRouteType = v
 }
 
+// GetPoBoxOnlyFlag returns the PoBoxOnlyFlag field value
+func (o *UsComponents) GetPoBoxOnlyFlag() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PoBoxOnlyFlag
+}
+
+// GetPoBoxOnlyFlagOk returns a tuple with the PoBoxOnlyFlag field value
+// and a boolean to check if the value has been set.
+func (o *UsComponents) GetPoBoxOnlyFlagOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PoBoxOnlyFlag, true
+}
+
+// SetPoBoxOnlyFlag sets field value
+func (o *UsComponents) SetPoBoxOnlyFlag(v string) {
+	o.PoBoxOnlyFlag = v
+}
+
 // GetLatitude returns the Latitude field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsComponents) GetLatitude() float32 {
 	if o == nil || o.Latitude.Get() == nil {
@@ -843,6 +870,9 @@ func (o UsComponents) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["carrier_route_type"] = o.CarrierRouteType
+	}
+	if true {
+		toSerialize["po_box_only_flag"] = o.PoBoxOnlyFlag
 	}
 	if o.Latitude.IsSet() {
 		toSerialize["latitude"] = o.Latitude.Get()
