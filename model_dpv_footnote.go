@@ -26,17 +26,21 @@ const (
 	DPVFOOTNOTE_A1 DpvFootnote = "A1"
 	DPVFOOTNOTE_BB DpvFootnote = "BB"
 	DPVFOOTNOTE_CC DpvFootnote = "CC"
-	DPVFOOTNOTE_N1 DpvFootnote = "N1"
+	DPVFOOTNOTE_C1 DpvFootnote = "C1"
 	DPVFOOTNOTE_F1 DpvFootnote = "F1"
 	DPVFOOTNOTE_G1 DpvFootnote = "G1"
-	DPVFOOTNOTE_U1 DpvFootnote = "U1"
+	DPVFOOTNOTE_IA DpvFootnote = "IA"
 	DPVFOOTNOTE_M1 DpvFootnote = "M1"
 	DPVFOOTNOTE_M3 DpvFootnote = "M3"
+	DPVFOOTNOTE_N1 DpvFootnote = "N1"
+	DPVFOOTNOTE_PB DpvFootnote = "PB"
 	DPVFOOTNOTE_P1 DpvFootnote = "P1"
 	DPVFOOTNOTE_P3 DpvFootnote = "P3"
 	DPVFOOTNOTE_R1 DpvFootnote = "R1"
 	DPVFOOTNOTE_R7 DpvFootnote = "R7"
 	DPVFOOTNOTE_RR DpvFootnote = "RR"
+	DPVFOOTNOTE_TA DpvFootnote = "TA"
+	DPVFOOTNOTE_U1 DpvFootnote = "U1"
 )
 
 // All allowed values of DpvFootnote enum
@@ -45,17 +49,21 @@ var AllowedDpvFootnoteEnumValues = []DpvFootnote{
 	"A1",
 	"BB",
 	"CC",
-	"N1",
+	"C1",
 	"F1",
 	"G1",
-	"U1",
+	"IA",
 	"M1",
 	"M3",
+	"N1",
+	"PB",
 	"P1",
 	"P3",
 	"R1",
 	"R7",
 	"RR",
+	"TA",
+	"U1",
 }
 
 func (v *DpvFootnote) UnmarshalJSON(src []byte) error {
