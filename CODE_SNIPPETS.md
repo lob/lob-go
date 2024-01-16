@@ -57,11 +57,11 @@ curl https://api.lob.com/v1/addresses \
   -d "company=Lob" \
   -d "email=harry@lob.com" \
   -d "phone=5555555555" \
-  -d "address_line1=210 King St" \
-  -d "address_line2=# 6100" \
+  -d "address_line1=2261 Market Street" \
+  -d "address_line2=Ste 5668" \
   -d "address_city=San Francisco" \
   -d "address_state=CA" \
-  -d "address_zip=94107" \
+  -d "address_zip=94114" \
   -d "address_country=US" \
 ```
 
@@ -78,11 +78,11 @@ addressCreate.SetName("Harry Zhang")
 addressCreate.SetCompany("Lob")
 addressCreate.SetEmail("harry@lob.com")
 addressCreate.SetPhone("5555555555")
-addressCreate.SetAddressLine1("210 King St")
-addressCreate.SetAddressLine2("# 6100")
+addressCreate.SetAddressLine1("2261 Market Street")
+addressCreate.SetAddressLine2("Ste 5668")
 addressCreate.SetAddressCity("San Francisco")
 addressCreate.SetAddressState("CA")
-addressCreate.SetAddressZip("94107")
+addressCreate.SetAddressZip("94114")
 addressCreate.SetAddressCountry("US")
 
 
@@ -208,11 +208,11 @@ curl https://api.lob.com/v1/postcards \
   --data-urlencode "front=<html style='padding: 1in; font-size: 50;'>Front HTML for {{name}}</html>" \
   --data-urlencode "back=<html style='padding: 1in; font-size: 20;'>Back HTML for {{name}}</html>" \
   -d "to[name]=Harry Zhang" \
-  -d "to[address_line1]=210 King St" \
-  -d "to[address_line2]=# 6100" \
+  -d "to[address_line1]=2261 Market Street" \
+  -d "to[address_line2]=Ste 5668" \
   -d "to[address_city]=San Francisco" \
   -d "to[address_state]=CA" \
-  -d "to[address_zip]=94107" \
+  -d "to[address_zip]=94114" \
   -d "merge_variables[name]=Harry" \
 ```
 
@@ -223,11 +223,11 @@ context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserN
 var apiClient = *lob.NewAPIClient(configuration)
 
 var to = *lob.NewAddressEditable()
-to.SetAddressLine1("210 King St")
-to.SetAddressLine2("# 6100")
+to.SetAddressLine1("2261 Market Street")
+to.SetAddressLine2("Ste 5668")
 to.SetAddressCity("San Francisco")
 to.SetAddressState("CA")
-to.SetAddressZip("94107")
+to.SetAddressZip("94114")
 to.SetAddressCountry(lob.COUNTRYEXTENDED_US)
 to.SetDescription("")
 to.SetName("Harry Zhang")
@@ -327,11 +327,11 @@ curl https://api.lob.com/v1/self_mailers \
   --data-urlencode "inside=<html style='padding: 1in; font-size: 50;'>Inside HTML for {{name}}</html>" \
   --data-urlencode "outside=<html style='padding: 1in; font-size: 20;'>Outside HTML for {{name}}</html>" \
   -d "to[name]=Harry Zhang" \
-  -d "to[address_line1]=210 King St" \
-  -d "to[address_line2]=# 6100" \
+  -d "to[address_line1]=2261 Market Street" \
+  -d "to[address_line2]=Ste 5668" \
   -d "to[address_city]=San Francisco" \
   -d "to[address_state]=CA" \
-  -d "to[address_zip]=94107" \
+  -d "to[address_zip]=94114" \
   -d "merge_variables[name]=Harry" \
 ```
 
@@ -342,11 +342,11 @@ context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserN
 var apiClient = *lob.NewAPIClient(configuration)
 
 var to = *lob.NewAddressEditable()
-to.SetAddressLine1("210 King St")
-to.SetAddressLine2("# 6100")
+to.SetAddressLine1("2261 Market Street")
+to.SetAddressLine2("Ste 5668")
 to.SetAddressCity("San Francisco")
 to.SetAddressState("CA")
-to.SetAddressZip("94107")
+to.SetAddressZip("94114")
 to.SetAddressCountry(lob.COUNTRYEXTENDED_US)
 to.SetDescription("")
 to.SetName("Harry Zhang")
@@ -446,11 +446,11 @@ curl https://api.lob.com/v1/letters \
   --data-urlencode "file=<html style='padding-top: 3in; margin: .5in;'>HTML Letter for {{name}}</html>" \
   -d "color=true" \
   -d "to[name]=Harry Zhang" \
-  -d "to[address_line1]=210 King St" \
-  -d "to[address_line2]=# 6100" \
+  -d "to[address_line1]=2261 Market Street" \
+  -d "to[address_line2]=Ste 5668" \
   -d "to[address_city]=San Francisco" \
   -d "to[address_state]=CA" \
-  -d "to[address_zip]=94107" \
+  -d "to[address_zip]=94114" \
   -d "merge_variables[name]=Harry" \
   -d "cards[]=card_c51ae96f5cebf3e"
 ```
@@ -462,11 +462,11 @@ context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserN
 var apiClient = *lob.NewAPIClient(configuration)
 
 var to = *lob.NewAddressEditable()
-to.SetAddressLine1("210 King St")
-to.SetAddressLine2("# 6100")
+to.SetAddressLine1("2261 Market Street")
+to.SetAddressLine2("Ste 5668")
 to.SetAddressCity("San Francisco")
 to.SetAddressState("CA")
-to.SetAddressZip("94107")
+to.SetAddressZip("94114")
 to.SetAddressCountry(lob.COUNTRYEXTENDED_US)
 to.SetDescription("")
 to.SetName("Harry Zhang")
@@ -569,11 +569,11 @@ curl https://api.lob.com/v1/checks \
   --data-urlencode "check_bottom=<h1 style='padding-top:4in;'>Demo Check for {{name}}</h1>" \
   -d "from=adr_210a8d4b0b76d77b" \
   -d "to[name]=Harry Zhang" \
-  -d "to[address_line1]=210 King St" \
-  -d "to[address_line2]=# 6100" \
+  -d "to[address_line1]=2261 Market Street" \
+  -d "to[address_line2]=Ste 5668" \
   -d "to[address_city]=San Francisco" \
   -d "to[address_state]=CA" \
-  -d "to[address_zip]=94107" \
+  -d "to[address_zip]=94114" \
   -d "merge_variables[name]=Harry" \
 ```
 
@@ -584,11 +584,11 @@ context = context.WithValue(suite.ctx, lob.ContextBasicAuth, lob.BasicAuth{UserN
 var apiClient = *lob.NewAPIClient(configuration)
 
 var to = *lob.NewAddressEditable()
-to.SetAddressLine1("210 King St")
-to.SetAddressLine2("# 6100")
+to.SetAddressLine1("2261 Market Street")
+to.SetAddressLine2("Ste 5668")
 to.SetAddressCity("San Francisco")
 to.SetAddressState("CA")
-to.SetAddressZip("94107")
+to.SetAddressZip("94114")
 to.SetAddressCountry(lob.COUNTRYEXTENDED_US)
 to.SetDescription("")
 to.SetName("Harry Zhang")

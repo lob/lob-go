@@ -18,7 +18,7 @@ import (
 
 // UsVerificationsWritable struct for UsVerificationsWritable
 type UsVerificationsWritable struct {
-	// The entire address in one string (e.g., \"210 King Street 94107\"). _Does not support a recipient and will error when other payload parameters are provided._ 
+	// The entire address in one string (e.g., \"2261 Market Street 94114\"). _Does not support a recipient and will error when other payload parameters are provided._ 
 	Address *string `json:"address,omitempty"`
 	// The intended recipient, typically a person's or firm's name.
 	Recipient NullableString `json:"recipient,omitempty"`

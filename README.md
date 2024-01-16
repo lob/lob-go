@@ -38,10 +38,10 @@ apiClient := *lob.NewAPIClient(&config)
 
 address := *lob.AddressEditable
 address.SetName("Harry Zhang")
-address.SetAddressLine1("210 King St")
+address.SetAddressLine1("2261 Market Street")
 address.SetAddressCity("San Francisco")
 address.SetAddressState("CA")
-address.SetAddressZip("94107")
+address.SetAddressZip("94114")
 
 myAddress, _, createErr := apiClient.AddressesApi.Create(ctx).AddressEditable(address).Execute()
 

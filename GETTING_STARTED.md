@@ -45,10 +45,10 @@ Here is a sample of the CREATE method
 ```go
 address := *lob.AddressEditable
 address.SetName("Harry Zhang")
-address.SetAddressLine1("210 King St")
+address.SetAddressLine1("2261 Market Street")
 address.SetAddressCity("San Francisco")
 address.SetAddressState("CA")
-address.SetAddressZip("94107")
+address.SetAddressZip("94114")
 
 resp, _, err := apiClient.AddressesApi.Create(ctx).AddressEditable(address).Execute()
 
