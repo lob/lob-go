@@ -38,6 +38,8 @@ type UsVerification struct {
 	DeliverabilityAnalysis *DeliverabilityAnalysis `json:"deliverability_analysis,omitempty"`
 	LobConfidenceScore *LobConfidenceScore `json:"lob_confidence_score,omitempty"`
 	Object *string `json:"object,omitempty"`
+	// ID that is returned in the response body for the verification 
+	TransientId *string `json:"transient_id,omitempty"`
 }
 
 // NewUsVerification instantiates a new UsVerification object
@@ -455,6 +457,38 @@ func (o *UsVerification) SetObject(v string) {
 	o.Object = &v
 }
 
+// GetTransientId returns the TransientId field value if set, zero value otherwise.
+func (o *UsVerification) GetTransientId() string {
+	if o == nil || o.TransientId == nil {
+		var ret string
+		return ret
+	}
+	return *o.TransientId
+}
+
+// GetTransientIdOk returns a tuple with the TransientId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsVerification) GetTransientIdOk() (*string, bool) {
+	if o == nil || o.TransientId == nil {
+		return nil, false
+	}
+	return o.TransientId, true
+}
+
+// HasTransientId returns a boolean if a field has been set.
+func (o *UsVerification) HasTransientId() bool {
+	if o != nil && o.TransientId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientId gets a reference to the given string and assigns it to the TransientId field.
+func (o *UsVerification) SetTransientId(v string) {
+	o.TransientId = &v
+}
+
 func (o UsVerification) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -492,6 +526,9 @@ func (o UsVerification) MarshalJSON() ([]byte, error) {
 	}
 	if o.Object != nil {
 		toSerialize["object"] = o.Object
+	}
+	if o.TransientId != nil {
+		toSerialize["transient_id"] = o.TransientId
 	}
 	return json.Marshal(toSerialize)
 }

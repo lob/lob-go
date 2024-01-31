@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **City** | Pointer to **string** |  | [optional] 
 **State** | Pointer to **string** | The [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2:US) two letter code or subdivision name for the state. &#x60;city&#x60; and &#x60;state&#x60; are required if no &#x60;zip_code&#x60; is passed. | [optional] 
 **ZipCode** | Pointer to **string** | Required if &#x60;city&#x60; and &#x60;state&#x60; are not passed in. If included, must be formatted as a US ZIP or ZIP+4 (e.g. &#x60;94107&#x60;, &#x60;941072282&#x60;, &#x60;94107-2282&#x60;). | [optional] 
+**TransientId** | Pointer to **string** | ID that is returned in the response body for the verification  | [optional] 
 
 ## Methods
 
@@ -210,6 +211,31 @@ SetZipCode sets ZipCode field to given value.
 `func (o *MultipleComponents) HasZipCode() bool`
 
 HasZipCode returns a boolean if a field has been set.
+
+### GetTransientId
+
+`func (o *MultipleComponents) GetTransientId() string`
+
+GetTransientId returns the TransientId field if non-nil, zero value otherwise.
+
+### GetTransientIdOk
+
+`func (o *MultipleComponents) GetTransientIdOk() (*string, bool)`
+
+GetTransientIdOk returns a tuple with the TransientId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientId
+
+`func (o *MultipleComponents) SetTransientId(v string)`
+
+SetTransientId sets TransientId field to given value.
+
+### HasTransientId
+
+`func (o *MultipleComponents) HasTransientId() bool`
+
+HasTransientId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
