@@ -11,10 +11,12 @@ Name | Type | Description | Notes
 **Urbanization** | Pointer to **string** | Only present for addresses in Puerto Rico. An urbanization refers to an area, sector, or development within a city. See [USPS documentation](https://pe.usps.com/text/pub28/28api_008.htm#:~:text&#x3D;I51.,-4%20Urbanizations&amp;text&#x3D;In%20Puerto%20Rico%2C%20identical%20street,placed%20before%20the%20urbanization%20name.) for clarification.  | [optional] 
 **LastLine** | Pointer to **string** | Combination of the following applicable &#x60;components&#x60;: * City (&#x60;city&#x60;) * State (&#x60;state&#x60;) * ZIP code (&#x60;zip_code&#x60;) * ZIP+4 (&#x60;zip_code_plus_4&#x60;)  | [optional] 
 **Deliverability** | Pointer to **string** | Summarizes the deliverability of the &#x60;us_verification&#x60; object. For full details, see the &#x60;deliverability_analysis&#x60; field. Possible values are: * &#x60;deliverable&#x60; – The address is deliverable by the USPS. * &#x60;deliverable_unnecessary_unit&#x60; – The address is deliverable, but the secondary unit information is unnecessary. * &#x60;deliverable_incorrect_unit&#x60; – The address is deliverable to the building&#39;s default address but the secondary unit provided may not exist. There is a chance the mail will not reach the intended recipient. * &#x60;deliverable_missing_unit&#x60; – The address is deliverable to the building&#39;s default address but is missing secondary unit information. There is a chance the mail will not reach the intended recipient. * &#x60;undeliverable&#x60; – The address is not deliverable according to the USPS.  | [optional] 
+**ValidAddress** | Pointer to **bool** | This field indicates whether an address was found in a more comprehensive address dataset that includes sources from the USPS, open source mapping data, and our proprietary mail delivery data. This field can be interpreted as a representation of whether an address is a real location or not. Additionally a valid address may contradict the deliverability field since an address can be a real valid location but the USPS may not deliver to that address.  | [optional] 
 **Components** | Pointer to [**UsComponents**](UsComponents.md) |  | [optional] 
 **DeliverabilityAnalysis** | Pointer to [**DeliverabilityAnalysis**](DeliverabilityAnalysis.md) |  | [optional] 
 **LobConfidenceScore** | Pointer to [**LobConfidenceScore**](LobConfidenceScore.md) |  | [optional] 
 **Object** | Pointer to **string** |  | [optional] [default to "us_verification"]
+**TransientId** | Pointer to **string** | ID that is returned in the response body for the verification  | [optional] 
 
 ## Methods
 
@@ -220,6 +222,31 @@ SetDeliverability sets Deliverability field to given value.
 
 HasDeliverability returns a boolean if a field has been set.
 
+### GetValidAddress
+
+`func (o *UsVerification) GetValidAddress() bool`
+
+GetValidAddress returns the ValidAddress field if non-nil, zero value otherwise.
+
+### GetValidAddressOk
+
+`func (o *UsVerification) GetValidAddressOk() (*bool, bool)`
+
+GetValidAddressOk returns a tuple with the ValidAddress field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetValidAddress
+
+`func (o *UsVerification) SetValidAddress(v bool)`
+
+SetValidAddress sets ValidAddress field to given value.
+
+### HasValidAddress
+
+`func (o *UsVerification) HasValidAddress() bool`
+
+HasValidAddress returns a boolean if a field has been set.
+
 ### GetComponents
 
 `func (o *UsVerification) GetComponents() UsComponents`
@@ -319,6 +346,31 @@ SetObject sets Object field to given value.
 `func (o *UsVerification) HasObject() bool`
 
 HasObject returns a boolean if a field has been set.
+
+### GetTransientId
+
+`func (o *UsVerification) GetTransientId() string`
+
+GetTransientId returns the TransientId field if non-nil, zero value otherwise.
+
+### GetTransientIdOk
+
+`func (o *UsVerification) GetTransientIdOk() (*string, bool)`
+
+GetTransientIdOk returns a tuple with the TransientId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientId
+
+`func (o *UsVerification) SetTransientId(v string)`
+
+SetTransientId sets TransientId field to given value.
+
+### HasTransientId
+
+`func (o *UsVerification) HasTransientId() bool`
+
+HasTransientId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **DeliverabilityAnalysis** | Pointer to [**DeliverabilityAnalysis**](DeliverabilityAnalysis.md) |  | [optional] 
 **LobConfidenceScore** | Pointer to [**LobConfidenceScore**](LobConfidenceScore.md) |  | [optional] 
 **Object** | Pointer to **string** |  | [optional] [default to "us_verification"]
+**TransientId** | Pointer to **string** | ID that is returned in the response body for the verification  | [optional] 
 **Error** | Pointer to [**BulkError**](BulkError.md) |  | [optional] 
 
 ## Methods
@@ -320,6 +321,31 @@ SetObject sets Object field to given value.
 `func (o *UsVerificationOrError) HasObject() bool`
 
 HasObject returns a boolean if a field has been set.
+
+### GetTransientId
+
+`func (o *UsVerificationOrError) GetTransientId() string`
+
+GetTransientId returns the TransientId field if non-nil, zero value otherwise.
+
+### GetTransientIdOk
+
+`func (o *UsVerificationOrError) GetTransientIdOk() (*string, bool)`
+
+GetTransientIdOk returns a tuple with the TransientId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientId
+
+`func (o *UsVerificationOrError) SetTransientId(v string)`
+
+SetTransientId sets TransientId field to given value.
+
+### HasTransientId
+
+`func (o *UsVerificationOrError) HasTransientId() bool`
+
+HasTransientId returns a boolean if a field has been set.
 
 ### GetError
 

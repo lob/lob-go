@@ -31,6 +31,8 @@ type MultipleComponents struct {
 	State *string `json:"state,omitempty"`
 	// Required if `city` and `state` are not passed in. If included, must be formatted as a US ZIP or ZIP+4 (e.g. `94107`, `941072282`, `94107-2282`).
 	ZipCode *string `json:"zip_code,omitempty"`
+	// ID that is returned in the response body for the verification 
+	TransientId *string `json:"transient_id,omitempty"`
 }
 
 // NewMultipleComponents instantiates a new MultipleComponents object
@@ -277,6 +279,38 @@ func (o *MultipleComponents) SetZipCode(v string) {
 	o.ZipCode = &v
 }
 
+// GetTransientId returns the TransientId field value if set, zero value otherwise.
+func (o *MultipleComponents) GetTransientId() string {
+	if o == nil || o.TransientId == nil {
+		var ret string
+		return ret
+	}
+	return *o.TransientId
+}
+
+// GetTransientIdOk returns a tuple with the TransientId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MultipleComponents) GetTransientIdOk() (*string, bool) {
+	if o == nil || o.TransientId == nil {
+		return nil, false
+	}
+	return o.TransientId, true
+}
+
+// HasTransientId returns a boolean if a field has been set.
+func (o *MultipleComponents) HasTransientId() bool {
+	if o != nil && o.TransientId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTransientId gets a reference to the given string and assigns it to the TransientId field.
+func (o *MultipleComponents) SetTransientId(v string) {
+	o.TransientId = &v
+}
+
 func (o MultipleComponents) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Recipient.IsSet() {
@@ -299,6 +333,9 @@ func (o MultipleComponents) MarshalJSON() ([]byte, error) {
 	}
 	if o.ZipCode != nil {
 		toSerialize["zip_code"] = o.ZipCode
+	}
+	if o.TransientId != nil {
+		toSerialize["transient_id"] = o.TransientId
 	}
 	return json.Marshal(toSerialize)
 }
