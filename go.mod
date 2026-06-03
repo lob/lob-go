@@ -1,6 +1,6 @@
 module github.com/lob/lob-go
 
-go 1.18
+go 1.25
 
 require golang.org/x/oauth2 v0.0.0-20221006150949-b44042a4b9c1
 
