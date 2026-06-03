@@ -132,6 +132,33 @@ func (suite *BankAccountTestSuite) TestBankAccountVerify() {
 	}
 }
 
+func (suite *BankAccountTestSuite) TestBankAccountVerifyWithDescriptorCode() {
+	t := suite.T()
+	createdBA, _, _ := suite.apiClient.BankAccountsApi.Create(suite.ctx).BankAccountWritable(suite.bankAccountWritable).Execute()
+
+	mockVerify := *lob.NewBankAccountVerifyWithDescriptorCode("SM11AA")
+
+	resp, _, err := suite.apiClient.BankAccountsApi.Verify(suite.ctx, createdBA.Id).BankAccountVerify(mockVerify).Execute()
+	assert.Nil(t, err)
+	if assert.NotNil(t, resp) {
+		assert.Regexp(t, "^bank_", resp.GetId())
+	}
+}
+
+func (suite *BankAccountTestSuite) TestBankAccountHasMicrodepositType() {
+	t := suite.T()
+	createdBA, _, _ := suite.apiClient.BankAccountsApi.Create(suite.ctx).BankAccountWritable(suite.bankAccountWritable).Execute()
+
+	resp, _, err := suite.apiClient.BankAccountsApi.Get(suite.ctx, createdBA.Id).Execute()
+	assert.Nil(t, err)
+	if assert.NotNil(t, resp) {
+		mdt, isSet := resp.GetMicrodepositTypeOk()
+		assert.True(t, isSet)
+		assert.NotNil(t, mdt)
+		assert.Contains(t, []string{"amounts", "descriptor_code"}, *mdt)
+	}
+}
+
 func (suite *BankAccountTestSuite) TestBankAccountDelete() {
 	t := suite.T()
 	createdBA, _, _ := suite.apiClient.BankAccountsApi.Create(suite.ctx).BankAccountWritable(suite.bankAccountWritable).Execute()

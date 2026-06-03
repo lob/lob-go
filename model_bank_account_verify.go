@@ -13,13 +13,16 @@ package lob
 
 import (
 	"encoding/json"
-	
+	"fmt"
+	"regexp"
 )
 
 // BankAccountVerify struct for BankAccountVerify
 type BankAccountVerify struct {
 	// In live mode, an array containing the two micro deposits (in cents) placed in the bank account. In test mode, no micro deposits will be placed, so any two integers between `1` and `100` will work.
-	Amounts []int32 `json:"amounts"`
+	Amounts []int32 `json:"amounts,omitempty"`
+	// The 6-character code (beginning with SM) from the bank statement descriptor of the single $0.01 microdeposit. Required when microdeposit_type is descriptor_code.
+	DescriptorCode *string `json:"descriptor_code,omitempty"`
 }
 
 // NewBankAccountVerify instantiates a new BankAccountVerify object
@@ -32,6 +35,13 @@ func NewBankAccountVerify(amounts []int32) *BankAccountVerify {
 	return &this
 }
 
+// NewBankAccountVerifyWithDescriptorCode instantiates a new BankAccountVerify object using the descriptor code path.
+func NewBankAccountVerifyWithDescriptorCode(descriptorCode string) *BankAccountVerify {
+	this := BankAccountVerify{}
+	this.DescriptorCode = &descriptorCode
+	return &this
+}
+
 // NewBankAccountVerifyWithDefaults instantiates a new BankAccountVerify object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
@@ -40,9 +50,9 @@ func NewBankAccountVerifyWithDefaults() *BankAccountVerify {
 	return &this
 }
 
-// GetAmounts returns the Amounts field value
+// GetAmounts returns the Amounts field value if set, zero value otherwise.
 func (o *BankAccountVerify) GetAmounts() []int32 {
-	if o == nil {
+	if o == nil || o.Amounts == nil {
 		var ret []int32
 		return ret
 	}
@@ -50,13 +60,18 @@ func (o *BankAccountVerify) GetAmounts() []int32 {
 	return o.Amounts
 }
 
-// GetAmountsOk returns a tuple with the Amounts field value
+// GetAmountsOk returns a tuple with the Amounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BankAccountVerify) GetAmountsOk() ([]int32, bool) {
-	if o == nil {
+	if o == nil || o.Amounts == nil {
 		return nil, false
 	}
 	return o.Amounts, true
+}
+
+// HasAmounts returns a boolean if a field has been set.
+func (o *BankAccountVerify) HasAmounts() bool {
+	return o != nil && o.Amounts != nil
 }
 
 // SetAmounts sets field value
@@ -64,10 +79,65 @@ func (o *BankAccountVerify) SetAmounts(v []int32) {
 	o.Amounts = v
 }
 
+// GetDescriptorCode returns the DescriptorCode field value if set, zero value otherwise.
+func (o *BankAccountVerify) GetDescriptorCode() string {
+	if o == nil || o.DescriptorCode == nil {
+		var ret string
+		return ret
+	}
+	return *o.DescriptorCode
+}
+
+// GetDescriptorCodeOk returns a tuple with the DescriptorCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BankAccountVerify) GetDescriptorCodeOk() (*string, bool) {
+	if o == nil || o.DescriptorCode == nil {
+		return nil, false
+	}
+	return o.DescriptorCode, true
+}
+
+// HasDescriptorCode returns a boolean if a field has been set.
+func (o *BankAccountVerify) HasDescriptorCode() bool {
+	return o != nil && o.DescriptorCode != nil
+}
+
+// SetDescriptorCode sets field value. The code must match the pattern ^SM[a-zA-Z0-9]{4}$.
+func (o *BankAccountVerify) SetDescriptorCode(v string) error {
+	matched, _ := regexp.MatchString(`^SM[a-zA-Z0-9]{4}$`, v)
+	if !matched {
+		return fmt.Errorf("invalid descriptor_code %q: must match ^SM[a-zA-Z0-9]{4}$", v)
+	}
+	o.DescriptorCode = &v
+	return nil
+}
+
+// Validate checks that exactly one of Amounts or DescriptorCode is set.
+func (o *BankAccountVerify) Validate() error {
+	hasAmounts := o.Amounts != nil
+	hasDescriptorCode := o.DescriptorCode != nil
+
+	if !hasAmounts && !hasDescriptorCode {
+		return fmt.Errorf("one of 'amounts' or 'descriptor_code' must be provided")
+	}
+	if hasAmounts && hasDescriptorCode {
+		return fmt.Errorf("only one of 'amounts' or 'descriptor_code' may be provided")
+	}
+	if hasAmounts {
+		if len(o.Amounts) != 2 {
+			return fmt.Errorf("'amounts' must contain exactly 2 values")
+		}
+	}
+	return nil
+}
+
 func (o BankAccountVerify) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.Amounts != nil {
 		toSerialize["amounts"] = o.Amounts
+	}
+	if o.DescriptorCode != nil {
+		toSerialize["descriptor_code"] = o.DescriptorCode
 	}
 	return json.Marshal(toSerialize)
 }
