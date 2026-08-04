@@ -45,6 +45,8 @@ type BankAccount struct {
 	// Only returned if the resource has been successfully deleted.
 	Deleted *bool `json:"deleted,omitempty"`
 	Object string `json:"object"`
+	// The type of microdeposit verification required. Present when verified is false; null once the account is verified. Use this to determine which field to submit to the verify endpoint: amounts or descriptor_code.
+	MicrodepositType NullableString `json:"microdeposit_type,omitempty"`
 }
 
 // NewBankAccount instantiates a new BankAccount object
@@ -482,6 +484,45 @@ func (o *BankAccount) SetObject(v string) {
 	o.Object = v
 }
 
+// GetMicrodepositType returns the MicrodepositType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BankAccount) GetMicrodepositType() string {
+	if o == nil || o.MicrodepositType.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.MicrodepositType.Get()
+}
+
+// GetMicrodepositTypeOk returns a tuple with the MicrodepositType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BankAccount) GetMicrodepositTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MicrodepositType.Get(), o.MicrodepositType.IsSet()
+}
+
+// HasMicrodepositType returns a boolean if a field has been set.
+func (o *BankAccount) HasMicrodepositType() bool {
+	return o != nil && o.MicrodepositType.IsSet()
+}
+
+// SetMicrodepositType gets a reference to the given NullableString and assigns it to the MicrodepositType field.
+func (o *BankAccount) SetMicrodepositType(v string) {
+	o.MicrodepositType.Set(&v)
+}
+
+// SetMicrodepositTypeNil sets the value for MicrodepositType to be an explicit nil
+func (o *BankAccount) SetMicrodepositTypeNil() {
+	o.MicrodepositType.Set(nil)
+}
+
+// UnsetMicrodepositType ensures that no value is present for MicrodepositType, not even an explicit nil
+func (o *BankAccount) UnsetMicrodepositType() {
+	o.MicrodepositType.Unset()
+}
+
 func (o BankAccount) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Description.IsSet() {
@@ -525,6 +566,9 @@ func (o BankAccount) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["object"] = o.Object
+	}
+	if o.MicrodepositType.IsSet() {
+		toSerialize["microdeposit_type"] = o.MicrodepositType.Get()
 	}
 	return json.Marshal(toSerialize)
 }

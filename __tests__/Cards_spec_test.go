@@ -43,7 +43,7 @@ func (suite *CardsTestSuite) TestCardsCreate() {
 	assert.Nil(t, err)
 	if assert.NotNil(t, resp) {
 		assert.NotNil(t, resp.Id)
-		assert.Equal(t, suite.cardEditable.Description, resp.Description)
+		assert.Equal(t, suite.cardEditable.Description.Get(), resp.Description.Get())
 	}
 }
 

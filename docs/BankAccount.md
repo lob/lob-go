@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **DateModified** | **time.Time** | A timestamp in ISO 8601 format of the date the resource was last modified. | 
 **Deleted** | Pointer to **bool** | Only returned if the resource has been successfully deleted. | [optional] 
 **Object** | **string** |  | [default to "bank_account"]
+**MicrodepositType** | Pointer to **NullableString** | The type of microdeposit verification required. Present when verified is false; null once the account is verified. Use this to determine which field to submit to the verify endpoint: &#x60;amounts&#x60; or &#x60;descriptor_code&#x60;. | [optional]
 
 ## Methods
 
@@ -367,6 +368,42 @@ and a boolean to check if the value has been set.
 
 SetObject sets Object field to given value.
 
+### GetMicrodepositType
+
+`func (o *BankAccount) GetMicrodepositType() string`
+
+GetMicrodepositType returns the MicrodepositType field if non-nil, zero value otherwise.
+
+### GetMicrodepositTypeOk
+
+`func (o *BankAccount) GetMicrodepositTypeOk() (*string, bool)`
+
+GetMicrodepositTypeOk returns a tuple with the MicrodepositType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasMicrodepositType
+
+`func (o *BankAccount) HasMicrodepositType() bool`
+
+HasMicrodepositType returns a boolean if a field has been set.
+
+### SetMicrodepositType
+
+`func (o *BankAccount) SetMicrodepositType(v string)`
+
+SetMicrodepositType sets MicrodepositType field to given value.
+
+### SetMicrodepositTypeNil
+
+`func (o *BankAccount) SetMicrodepositTypeNil()`
+
+SetMicrodepositTypeNil sets the value for MicrodepositType to be an explicit nil
+
+### UnsetMicrodepositType
+
+`func (o *BankAccount) UnsetMicrodepositType()`
+
+UnsetMicrodepositType ensures that no value is present for MicrodepositType, not even an explicit nil
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
